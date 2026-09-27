@@ -6,20 +6,19 @@ export const BreathingQuote: React.FC = () => {
   return (
     <section
       className="py-28 sm:py-36 md:py-44 px-6 sm:px-10 max-w-4xl mx-auto text-center"
-      aria-label="Reflexión editorial"
+      aria-label="Pausa poética y conceptual"
     >
-      <div className="space-y-7">
+      <div className="space-y-8">
         <div className="w-8 h-[1px] bg-[#EDEAE2]/20 mx-auto" aria-hidden="true" />
 
-        <p className="font-editorial text-[28px] sm:text-[38px] md:text-[46px] leading-[1.25] font-normal text-[#EDEAE2] tracking-[-0.02em]">
-          Algunas historias comienzan con una persona.
-          <br className="hidden sm:inline" />
-          {' '}Esta comienza de otra manera.
-        </p>
+        <h2 className="font-editorial text-[32px] sm:text-[44px] md:text-[54px] leading-[1.12] font-normal text-[#EDEAE2] tracking-[-0.025em]">
+          ¿Qué hace real a una historia?
+        </h2>
 
-        <p className="font-editorial italic text-[19px] sm:text-[23px] text-[#9E9A92] font-normal">
-          Pero eso no debería cambiar lo que te haga sentir.
-        </p>
+        <div className="space-y-2 font-editorial text-[20px] sm:text-[24px] text-[#9E9A92] font-normal leading-relaxed">
+          <p>No siempre quién la escribió.</p>
+          <p className="italic text-[#EDEAE2]/85">A veces, lo que logra dejar en ti.</p>
+        </div>
 
         <div className="w-8 h-[1px] bg-[#EDEAE2]/20 mx-auto" aria-hidden="true" />
       </div>

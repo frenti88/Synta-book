@@ -31,33 +31,36 @@ export const Hero: React.FC<HeroProps> = ({
 
   return (
     <section
-      className="relative min-h-[calc(100vh-68px)] flex items-center justify-center pt-8 pb-16 px-5 sm:px-8 md:px-12 max-w-6xl mx-auto"
+      className="relative min-h-[calc(100vh-70px)] flex items-center justify-center pt-6 pb-16 px-5 sm:px-8 md:px-12 max-w-6xl mx-auto"
       aria-labelledby="hero-heading"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        {/* Left Column: Editorial Typography */}
+        {/* Left Column: Monumental Typography */}
         <div className="lg:col-span-7 flex flex-col justify-center text-left order-1">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 mb-6">
-            <span className="font-sans-ui text-[12px] sm:text-[13px] tracking-[0.24em] uppercase text-[#9E9A92] font-medium">
-              SYNTA / LITERATURA SINTÉTICA
+            <span className="font-sans-ui text-[12px] sm:text-[13px] tracking-[0.24em] uppercase text-[#9E9A92] font-semibold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
+              SYNTA / 001
             </span>
           </div>
 
           {/* Headline */}
           <h1
             id="hero-heading"
-            className="font-editorial text-[46px] sm:text-[56px] md:text-[76px] lg:text-[90px] xl:text-[98px] leading-[0.98] font-normal tracking-[-0.03em] text-[#EDEAE2] mb-7"
+            className="font-editorial text-[44px] sm:text-[56px] md:text-[72px] lg:text-[84px] xl:text-[92px] leading-[0.98] font-normal tracking-[-0.035em] text-[#EDEAE2] mb-7"
           >
-            ¿Qué hace real a una historia?
+            Estás llegando al comienzo de algo.
           </h1>
 
-          {/* Supporting Copy */}
-          <p className="font-editorial text-[21px] sm:text-[24px] md:text-[26px] leading-[1.35] text-[#9E9A92] max-w-xl mb-10 font-normal">
-            Lee nuestra primera obra antes de conocer a su autor.
+          {/* Subheadline */}
+          <p className="font-editorial text-[20px] sm:text-[23px] md:text-[25px] leading-[1.4] text-[#9E9A92] max-w-xl mb-10 font-normal">
+            Una nueva literatura está empezando a escribirse.
+            <br />
+            Lee la primera historia antes de conocer a quien —o a lo que— la escribió.
           </p>
 
-          {/* Action Row with 8px radius */}
+          {/* Actions */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-8">
             <button
               onClick={handlePrimaryClick}
@@ -77,19 +80,19 @@ export const Hero: React.FC<HeroProps> = ({
             </button>
           </div>
 
-          {/* Subtext info */}
+          {/* Microcopy inferior */}
           <div className="font-sans-ui text-[12px] sm:text-[13px] tracking-wide text-[#6B6862] flex flex-wrap items-center gap-2">
-            <span>Acceso anticipado</span>
+            <span>Primera publicación</span>
             <span className="opacity-40">·</span>
-            <span>Lectura breve</span>
+            <span>38 min de lectura</span>
             <span className="opacity-40">·</span>
-            <span>Sin registro complejo</span>
+            <span className="text-[#9E9A92]/80">acceso abierto</span>
           </div>
         </div>
 
-        {/* Right Column: Book Cover Presentation */}
+        {/* Right Column: Inaugural Artifact Cover */}
         <div className="lg:col-span-5 flex justify-center lg:justify-end items-center order-2 mt-4 lg:mt-0">
-          <div className="relative transform hover:translate-y-[-4px] transition-transform duration-300 ease-out rounded-[8px]">
+          <div className="relative">
             <BookCover size="hero" onClick={handlePrimaryClick} />
             <div className="mt-4 text-center">
               <span className="font-sans-ui text-[11px] uppercase tracking-[0.2em] text-[#6B6862]">

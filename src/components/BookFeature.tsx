@@ -26,50 +26,55 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
   const buttonText = isUnlocked
     ? hasStartedReading
       ? 'Continuar leyendo'
-      : 'Comenzar a leer'
-    : 'Desbloquear lectura';
+      : 'Entrar en la historia'
+    : 'Entrar en la historia';
 
   return (
     <section
       id="primer-libro"
-      className="py-20 sm:py-28 px-5 sm:px-8 border-y border-[#EDEAE2]/10 bg-[#131211]"
+      className="py-24 sm:py-36 px-5 sm:px-8 border-y border-[#EDEAE2]/10 bg-[#131211] relative overflow-hidden"
       aria-labelledby="book-feature-title"
     >
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
-        {/* Cover presentation */}
+        {/* Cover presentation as inaugural object */}
         <div className="md:col-span-5 flex justify-center">
           <BookCover size="feature" onClick={handleClick} />
         </div>
 
         {/* Book Details */}
         <div className="md:col-span-7 flex flex-col justify-center text-left">
-          {/* Metadata pill list */}
-          <div className="flex flex-wrap items-center gap-3 text-[11px] sm:text-[12px] font-sans-ui tracking-[0.16em] uppercase text-[#9E9A92] mb-4">
+          {/* Monumental Editorial Number */}
+          <div className="font-editorial text-[64px] sm:text-[84px] leading-none font-normal text-[#EDEAE2]/15 select-none -mb-3 tracking-tighter">
+            001
+          </div>
+
+          {/* Metadata */}
+          <div className="flex flex-wrap items-center gap-2.5 text-[11px] sm:text-[12px] font-sans-ui tracking-[0.16em] uppercase text-[#9E9A92] mb-4">
             <span className="font-semibold text-[#EDEAE2]">SYNTA 001</span>
-            <span className="text-[#6B6862]">/</span>
-            <span>30–40 min</span>
-            <span className="text-[#6B6862]">/</span>
-            <span>Ficción especulativa</span>
+            <span className="text-[#6B6862]">·</span>
+            <span>38 min</span>
+            <span className="text-[#6B6862]">·</span>
+            <span>Ficción especulativa íntima</span>
           </div>
 
           {/* Book Title */}
           <h2
             id="book-feature-title"
-            className="font-editorial text-[36px] sm:text-[46px] md:text-[52px] leading-[1.08] font-normal tracking-[-0.02em] text-[#EDEAE2] mb-5"
+            className="font-editorial text-[38px] sm:text-[48px] md:text-[54px] leading-[1.05] font-normal tracking-[-0.025em] text-[#EDEAE2] mb-5"
           >
             La casa que empezó a olvidarnos
           </h2>
 
-          {/* Synopsis */}
+          {/* Description */}
           <p className="font-editorial text-[20px] sm:text-[22px] leading-[1.5] text-[#9E9A92] mb-8 font-normal">
-            Una pareja. Una casa. Y algo que empieza a borrar silenciosamente todo lo que demuestra que estuvieron juntos.
+            Una pareja descubre que algo está borrando lentamente todas las pruebas de que alguna vez estuvieron juntos.
           </p>
 
-          {/* Action & Microcopy with 8px radius */}
+          {/* Action & Microcopy */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <button
               onClick={handleClick}
-              className="font-sans-ui text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-8 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer"
+              className="font-sans-ui text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-8 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer shadow-sm"
             >
               <span>{buttonText}</span>
               <span aria-hidden="true" className="text-[13px] font-sans">
@@ -77,8 +82,8 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
               </span>
             </button>
 
-            <span className="font-sans-ui text-[13px] text-[#9E9A92] italic sm:ml-2">
-              Gratis para los primeros lectores.
+            <span className="font-sans-ui text-[12px] sm:text-[13px] text-[#6B6862] tracking-wide sm:ml-2">
+              Primera obra publicada por SYNTA · 2026
             </span>
           </div>
         </div>

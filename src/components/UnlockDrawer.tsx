@@ -116,16 +116,16 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
       {/* Backdrop */}
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300"
+        className="fixed inset-0 bg-black/80 backdrop-blur-xs transition-opacity duration-300"
         aria-hidden="true"
       />
 
-      {/* Drawer / Dialog Container with 8px radius and dark theme */}
+      {/* Drawer Container */}
       <div
         ref={drawerRef}
         className="relative w-full sm:max-w-lg bg-[#181716] text-[#EDEAE2] border-t sm:border border-[#EDEAE2]/15 p-7 sm:p-10 shadow-2xl z-10 animate-in fade-in slide-in-from-bottom-4 duration-300 rounded-t-[12px] sm:rounded-[8px]"
       >
-        {/* Close button with 8px radius */}
+        {/* Close button */}
         <button
           onClick={onClose}
           aria-label="Cerrar ventana de desbloqueo"
@@ -144,8 +144,9 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
 
         {!isUnlockedState ? (
           <div>
-            <div className="font-sans-ui text-[11px] tracking-[0.2em] uppercase text-[#9E9A92] mb-3">
-              SYNTA 001 · ACCESO DE LECTURA
+            <div className="font-sans-ui text-[11px] tracking-[0.24em] uppercase text-[#9E9A92] mb-3 font-semibold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
+              SYNTA 001 · PRIMEROS LECTORES
             </div>
 
             <h3
@@ -156,7 +157,7 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
             </h3>
 
             <p className="font-editorial text-[18px] sm:text-[19px] leading-[1.5] text-[#9E9A92] mb-8 font-normal">
-              Estamos reuniendo a los primeros lectores de SYNTA. Déjanos tu correo y esta historia será tuya.
+              Estamos reuniendo a la primera generación de lectores de SYNTA. Déjanos tu correo y esta historia será tuya.
             </p>
 
             <form onSubmit={handleSubmit} noValidate className="space-y-5">
@@ -204,7 +205,7 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
                 </p>
               )}
 
-              {/* CTA Button with 8px radius */}
+              {/* CTA Button */}
               <button
                 type="submit"
                 disabled={loading}
@@ -223,12 +224,12 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
 
             <div className="mt-6 pt-5 border-t border-[#EDEAE2]/10 text-center">
               <p className="font-sans-ui text-[12px] text-[#6B6862]">
-                Sin contraseña. Sin formulario largo. Solo literatura.
+                Sin contraseñas. Sin formularios largos. Solo literatura.
               </p>
             </div>
           </div>
         ) : (
-          /* Endowment effect success state with 8px radius */
+          /* Endowment effect success state */
           <div className="text-center py-4 animate-in fade-in zoom-in-95 duration-400">
             <div className="w-12 h-12 mx-auto mb-5 rounded-[8px] border border-[#EDEAE2]/15 flex items-center justify-center text-[#E34A32] bg-[#1C1B1A]">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -236,16 +237,16 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
               </svg>
             </div>
 
-            <div className="font-sans-ui text-[11px] tracking-[0.2em] uppercase text-[#9E9A92] mb-2">
-              PRIMEROS LECTORES
+            <div className="font-sans-ui text-[11px] tracking-[0.24em] uppercase text-[#9E9A92] mb-2 font-semibold">
+              PRIMERA GENERACIÓN
             </div>
 
-            <h3 className="font-editorial text-[34px] sm:text-[40px] leading-[1.1] font-normal text-[#EDEAE2] mb-3">
-              Tu acceso está abierto.
+            <h3 className="font-editorial text-[30px] sm:text-[36px] leading-[1.15] font-normal text-[#EDEAE2] mb-3">
+              Ya eres parte de la primera generación de lectores SYNTA.
             </h3>
 
             <p className="font-editorial text-[18px] sm:text-[19px] leading-[1.5] text-[#9E9A92] mb-8 font-normal max-w-sm mx-auto">
-              La casa que empezó a olvidarnos ya está disponible en tu lector editorial.
+              Tu acceso está abierto. La casa que empezó a olvidarnos ya te espera.
             </p>
 
             <button

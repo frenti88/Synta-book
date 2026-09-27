@@ -7,7 +7,9 @@ import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { BreathingQuote } from '@/components/BreathingQuote';
 import { BookFeature } from '@/components/BookFeature';
-import { FutureSection } from '@/components/FutureSection';
+import { FirstGenerationSection } from '@/components/FirstGenerationSection';
+import { CatalogSection } from '@/components/CatalogSection';
+import { AuthorsArchiveSection } from '@/components/AuthorsArchiveSection';
 import { ManifestoSection } from '@/components/ManifestoSection';
 import { CommunitySection } from '@/components/CommunitySection';
 import { Footer } from '@/components/Footer';
@@ -25,10 +27,8 @@ export default function Home() {
   const [isManifestoModalOpen, setIsManifestoModalOpen] = useState(false);
 
   useEffect(() => {
-    // Record landing view
     trackEvent('landing_view', { path: '/' }, { oncePerSession: true });
 
-    // Check existing unlock status & progress
     if (typeof window !== 'undefined') {
       const unlocked = isStoryUnlocked();
       setIsUnlocked(unlocked);
@@ -64,7 +64,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#131211] text-[#EDEAE2] flex flex-col font-sans-ui selection:bg-[#E34A32]/30 selection:text-[#EDEAE2]">
-      {/* Editorial Header */}
+      {/* 1. Minimal Header */}
       <Header
         onOpenUnlockOrRead={handleOpenUnlockOrRead}
         isUnlocked={isUnlocked}
@@ -72,9 +72,9 @@ export default function Home() {
         onOpenCommunity={() => scrollToSection('comunidad')}
       />
 
-      {/* Main Content Area */}
+      {/* Main Narrative Journey */}
       <main id="main-content" className="flex-1">
-        {/* 1. Hero Section */}
+        {/* 2. Hero: Estás llegando al comienzo de algo */}
         <Hero
           onStartReading={handleOpenUnlockOrRead}
           onDiscoverClick={() => scrollToSection('primer-libro')}
@@ -82,35 +82,43 @@ export default function Home() {
           hasStartedReading={hasStartedReading}
         />
 
-        {/* 2. Breathing Editorial Phrase */}
+        {/* 3. Pausa poética: ¿Qué hace real a una historia? */}
         <BreathingQuote />
 
-        {/* 3. Book Presentation & Unlock Block */}
+        {/* 4. Objeto Inaugural 001: La casa que empezó a olvidarnos */}
         <BookFeature
           onUnlockClick={handleOpenUnlockOrRead}
           isUnlocked={isUnlocked}
           hasStartedReading={hasStartedReading}
         />
 
-        {/* 4. Future Section: Esto apenas comienza */}
-        <FutureSection />
+        {/* 5. Primera Generación: Esta historia todavía casi nadie la conoce */}
+        <FirstGenerationSection
+          onJoinClick={() => scrollToSection('comunidad')}
+        />
 
-        {/* 5. Condensed Manifesto */}
+        {/* 6. Catálogo Naciente: Esto apenas comienza (001, 002, 003, 004) */}
+        <CatalogSection onOpenStory={handleOpenUnlockOrRead} />
+
+        {/* 7. Archivo de Autores: Autores que nunca nacieron */}
+        <AuthorsArchiveSection />
+
+        {/* 8. Manifiesto Reducido: Durante siglos, detrás de cada libro hubo alguien */}
         <ManifestoSection
           onOpenFullManifesto={() => setIsManifestoModalOpen(true)}
         />
 
-        {/* 6. Community Signup */}
+        {/* 9. Comunidad Final: Lee antes que los demás */}
         <CommunitySection />
       </main>
 
-      {/* Editorial Minimal Footer */}
+      {/* 10. Minimal Footer */}
       <Footer
         onOpenManifesto={() => setIsManifestoModalOpen(true)}
         onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
       />
 
-      {/* Modals & Reader Overlay */}
+      {/* Modals & Reading Engine */}
       <UnlockDrawer
         isOpen={isUnlockDrawerOpen}
         onClose={() => setIsUnlockDrawerOpen(false)}

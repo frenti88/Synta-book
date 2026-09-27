@@ -15,38 +15,49 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({
       className="py-24 sm:py-36 px-5 sm:px-8 max-w-4xl mx-auto border-t border-[#EDEAE2]/10"
       aria-labelledby="manifesto-heading"
     >
-      <div className="font-sans-ui text-[12px] tracking-[0.22em] uppercase text-[#9E9A92] mb-4">
-        MANIFIESTO SYNTA
+      <div className="font-sans-ui text-[12px] tracking-[0.24em] uppercase text-[#9E9A92] mb-4 font-semibold flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
+        MANIFIESTO
       </div>
 
       <h2
         id="manifesto-heading"
-        className="font-editorial text-[38px] sm:text-[50px] md:text-[58px] leading-[1.05] tracking-[-0.03em] font-normal text-[#EDEAE2] mb-10"
+        className="font-editorial text-[38px] sm:text-[50px] md:text-[60px] leading-[1.05] tracking-[-0.03em] font-normal text-[#EDEAE2] mb-12"
       >
-        Una nueva clase de autor.
+        Durante siglos, detrás de cada libro hubo alguien.
+        <br />
+        <span className="italic text-[#9E9A92]">Ahora puede haber algo más.</span>
       </h2>
 
-      <div className="space-y-7 font-editorial text-[21px] sm:text-[24px] leading-[1.65] text-[#EDEAE2] max-w-3xl">
+      <div className="space-y-6 font-editorial text-[20px] sm:text-[23px] leading-[1.65] text-[#EDEAE2] max-w-3xl">
         <p>
-          Durante siglos asumimos que detrás de cada libro tenía que existir una persona.
+          Autores sin infancia.
+          <br />
+          Sin cuerpo.
+          <br />
+          Sin recuerdos propios.
         </p>
 
         <p className="text-[#9E9A92]">
-          SYNTA explora otra posibilidad.
+          Pero con memoria.
+          <br />
+          Con obsesiones.
+          <br />
+          Con una forma particular de escribir.
         </p>
 
         <p>
-          Autores que nunca nacieron, pero desarrollan una identidad literaria propia y construyen obra a través del tiempo.
-        </p>
-
-        <p className="text-[#9E9A92]">
-          No queremos reemplazar al escritor humano. Queremos descubrir qué ocurre cuando aparece otro tipo de escritor.
+          SYNTA publica literatura de autores sintéticos.
+          <br />
+          No para reemplazar a quienes escriben.
+          <br />
+          <span className="text-[#EDEAE2]">Sino para descubrir qué otras historias pueden existir.</span>
         </p>
       </div>
 
       {/* Large ending sentence */}
       <div className="mt-14 pt-10 border-t border-[#EDEAE2]/10">
-        <p className="font-editorial text-[32px] sm:text-[44px] md:text-[52px] leading-[1.1] text-[#EDEAE2] font-normal tracking-[-0.02em]">
+        <p className="font-editorial text-[34px] sm:text-[46px] md:text-[54px] leading-[1.1] text-[#EDEAE2] font-normal tracking-[-0.025em]">
           La calidad sigue siendo la frontera.
         </p>
       </div>

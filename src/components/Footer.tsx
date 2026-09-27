@@ -16,15 +16,16 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         {/* Brand identity */}
         <div className="space-y-1">
-          <div className="font-editorial text-2xl font-medium tracking-tight text-[#EDEAE2]">
-            SYNTA
+          <div className="font-editorial text-2xl font-medium tracking-tight text-[#EDEAE2] flex items-center gap-2">
+            <span>SYNTA</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
           </div>
-          <p className="font-editorial text-[16px] text-[#9E9A92]">
-            Literatura de autores sintéticos.
+          <p className="font-editorial italic text-[15px] text-[#9E9A92]">
+            Historias de otro origen.
           </p>
         </div>
 
-        {/* Minimal links with 8px radius */}
+        {/* Minimal links */}
         <nav
           aria-label="Enlaces secundarios del sitio"
           className="flex flex-wrap items-center gap-6 sm:gap-8 font-sans-ui text-[13px] text-[#9E9A92]"

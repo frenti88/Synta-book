@@ -14,13 +14,12 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenUnlockOrRead,
   isUnlocked,
   hasStartedReading,
-  onOpenCommunity,
 }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 380);
+      setScrolled(window.scrollY > 300);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -31,20 +30,14 @@ export const Header: React.FC<HeaderProps> = ({
       isUnlocked ? 'hero_read_click' : 'book_unlock_click',
       { location: 'header' }
     );
-    if (scrolled) {
-      onOpenUnlockOrRead();
-    } else if (onOpenCommunity) {
-      onOpenCommunity();
-    } else {
-      onOpenUnlockOrRead();
-    }
+    onOpenUnlockOrRead();
   };
 
-  const actionText = scrolled
-    ? hasStartedReading
-      ? 'Continuar leyendo'
-      : 'Leer la primera historia'
-    : 'Ser de los primeros';
+  const actionText = hasStartedReading
+    ? 'Continuar 001'
+    : isUnlocked
+    ? 'Leer 001'
+    : 'Entrar';
 
   return (
     <header
@@ -53,32 +46,35 @@ export const Header: React.FC<HeaderProps> = ({
           ? 'bg-[#131211]/90 backdrop-blur-md border-b border-[#EDEAE2]/10 shadow-[0_2px_16px_rgba(0,0,0,0.4)]'
           : 'bg-transparent'
       }`}
-      style={{ height: '68px' }}
+      style={{ height: '70px' }}
     >
       <div className="max-w-6xl mx-auto h-full px-5 sm:px-8 flex items-center justify-between">
-        {/* Wordmark */}
-        <a
-          href="#"
-          className="group inline-flex items-center gap-2 focus:outline-none rounded-[8px]"
-          aria-label="SYNTA Editorial - Inicio"
-        >
-          <span className="font-editorial text-2xl sm:text-[27px] font-semibold tracking-[-0.04em] text-[#EDEAE2] transition-colors">
-            SYNTA
+        {/* Wordmark and baseline emotional phrase */}
+        <div className="flex flex-col justify-center">
+          <a
+            href="#"
+            className="group inline-flex items-center gap-2 focus:outline-none rounded-[8px]"
+            aria-label="SYNTA - Historias de otro origen"
+          >
+            <span className="font-editorial text-2xl sm:text-[27px] font-semibold tracking-[-0.04em] text-[#EDEAE2] leading-none">
+              SYNTA
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32] transform transition-transform group-hover:scale-125" />
+          </a>
+          <span className="font-editorial italic text-[11px] sm:text-[12px] text-[#9E9A92] tracking-wide mt-0.5 select-none">
+            Historias de otro origen.
           </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32] transform transition-transform group-hover:scale-125" />
-        </a>
+        </div>
 
-        {/* Right action button with 8px radius */}
-        <button
-          onClick={handleAction}
-          className={`font-sans-ui text-[13px] sm:text-[14px] font-medium transition-all duration-200 min-h-[44px] px-3.5 sm:px-5 flex items-center justify-center rounded-[8px] focus:ring-2 focus:ring-[#E34A32] cursor-pointer ${
-            scrolled
-              ? 'bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] shadow-sm'
-              : 'text-[#EDEAE2] hover:text-[#E34A32] border border-transparent hover:border-[#EDEAE2]/10'
-          }`}
-        >
-          {actionText}
-        </button>
+        {/* Right action button */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleAction}
+            className="font-sans-ui text-[12px] sm:text-[13px] font-medium transition-all duration-200 min-h-[38px] sm:min-h-[42px] px-4 sm:px-5 flex items-center justify-center rounded-[8px] focus:ring-2 focus:ring-[#E34A32] cursor-pointer bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] shadow-sm tracking-wide"
+          >
+            {actionText}
+          </button>
+        </div>
       </div>
     </header>
   );

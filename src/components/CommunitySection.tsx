@@ -27,7 +27,7 @@ export const CommunitySection: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: cleanEmail,
-          source: 'community_footer_block',
+          source: 'first_generation_cta',
           consent: true,
         }),
       });
@@ -42,7 +42,7 @@ export const CommunitySection: React.FC = () => {
 
       trackEvent('email_submitted', {
         email: cleanEmail,
-        source: 'community_section',
+        source: 'community_first_generation',
       });
 
       setSubmitted(true);
@@ -56,23 +56,26 @@ export const CommunitySection: React.FC = () => {
   return (
     <section
       id="comunidad"
-      className="py-24 sm:py-32 px-5 sm:px-8 border-t border-[#EDEAE2]/10 bg-[#181716]/60"
+      className="py-28 sm:py-36 px-5 sm:px-8 border-t border-[#EDEAE2]/10 bg-[#181716]/60 relative"
       aria-labelledby="community-title"
     >
       <div className="max-w-2xl mx-auto text-center">
-        <div className="font-sans-ui text-[11px] sm:text-[12px] tracking-[0.22em] uppercase text-[#9E9A92] mb-3">
-          PRIMEROS LECTORES
+        <div className="font-sans-ui text-[12px] tracking-[0.24em] uppercase text-[#9E9A92] mb-4 font-semibold flex justify-center items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
+          PRIMERA GENERACIÓN
         </div>
 
         <h3
           id="community-title"
-          className="font-editorial text-[36px] sm:text-[46px] leading-[1.08] font-normal text-[#EDEAE2] mb-4 tracking-[-0.02em]"
+          className="font-editorial text-[38px] sm:text-[48px] md:text-[54px] leading-[1.08] font-normal text-[#EDEAE2] mb-5 tracking-[-0.025em]"
         >
-          Sé de los primeros en leer lo que viene.
+          Lee antes que los demás.
         </h3>
 
-        <p className="font-editorial text-[19px] sm:text-[21px] leading-[1.5] text-[#9E9A92] mb-10 font-normal">
-          Estamos formando la primera comunidad de lectores de SYNTA.
+        <p className="font-editorial text-[19px] sm:text-[22px] leading-[1.5] text-[#9E9A92] mb-10 font-normal">
+          Una nueva historia aparecerá cuando esté lista.
+          <br />
+          Los primeros lectores tendrán acceso antes de su publicación abierta.
         </p>
 
         {!submitted ? (
@@ -83,7 +86,7 @@ export const CommunitySection: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tu@email.com"
-                aria-label="Correo para la comunidad SYNTA"
+                aria-label="Correo para la primera generación SYNTA"
                 required
                 disabled={loading}
                 className="flex-1 bg-[#1C1B1A] border border-[#EDEAE2]/20 text-[#EDEAE2] px-4 py-3.5 font-sans-ui text-[15px] placeholder:text-[#6B6862] focus:outline-none focus:border-[#EDEAE2] transition-colors rounded-[8px]"
@@ -91,13 +94,13 @@ export const CommunitySection: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="font-sans-ui text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-7 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer disabled:opacity-60"
+                className="font-sans-ui text-[14px] sm:text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-6 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer disabled:opacity-60 whitespace-nowrap"
               >
                 {loading ? (
                   <span>Entrando...</span>
                 ) : (
                   <>
-                    <span>Entrar a SYNTA</span>
+                    <span>Entrar en la primera generación</span>
                     <span aria-hidden="true">→</span>
                   </>
                 )}
@@ -110,17 +113,20 @@ export const CommunitySection: React.FC = () => {
               </p>
             )}
 
-            <p className="font-sans-ui text-[12px] sm:text-[13px] text-[#6B6862] pt-2">
-              Historias nuevas. Lanzamientos. Accesos anticipados. Sin ruido.
-            </p>
+            <div className="font-sans-ui text-[12px] sm:text-[13px] text-[#6B6862] pt-4 flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
+              <span>Historias nuevas.</span>
+              <span>Accesos anticipados.</span>
+              <span>Cartas de nuestros autores.</span>
+              <span className="text-[#9E9A92]">Nada más.</span>
+            </div>
           </form>
         ) : (
-          <div className="py-6 border border-[#EDEAE2]/15 bg-[#1C1B1A] px-8 rounded-[8px] animate-in fade-in duration-300">
-            <p className="font-editorial text-[24px] sm:text-[28px] text-[#EDEAE2] mb-2 font-normal">
-              Tu acceso está abierto.
+          <div className="py-8 border border-[#EDEAE2]/15 bg-[#1C1B1A] px-8 rounded-[8px] animate-in fade-in duration-400">
+            <p className="font-editorial text-[26px] sm:text-[30px] text-[#EDEAE2] mb-3 font-normal">
+              Ya eres parte de la primera generación de lectores SYNTA.
             </p>
-            <p className="font-editorial text-[17px] text-[#9E9A92]">
-              Recibirás cada nueva obra y lanzamiento directamente en tu bandeja.
+            <p className="font-editorial text-[18px] text-[#9E9A92]">
+              Tu acceso está abierto. La siguiente historia te encontrará aquí primero.
             </p>
           </div>
         )}
