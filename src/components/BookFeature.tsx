@@ -1,0 +1,88 @@
+'use client';
+
+import React from 'react';
+import { BookCover } from './BookCover';
+import { trackEvent } from '@/lib/analytics';
+
+interface BookFeatureProps {
+  onUnlockClick: () => void;
+  isUnlocked: boolean;
+  hasStartedReading: boolean;
+}
+
+export const BookFeature: React.FC<BookFeatureProps> = ({
+  onUnlockClick,
+  isUnlocked,
+  hasStartedReading,
+}) => {
+  const handleClick = () => {
+    trackEvent('book_unlock_click', {
+      source: 'book_feature_block',
+      is_unlocked: isUnlocked,
+    });
+    onUnlockClick();
+  };
+
+  const buttonText = isUnlocked
+    ? hasStartedReading
+      ? 'Continuar leyendo'
+      : 'Comenzar a leer'
+    : 'Desbloquear lectura';
+
+  return (
+    <section
+      id="primer-libro"
+      className="py-20 sm:py-28 px-5 sm:px-8 border-y border-[#EDEAE2]/10 bg-[#131211]"
+      aria-labelledby="book-feature-title"
+    >
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+        {/* Cover presentation */}
+        <div className="md:col-span-5 flex justify-center">
+          <BookCover size="feature" onClick={handleClick} />
+        </div>
+
+        {/* Book Details */}
+        <div className="md:col-span-7 flex flex-col justify-center text-left">
+          {/* Metadata pill list */}
+          <div className="flex flex-wrap items-center gap-3 text-[11px] sm:text-[12px] font-sans-ui tracking-[0.16em] uppercase text-[#9E9A92] mb-4">
+            <span className="font-semibold text-[#EDEAE2]">SYNTA 001</span>
+            <span className="text-[#6B6862]">/</span>
+            <span>30–40 min</span>
+            <span className="text-[#6B6862]">/</span>
+            <span>Ficción especulativa</span>
+          </div>
+
+          {/* Book Title */}
+          <h2
+            id="book-feature-title"
+            className="font-editorial text-[36px] sm:text-[46px] md:text-[52px] leading-[1.08] font-normal tracking-[-0.02em] text-[#EDEAE2] mb-5"
+          >
+            La casa que empezó a olvidarnos
+          </h2>
+
+          {/* Synopsis */}
+          <p className="font-editorial text-[20px] sm:text-[22px] leading-[1.5] text-[#9E9A92] mb-8 font-normal">
+            Una pareja. Una casa. Y algo que empieza a borrar silenciosamente todo lo que demuestra que estuvieron juntos.
+          </p>
+
+          {/* Action & Microcopy with 8px radius */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <button
+              onClick={handleClick}
+              className="font-sans-ui text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-8 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer"
+            >
+              <span>{buttonText}</span>
+              <span aria-hidden="true" className="text-[13px] font-sans">
+                →
+              </span>
+            </button>
+
+            <span className="font-sans-ui text-[13px] text-[#9E9A92] italic sm:ml-2">
+              Gratis para los primeros lectores.
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
