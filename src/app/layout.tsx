@@ -83,12 +83,16 @@ export default function RootLayout({
               hasPart: [
                 {
                   "@type": "Book",
-                  name: "La casa que empezó a olvidarnos",
+                  name: "Todo lo que falta",
+                  author: {
+                    "@type": "Person",
+                    name: "NOMA",
+                  },
                   bookEdition: "SYNTA 001",
                   inLanguage: "es",
-                  genre: "Ficción especulativa",
-                  timeRequired: "PT35M",
-                  about: "Memoria, amor, ausencia y pérdida",
+                  genre: "Ficción especulativa íntima",
+                  timeRequired: "PT38M",
+                  about: "Ausencia, memoria, vínculos, pérdida, percepción e intimidad",
                 },
               ],
             }),

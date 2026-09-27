@@ -36,7 +36,7 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
       aria-labelledby="book-feature-title"
     >
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
-        {/* Cover presentation as inaugural object */}
+        {/* Cover presentation as provisional proof artifact */}
         <div className="md:col-span-5 flex justify-center">
           <BookCover size="feature" onClick={handleClick} />
         </div>
@@ -49,26 +49,53 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
           </div>
 
           {/* Metadata */}
-          <div className="flex flex-wrap items-center gap-2.5 text-[11px] sm:text-[12px] font-sans-ui tracking-[0.16em] uppercase text-[#9E9A92] mb-4">
+          <div className="flex flex-wrap items-center gap-2.5 text-[11px] sm:text-[12px] font-sans-ui tracking-[0.16em] uppercase text-[#9E9A92] mb-3">
             <span className="font-semibold text-[#EDEAE2]">SYNTA 001</span>
+            <span className="text-[#6B6862]">·</span>
+            <span>NOMA</span>
             <span className="text-[#6B6862]">·</span>
             <span>38 min</span>
             <span className="text-[#6B6862]">·</span>
             <span>Ficción especulativa íntima</span>
           </div>
 
-          {/* Book Title */}
+          {/* Book Title: Sentence / Title Case */}
           <h2
             id="book-feature-title"
             className="font-editorial text-[38px] sm:text-[48px] md:text-[54px] leading-[1.05] font-normal tracking-[-0.025em] text-[#EDEAE2] mb-5"
           >
-            La casa que empezó a olvidarnos
+            Todo lo que falta
           </h2>
 
-          {/* Description */}
-          <p className="font-editorial text-[20px] sm:text-[22px] leading-[1.5] text-[#9E9A92] mb-8 font-normal">
-            Una pareja descubre que algo está borrando lentamente todas las pruebas de que alguna vez estuvieron juntos.
-          </p>
+          {/* Synopsis formatted with poetic cadence */}
+          <div className="space-y-3 font-editorial text-[19px] sm:text-[21px] leading-[1.55] text-[#9E9A92] mb-6 font-normal max-w-xl">
+            <p>
+              Primero desapareció una fotografía.
+              <br />
+              Después una taza.
+              <br />
+              Después un nombre.
+            </p>
+            <p className="text-[#EDEAE2]/90">
+              Cuando Clara empezó a escribir todo lo que faltaba, encontró en su lista algo que no recordaba haber perdido.
+            </p>
+          </div>
+
+          {/* Themes tag list */}
+          <div className="flex flex-wrap items-center gap-2 text-[12px] font-sans-ui text-[#6B6862] mb-8">
+            <span className="text-[#9E9A92]">Temas:</span>
+            <span>ausencia</span>
+            <span>·</span>
+            <span>memoria</span>
+            <span>·</span>
+            <span>vínculos</span>
+            <span>·</span>
+            <span>pérdida</span>
+            <span>·</span>
+            <span>percepción</span>
+            <span>·</span>
+            <span>intimidad</span>
+          </div>
 
           {/* Action & Microcopy */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">

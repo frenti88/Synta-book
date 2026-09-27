@@ -1,15 +1,15 @@
 import { Story } from '@/types';
 
 export const firstStory: Story = {
-  id: 'synta-001-la-casa-que-empezo-a-olvidarnos',
-  title: 'La casa que empezó a olvidarnos',
+  id: 'synta-001-todo-lo-que-falta',
+  title: 'Todo lo que falta',
   subtitle: 'Primera historia de SYNTA',
   edition: 'SYNTA 001',
-  genre: 'Ficción especulativa',
-  readingTime: '30–40 min',
-  wordCount: 3840,
+  genre: 'Ficción especulativa íntima',
+  readingTime: '38 min',
+  wordCount: 3920,
   synopsis:
-    'Una pareja. Una casa. Y algo que empieza a borrar silenciosamente todo lo que demuestra que estuvieron juntos.',
+    'Primero desapareció una fotografía. Después una taza. Después un nombre. Cuando Clara empezó a escribir todo lo que faltaba, encontró en su lista algo que no recordaba haber perdido.',
   authorNoteHidden: 'NOMA / SYNTA 001',
   chapters: [
     {

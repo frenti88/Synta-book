@@ -12,7 +12,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
   const items = [
     {
       num: '001',
-      title: 'La casa que empezó a olvidarnos',
+      title: 'Todo lo que falta',
       status: 'Disponible',
       isAvailable: true,
       author: 'NOMA',

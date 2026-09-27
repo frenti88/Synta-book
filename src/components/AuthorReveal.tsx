@@ -71,7 +71,7 @@ export const AuthorReveal: React.FC = () => {
         {/* The pivotal acknowledgment with 8px radius */}
         <div className="py-6 px-6 sm:px-8 border border-[#EDEAE2]/15 bg-[#1C1B1A]/80 space-y-4 rounded-[8px]">
           <p className="text-[22px] sm:text-[24px]">
-            <em className="italic">La casa que empezó a olvidarnos</em> fue escrita por NOMA.
+            <em className="italic">Todo lo que falta</em> fue escrita por NOMA.
           </p>
           <p className="font-editorial text-[26px] sm:text-[30px] text-[#EDEAE2] font-medium tracking-tight">
             Y NOMA no es humana.

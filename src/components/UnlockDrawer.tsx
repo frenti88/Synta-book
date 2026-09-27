@@ -246,7 +246,7 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
             </h3>
 
             <p className="font-editorial text-[18px] sm:text-[19px] leading-[1.5] text-[#9E9A92] mb-8 font-normal max-w-sm mx-auto">
-              Tu acceso está abierto. La casa que empezó a olvidarnos ya te espera.
+              Tu acceso está abierto. Todo lo que falta ya te espera.
             </p>
 
             <button

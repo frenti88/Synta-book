@@ -85,7 +85,7 @@ export default function Home() {
         {/* 3. Pausa poética: ¿Qué hace real a una historia? */}
         <BreathingQuote />
 
-        {/* 4. Objeto Inaugural 001: La casa que empezó a olvidarnos */}
+        {/* 4. Objeto Inaugural 001: Todo lo que falta */}
         <BookFeature
           onUnlockClick={handleOpenUnlockOrRead}
           isUnlocked={isUnlocked}
