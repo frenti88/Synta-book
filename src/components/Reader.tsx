@@ -179,10 +179,10 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
 
   const paragraphSizeClass =
     fontSize === 'sm'
-      ? 'text-[18px] sm:text-[19px] leading-[1.65]'
+      ? 'text-[18px] sm:text-[19px] leading-[1.7]'
       : fontSize === 'lg'
-      ? 'text-[22px] sm:text-[24px] leading-[1.75]'
-      : 'text-[20px] sm:text-[21px] leading-[1.7]';
+      ? 'text-[22px] sm:text-[24px] leading-[1.8]'
+      : 'text-[20px] sm:text-[21px] leading-[1.75]';
 
   return (
     <div
@@ -191,7 +191,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
       aria-label={`Lector de ${story.title}`}
       className={`fixed inset-0 z-50 flex flex-col transition-colors duration-300 ${
         isDarkMode
-          ? 'bg-[#131211] text-[#EDEAE2]'
+          ? 'bg-black text-white'
           : 'bg-[#F4F1EA] text-[#121212]'
       }`}
     >
@@ -199,35 +199,35 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
       <header
         className={`sticky top-0 z-30 w-full px-4 sm:px-8 flex items-center justify-between border-b transition-colors duration-200 ${
           isDarkMode
-            ? 'bg-[#131211]/90 backdrop-blur-md border-[#EDEAE2]/10'
-            : 'bg-[#F4F1EA]/90 backdrop-blur-md border-[#121212]/10'
+            ? 'bg-black/95 backdrop-blur-md border-white/20'
+            : 'bg-[#F4F1EA]/95 backdrop-blur-md border-[#121212]/20'
         }`}
-        style={{ height: '58px' }}
+        style={{ height: '62px' }}
       >
-        <div className="flex items-center gap-2">
-          <span className="font-editorial text-[20px] font-semibold tracking-tight">
+        <div className="flex items-center gap-2 text-left">
+          <span className="font-editorial text-[22px] font-semibold tracking-tight text-white">
             SYNTA
           </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
+          <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
         </div>
 
-        <div className="hidden sm:block font-editorial text-[15px] italic text-center truncate max-w-xs md:max-w-md opacity-80">
+        <div className="hidden sm:block font-editorial text-[16px] italic text-left truncate max-w-xs md:max-w-md text-white">
           {story.title}
         </div>
 
         <div className="flex items-center gap-3 sm:gap-5">
-          <div className="font-sans-ui text-[12px] font-mono tracking-wider opacity-70">
+          <div className="font-sans-ui text-[16px] font-mono tracking-wider text-white">
             {progress}%
           </div>
 
-          {/* Aa Font Size Control with 8px radius and outside click detection */}
+          {/* Aa Font Size Control */}
           <div className="relative" ref={fontMenuRef}>
             <button
               onClick={() => setShowFontMenu(!showFontMenu)}
               aria-label="Ajustar tamaño de texto"
               aria-expanded={showFontMenu}
-              className={`p-1.5 font-editorial font-bold text-[16px] transition-colors focus:ring-1 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
-                showFontMenu ? 'text-[#E34A32]' : 'opacity-80 hover:opacity-100'
+              className={`p-2 font-editorial font-bold text-[18px] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
+                showFontMenu ? 'text-[#E34A32]' : 'text-white hover:text-[#E34A32]'
               }`}
             >
               Aa
@@ -235,81 +235,81 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
 
             {showFontMenu && (
               <div
-                className={`absolute right-0 top-10 w-44 py-2 border shadow-2xl z-40 animate-in fade-in zoom-in-95 duration-150 rounded-[8px] overflow-hidden ${
+                className={`absolute right-0 top-12 w-48 py-2 border shadow-2xl z-40 animate-in fade-in zoom-in-95 duration-150 rounded-[8px] overflow-hidden ${
                   isDarkMode
-                    ? 'bg-[#1A1918] border-[#EDEAE2]/15 text-[#EDEAE2]'
-                    : 'bg-[#F4F1EA] border-[#121212]/15 text-[#121212]'
+                    ? 'bg-black border-white/30 text-white'
+                    : 'bg-[#F4F1EA] border-[#121212]/20 text-[#121212]'
                 }`}
               >
-                <div className="px-3 py-1 font-sans-ui text-[11px] uppercase tracking-wider opacity-60">
+                <div className="px-4 py-1.5 font-sans-ui text-[16px] uppercase tracking-wider text-white font-medium">
                   Tamaño de texto
                 </div>
                 <button
                   onClick={() => handleFontSizeChange('sm')}
-                  className={`w-full text-left px-3 py-2 text-[13px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
-                    fontSize === 'sm' ? 'text-[#E34A32] font-semibold' : 'hover:opacity-75'
+                  className={`w-full text-left px-4 py-2.5 text-[16px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
+                    fontSize === 'sm' ? 'text-[#E34A32] font-semibold' : 'text-white hover:bg-white/10'
                   }`}
                 >
                   <span>Pequeño</span>
-                  <span className="text-[12px]">A-</span>
+                  <span className="text-[16px]">A-</span>
                 </button>
                 <button
                   onClick={() => handleFontSizeChange('base')}
-                  className={`w-full text-left px-3 py-2 text-[14px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
-                    fontSize === 'base' ? 'text-[#E34A32] font-semibold' : 'hover:opacity-75'
+                  className={`w-full text-left px-4 py-2.5 text-[16px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
+                    fontSize === 'base' ? 'text-[#E34A32] font-semibold' : 'text-white hover:bg-white/10'
                   }`}
                 >
                   <span>Predeterminado</span>
-                  <span className="text-[14px]">A</span>
+                  <span className="text-[16px]">A</span>
                 </button>
                 <button
                   onClick={() => handleFontSizeChange('lg')}
-                  className={`w-full text-left px-3 py-2 text-[15px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
-                    fontSize === 'lg' ? 'text-[#E34A32] font-semibold' : 'hover:opacity-75'
+                  className={`w-full text-left px-4 py-2.5 text-[16px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
+                    fontSize === 'lg' ? 'text-[#E34A32] font-semibold' : 'text-white hover:bg-white/10'
                   }`}
                 >
                   <span>Grande</span>
-                  <span className="text-[16px]">A+</span>
+                  <span className="text-[18px]">A+</span>
                 </button>
               </div>
             )}
           </div>
 
-          {/* Theme Toggle with 8px radius */}
+          {/* Theme Toggle */}
           <button
             onClick={toggleDarkMode}
             aria-label={isDarkMode ? 'Cambiar a modo papel claro' : 'Cambiar a modo oscuro'}
-            className="p-1.5 opacity-80 hover:opacity-100 transition-opacity focus:ring-1 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"
+            className="p-2 text-white hover:text-[#E34A32] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"
           >
             {isDarkMode ? (
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={1.7}
+                  strokeWidth={1.8}
                   d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                 />
               </svg>
             ) : (
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={1.7}
+                  strokeWidth={1.8}
                   d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
                 />
               </svg>
             )}
           </button>
 
-          {/* Close Reader with 8px radius */}
+          {/* Close Reader */}
           <button
             onClick={onClose}
             aria-label="Cerrar lector"
-            className="p-1.5 opacity-80 hover:opacity-100 transition-opacity focus:ring-1 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"
+            className="p-2 text-white hover:text-[#E34A32] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -319,7 +319,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
       <div
         className="w-full h-[2px] bg-transparent"
         style={{
-          background: isDarkMode ? 'rgba(237,234,226,0.06)' : 'rgba(18,18,18,0.06)',
+          background: isDarkMode ? 'rgba(255,255,255,0.15)' : 'rgba(18,18,18,0.1)',
         }}
       >
         <div
@@ -336,41 +336,41 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
       >
         <article
           ref={readerContentRef}
-          className="max-w-[680px] mx-auto font-editorial text-left"
+          className="max-w-[700px] mx-auto font-editorial text-left"
         >
-          {/* Editorial Book Title Page */}
-          <header className="mb-20 sm:mb-28 text-center pb-16 border-b border-current/10">
-            <div className="font-sans-ui text-[11px] sm:text-[12px] tracking-[0.24em] uppercase opacity-60 mb-4 flex items-center justify-center gap-2">
+          {/* Editorial Book Title Page - strictly left-aligned */}
+          <header className="mb-20 sm:mb-28 text-left pb-16 border-b border-white/20">
+            <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-4 flex items-center justify-start gap-2.5 text-left">
               <span>{story.edition}</span>
-              <span className="opacity-40">·</span>
+              <span className="opacity-60">·</span>
               <span>{story.genre}</span>
             </div>
 
-            <h1 className="font-editorial text-[40px] sm:text-[52px] md:text-[58px] leading-[1.05] font-normal tracking-[-0.02em] mb-6">
+            <h1 className="font-editorial text-[38px] sm:text-[52px] md:text-[60px] leading-[1.05] font-normal tracking-[-0.02em] mb-6 text-white text-left">
               {story.title}
             </h1>
 
-            <p className="font-editorial italic text-[18px] sm:text-[20px] opacity-75 max-w-md mx-auto">
+            <p className="font-editorial italic text-[19px] sm:text-[22px] text-white max-w-xl text-left">
               {story.synopsis}
             </p>
           </header>
 
-          {/* Chapters loop */}
-          <div className="space-y-20 sm:space-y-28">
+          {/* Chapters loop - strictly left-aligned */}
+          <div className="space-y-20 sm:space-y-28 text-left">
             {story.chapters.map((chapter) => (
               <section
                 key={chapter.id}
                 id={chapter.id}
-                className="space-y-7"
+                className="space-y-7 text-left"
                 aria-labelledby={`heading-${chapter.id}`}
               >
-                <div className="mb-10 text-center sm:text-left">
-                  <span className="font-sans-ui text-[11px] font-mono tracking-widest opacity-50 block mb-1">
+                <div className="mb-10 text-left">
+                  <span className="font-sans-ui text-[16px] font-mono tracking-widest text-white block mb-1 text-left">
                     {chapter.number}
                   </span>
                   <h2
                     id={`heading-${chapter.id}`}
-                    className="font-editorial text-[26px] sm:text-[30px] font-normal tracking-tight"
+                    className="font-editorial text-[26px] sm:text-[32px] font-normal tracking-tight text-white text-left"
                   >
                     {chapter.title}
                   </h2>
@@ -379,7 +379,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                 {chapter.paragraphs.map((p, idx) => (
                   <p
                     key={idx}
-                    className={`font-editorial font-normal ${paragraphSizeClass} tracking-normal text-justify`}
+                    className={`font-editorial font-normal ${paragraphSizeClass} tracking-normal text-left text-white`}
                     style={{ textWrap: 'pretty' }}
                   >
                     {p}
@@ -389,35 +389,37 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
             ))}
           </div>
 
-          {/* Revelation Trigger Block */}
-          <div className="mt-28 sm:mt-36 pt-16 border-t border-current/10 text-center">
-            <div className="font-editorial text-[24px] sm:text-[28px] tracking-[0.3em] font-normal mb-10 opacity-70">
+          {/* Revelation Trigger Block - strictly left-aligned */}
+          <div className="mt-28 sm:mt-36 pt-16 border-t border-white/20 text-left">
+            <div className="font-editorial text-[24px] sm:text-[28px] tracking-[0.3em] font-normal mb-8 text-white text-left">
               FIN
             </div>
 
-            <div className="my-10 h-12 flex items-center justify-center opacity-30" aria-hidden="true">
-              <span className="w-12 h-[1px] bg-current" />
+            <div className="my-8 h-12 flex items-center justify-start" aria-hidden="true">
+              <span className="w-16 h-[1px] bg-white/40" />
             </div>
 
-            <div className="space-y-6">
-              <p className="font-editorial text-[22px] sm:text-[26px] leading-[1.3] font-normal">
+            <div className="space-y-6 text-left">
+              <p className="font-editorial text-[22px] sm:text-[26px] leading-[1.3] font-normal text-white text-left">
                 Ahora puedes conocer a quien escribió esta historia.
               </p>
 
               {!showAuthorReveal ? (
                 <button
                   onClick={handleRevealAuthor}
-                  className="font-sans-ui text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-8 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer shadow-sm"
+                  className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
                 >
                   <span>Conocer al autor</span>
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true" className="text-[16px] font-sans">
+                    →
+                  </span>
                 </button>
               ) : null}
             </div>
           </div>
 
           {showAuthorReveal && (
-            <div ref={authorRevealRef} className="animate-in fade-in slide-in-from-bottom-6 duration-500">
+            <div ref={authorRevealRef} className="animate-in fade-in slide-in-from-bottom-6 duration-500 text-left">
               <AuthorReveal />
               <FeedbackSection storyId={story.id} />
               <NextStorySection />

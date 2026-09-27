@@ -63,7 +63,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#131211] text-[#EDEAE2] flex flex-col font-sans-ui selection:bg-[#E34A32]/30 selection:text-[#EDEAE2]">
+    <div className="min-h-screen bg-black text-white flex flex-col font-sans-ui selection:bg-[#E34A32]/45 selection:text-white">
       {/* 1. Minimal Header */}
       <Header
         onOpenUnlockOrRead={handleOpenUnlockOrRead}

@@ -32,43 +32,43 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
   return (
     <section
       id="primer-libro"
-      className="py-24 sm:py-36 px-5 sm:px-8 border-y border-[#EDEAE2]/10 bg-[#131211] relative overflow-hidden"
+      className="py-24 sm:py-36 px-5 sm:px-8 border-y border-white/20 bg-black relative overflow-hidden"
       aria-labelledby="book-feature-title"
     >
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
-        {/* Cover presentation as provisional proof artifact */}
-        <div className="md:col-span-5 flex justify-center">
+        {/* Cover presentation as inaugural artifact - left-aligned on mobile */}
+        <div className="md:col-span-5 flex justify-start md:justify-center text-left">
           <BookCover size="feature" onClick={handleClick} />
         </div>
 
-        {/* Book Details */}
+        {/* Book Details - strictly left-aligned */}
         <div className="md:col-span-7 flex flex-col justify-center text-left">
           {/* Monumental Editorial Number */}
-          <div className="font-editorial text-[64px] sm:text-[84px] leading-none font-normal text-[#EDEAE2]/15 select-none -mb-3 tracking-tighter">
+          <div className="font-editorial text-[64px] sm:text-[84px] leading-none font-normal text-white/20 select-none -mb-3 tracking-tighter text-left">
             001
           </div>
 
           {/* Metadata */}
-          <div className="flex flex-wrap items-center gap-2.5 text-[11px] sm:text-[12px] font-sans-ui tracking-[0.16em] uppercase text-[#9E9A92] mb-3">
-            <span className="font-semibold text-[#EDEAE2]">SYNTA 001</span>
-            <span className="text-[#6B6862]">·</span>
+          <div className="flex flex-wrap items-center gap-2.5 text-[16px] font-sans-ui tracking-wide text-white mb-3 text-left">
+            <span className="font-semibold text-white">SYNTA 001</span>
+            <span className="opacity-60">·</span>
             <span>NOMA</span>
-            <span className="text-[#6B6862]">·</span>
+            <span className="opacity-60">·</span>
             <span>38 min</span>
-            <span className="text-[#6B6862]">·</span>
+            <span className="opacity-60">·</span>
             <span>Ficción especulativa íntima</span>
           </div>
 
-          {/* Book Title: Sentence / Title Case */}
+          {/* Book Title */}
           <h2
             id="book-feature-title"
-            className="font-editorial text-[38px] sm:text-[48px] md:text-[54px] leading-[1.05] font-normal tracking-[-0.025em] text-[#EDEAE2] mb-5"
+            className="font-editorial text-[36px] sm:text-[48px] md:text-[54px] leading-[1.08] font-normal tracking-[-0.025em] text-white mb-5 text-left"
           >
             Todo lo que falta
           </h2>
 
           {/* Synopsis formatted with poetic cadence */}
-          <div className="space-y-3 font-editorial text-[19px] sm:text-[21px] leading-[1.55] text-[#9E9A92] mb-6 font-normal max-w-xl">
+          <div className="space-y-3 font-editorial text-[19px] sm:text-[21px] leading-[1.6] text-white mb-6 font-normal max-w-xl text-left">
             <p>
               Primero desapareció una fotografía.
               <br />
@@ -76,14 +76,14 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
               <br />
               Después un nombre.
             </p>
-            <p className="text-[#EDEAE2]/90">
+            <p className="text-white">
               Cuando Clara empezó a escribir todo lo que faltaba, encontró en su lista algo que no recordaba haber perdido.
             </p>
           </div>
 
           {/* Themes tag list */}
-          <div className="flex flex-wrap items-center gap-2 text-[12px] font-sans-ui text-[#6B6862] mb-8">
-            <span className="text-[#9E9A92]">Temas:</span>
+          <div className="flex flex-wrap items-center gap-2 text-[16px] font-sans-ui text-white mb-8 text-left">
+            <span className="font-semibold text-white">Temas:</span>
             <span>ausencia</span>
             <span>·</span>
             <span>memoria</span>
@@ -98,18 +98,18 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
           </div>
 
           {/* Action & Microcopy */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-left">
             <button
               onClick={handleClick}
-              className="font-sans-ui text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-8 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer shadow-sm"
+              className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
             >
               <span>{buttonText}</span>
-              <span aria-hidden="true" className="text-[13px] font-sans">
+              <span aria-hidden="true" className="text-[16px] font-sans">
                 →
               </span>
             </button>
 
-            <span className="font-sans-ui text-[12px] sm:text-[13px] text-[#6B6862] tracking-wide sm:ml-2">
+            <span className="font-sans-ui text-[16px] text-white tracking-wide sm:ml-2">
               Primera obra publicada por SYNTA · 2026
             </span>
           </div>

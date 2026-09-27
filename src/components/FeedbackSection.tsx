@@ -72,30 +72,30 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
   return (
     <section
       id="feedback-lector"
-      className="py-16 sm:py-24 px-5 sm:px-8 max-w-2xl mx-auto border-t border-[#EDEAE2]/10"
+      className="py-16 sm:py-24 px-5 sm:px-8 max-w-2xl mr-auto border-t border-white/20 text-left"
       aria-labelledby="feedback-title"
     >
       {!submitted ? (
-        <div>
-          <div className="text-center mb-10">
+        <div className="text-left">
+          <div className="text-left mb-10">
             <h3
               id="feedback-title"
-              className="font-editorial text-[30px] sm:text-[36px] leading-[1.15] font-normal text-[#EDEAE2] mb-3"
+              className="font-editorial text-[30px] sm:text-[36px] leading-[1.15] font-normal text-white mb-3 text-left"
             >
               Antes de irte, queremos saber algo.
             </h3>
-            <p className="font-editorial text-[18px] text-[#9E9A92]">
+            <p className="font-editorial text-[18px] text-white text-left">
               Tus respuestas dan forma a las siguientes obras de SYNTA.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-10">
-            {/* Question 1: Rating with 8px radius */}
-            <fieldset className="space-y-3">
-              <legend className="font-editorial text-[20px] text-[#EDEAE2] font-normal">
+          <form onSubmit={handleSubmit} className="space-y-10 text-left">
+            {/* Question 1: Rating */}
+            <fieldset className="space-y-3 text-left">
+              <legend className="font-editorial text-[20px] text-white font-normal text-left">
                 1. ¿Qué tanto te gustó la historia?
               </legend>
-              <div className="flex items-center gap-2 sm:gap-3" role="radiogroup" aria-label="Calificación del 1 al 5">
+              <div className="flex items-center gap-2 sm:gap-3 text-left" role="radiogroup" aria-label="Calificación del 1 al 5">
                 {[1, 2, 3, 4, 5].map((val) => {
                   const isSelected = rating === val;
                   return (
@@ -106,10 +106,10 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
                       role="radio"
                       aria-checked={isSelected}
                       aria-label={`${val} de 5`}
-                      className={`flex-1 min-h-[46px] border font-sans-ui text-[15px] font-medium transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] ${
+                      className={`flex-1 min-h-[48px] border font-sans-ui text-[16px] font-semibold transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] ${
                         isSelected
-                          ? 'bg-[#EDEAE2] text-[#131211] border-[#EDEAE2]'
-                          : 'bg-[#1C1B1A] text-[#EDEAE2] border-[#EDEAE2]/20 hover:border-[#EDEAE2]'
+                          ? 'border-[#E34A32] bg-[#E34A32] text-white'
+                          : 'border-white/30 bg-black text-white hover:border-white'
                       }`}
                     >
                       {val}
@@ -117,127 +117,119 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
                   );
                 })}
               </div>
-              <div className="flex justify-between font-sans-ui text-[11px] text-[#6B6862] px-1">
-                <span>Poco</span>
-                <span>Mucho</span>
-              </div>
             </fieldset>
 
-            {/* Question 2: Read again with 8px radius */}
-            <fieldset className="space-y-3">
-              <legend className="font-editorial text-[20px] text-[#EDEAE2] font-normal">
-                2. ¿Leerías otra historia de NOMA?
+            {/* Question 2: Read Again */}
+            <fieldset className="space-y-3 text-left">
+              <legend className="font-editorial text-[20px] text-white font-normal text-left">
+                2. ¿Leerías otra historia de este autor?
               </legend>
-              <div className="grid grid-cols-3 gap-2 sm:gap-3" role="radiogroup">
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3 text-left">
                 {[
-                  { key: 'yes', label: 'Sí' },
-                  { key: 'maybe', label: 'Tal vez' },
-                  { key: 'no', label: 'No' },
-                ].map(({ key, label }) => {
-                  const isSelected = readAgain === key;
+                  { id: 'yes', label: 'Sí' },
+                  { id: 'maybe', label: 'Tal vez' },
+                  { id: 'no', label: 'No' },
+                ].map((opt) => {
+                  const isSelected = readAgain === opt.id;
                   return (
                     <button
-                      key={key}
+                      key={opt.id}
                       type="button"
-                      onClick={() => setReadAgain(key as 'yes' | 'maybe' | 'no')}
+                      onClick={() => setReadAgain(opt.id as 'yes' | 'maybe' | 'no')}
                       role="radio"
                       aria-checked={isSelected}
-                      className={`min-h-[46px] border font-sans-ui text-[14px] font-medium transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] ${
+                      className={`min-h-[48px] border font-sans-ui text-[16px] font-medium transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] ${
                         isSelected
-                          ? 'bg-[#EDEAE2] text-[#131211] border-[#EDEAE2]'
-                          : 'bg-[#1C1B1A] text-[#EDEAE2] border-[#EDEAE2]/20 hover:border-[#EDEAE2]'
+                          ? 'border-[#E34A32] bg-[#E34A32] text-white font-semibold'
+                          : 'border-white/30 bg-black text-white hover:border-white'
                       }`}
                     >
-                      {label}
+                      {opt.label}
                     </button>
                   );
                 })}
               </div>
             </fieldset>
 
-            {/* Question 3: Perception change with 8px radius */}
-            <fieldset className="space-y-3">
-              <legend className="font-editorial text-[20px] text-[#EDEAE2] font-normal">
-                3. Ahora que sabes quién la escribió, ¿cambió tu percepción de la historia?
+            {/* Question 3: Perception change */}
+            <fieldset className="space-y-3 text-left">
+              <legend className="font-editorial text-[20px] text-white font-normal text-left">
+                3. Saber que el autor no es humano, ¿cambió lo que sentiste al leer?
               </legend>
-              <div className="grid grid-cols-3 gap-2 sm:gap-3" role="radiogroup">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-left">
                 {[
-                  { key: 'better', label: 'Mejoró' },
-                  { key: 'same', label: 'Sigue igual' },
-                  { key: 'worse', label: 'Empeoró' },
-                ].map(({ key, label }) => {
-                  const isSelected = perceptionChange === key;
+                  { id: 'better', label: 'La hizo más interesante' },
+                  { id: 'same', label: 'No cambió nada' },
+                  { id: 'worse', label: 'Prefería no saberlo' },
+                ].map((opt) => {
+                  const isSelected = perceptionChange === opt.id;
                   return (
                     <button
-                      key={key}
+                      key={opt.id}
                       type="button"
-                      onClick={() => setPerceptionChange(key as 'better' | 'same' | 'worse')}
+                      onClick={() => setPerceptionChange(opt.id as 'better' | 'same' | 'worse')}
                       role="radio"
                       aria-checked={isSelected}
-                      className={`min-h-[46px] border font-sans-ui text-[14px] font-medium transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] ${
+                      className={`min-h-[48px] px-4 border font-sans-ui text-[16px] font-medium transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] flex items-center justify-start text-left ${
                         isSelected
-                          ? 'bg-[#EDEAE2] text-[#131211] border-[#EDEAE2]'
-                          : 'bg-[#1C1B1A] text-[#EDEAE2] border-[#EDEAE2]/20 hover:border-[#EDEAE2]'
+                          ? 'border-[#E34A32] bg-[#E34A32] text-white font-semibold'
+                          : 'border-white/30 bg-black text-white hover:border-white'
                       }`}
                     >
-                      {label}
+                      {opt.label}
                     </button>
                   );
                 })}
               </div>
             </fieldset>
 
-            {/* Optional question with 8px radius */}
-            <div className="space-y-2">
+            {/* Optional Comment */}
+            <div className="space-y-2 text-left">
               <label
                 htmlFor="feedback-comment"
-                className="block font-editorial text-[20px] text-[#EDEAE2] font-normal"
+                className="block font-sans-ui text-[16px] text-white text-left font-medium"
               >
-                ¿Qué te dejó la historia?{' '}
-                <span className="text-[14px] font-sans-ui text-[#6B6862] font-normal">
-                  (Opcional)
-                </span>
+                Algo que quieras dejar dicho (opcional)
               </label>
               <textarea
                 id="feedback-comment"
-                rows={3}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="Sensaciones, imágenes que perduran, o cualquier reflexión..."
-                className="w-full bg-[#1C1B1A] border border-[#EDEAE2]/15 text-[#EDEAE2] p-4 font-sans-ui text-[15px] placeholder:text-[#6B6862] focus:outline-none focus:border-[#EDEAE2] focus:bg-[#222120] transition-all rounded-[8px] resize-y"
+                rows={3}
+                placeholder="Una frase, una sensación, lo que se quedó contigo..."
+                className="w-full bg-black border border-white/30 text-white p-3.5 font-sans-ui text-[16px] placeholder:text-white/60 focus:outline-none focus:border-white transition-colors rounded-[8px]"
               />
             </div>
 
             {errorMsg && (
-              <p role="alert" className="font-sans-ui text-[13px] text-[#E34A32]">
+              <p role="alert" className="font-sans-ui text-[16px] text-[#E34A32] text-left">
                 {errorMsg}
               </p>
             )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full font-sans-ui text-[15px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-8 py-3.5 flex items-center justify-center gap-2 rounded-[8px] cursor-pointer disabled:opacity-60"
-            >
-              {loading ? (
-                <span>Guardando reacción...</span>
-              ) : (
-                <>
-                  <span>Enviar mi reacción</span>
-                  <span aria-hidden="true">→</span>
-                </>
-              )}
-            </button>
+            <div className="text-left">
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full sm:w-auto font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] cursor-pointer disabled:opacity-60 shadow-sm"
+              >
+                {loading ? 'Enviando...' : 'Enviar respuestas →'}
+              </button>
+            </div>
           </form>
         </div>
       ) : (
-        /* Thank you state with 8px radius */
-        <div className="text-center py-8 px-6 border border-[#EDEAE2]/15 bg-[#1C1B1A] rounded-[8px] animate-in fade-in duration-300">
-          <p className="font-editorial text-[26px] sm:text-[32px] text-[#EDEAE2] mb-3">
-            Gracias por ser uno de los primeros lectores de SYNTA.
-          </p>
-          <p className="font-editorial text-[18px] text-[#9E9A92]">
-            Tu perspectiva es fundamental en la construcción de esta nueva categoría.
+        <div className="py-6 text-left animate-in fade-in duration-300">
+          <div className="w-12 h-12 mb-4 rounded-[8px] border border-white/30 flex items-center justify-center text-[#E34A32] bg-white/5">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+          </div>
+          <h4 className="font-editorial text-[26px] sm:text-[30px] text-white mb-2 text-left">
+            Gracias por leer y por responder.
+          </h4>
+          <p className="font-editorial text-[18px] sm:text-[20px] text-white text-left">
+            Tus impresiones nos ayudan a construir las siguientes obras y autores sintéticos.
           </p>
         </div>
       )}

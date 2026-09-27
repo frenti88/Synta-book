@@ -43,50 +43,50 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
   return (
     <section
       id="catalogo"
-      className="py-24 sm:py-36 px-5 sm:px-8 max-w-5xl mx-auto border-t border-[#EDEAE2]/10"
+      className="py-24 sm:py-36 px-5 sm:px-8 max-w-5xl mx-auto border-t border-white/20 text-left"
       aria-labelledby="catalog-heading"
     >
       {/* Editorial Headline */}
       <div className="mb-14 sm:mb-18 text-left">
-        <div className="font-sans-ui text-[12px] tracking-[0.22em] uppercase text-[#9E9A92] mb-3 font-semibold">
+        <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-3 font-semibold">
           CATÁLOGO NACIENTE
         </div>
         <h2
           id="catalog-heading"
-          className="font-editorial text-[42px] sm:text-[54px] md:text-[66px] leading-[1.02] tracking-[-0.03em] font-normal text-[#EDEAE2]"
+          className="font-editorial text-[38px] sm:text-[50px] md:text-[62px] leading-[1.05] tracking-[-0.03em] font-normal text-white text-left"
         >
           Esto apenas comienza.
         </h2>
       </div>
 
       {/* Catalog items list */}
-      <div className="divide-y divide-[#EDEAE2]/10 border-y border-[#EDEAE2]/10">
+      <div className="divide-y divide-white/20 border-y border-white/20 text-left">
         {items.map((item) => (
           <div
             key={item.num}
             onClick={item.isAvailable ? onOpenStory : undefined}
             className={`py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors rounded-[8px] px-3 -mx-3 ${
               item.isAvailable
-                ? 'cursor-pointer hover:bg-[#181716]/60 group'
-                : 'opacity-55 cursor-default'
+                ? 'cursor-pointer hover:bg-white/5 group'
+                : 'cursor-default'
             }`}
           >
             {/* Number and Title */}
-            <div className="flex items-baseline gap-6 sm:gap-10">
-              <span className="font-sans-ui text-[14px] sm:text-[15px] font-mono tracking-wider text-[#9E9A92]">
+            <div className="flex items-baseline gap-6 sm:gap-10 text-left">
+              <span className="font-sans-ui text-[16px] font-mono tracking-wider text-white">
                 {item.num}
               </span>
-              <div>
+              <div className="text-left">
                 <span
                   className={`font-editorial text-[22px] sm:text-[26px] leading-tight block ${
                     item.isAvailable
-                      ? 'text-[#EDEAE2] group-hover:text-[#E34A32] transition-colors'
-                      : 'text-[#9E9A92] tracking-wider select-none'
+                      ? 'text-white group-hover:text-[#E34A32] transition-colors'
+                      : 'text-white tracking-wider select-none'
                   }`}
                 >
                   {item.title}
                 </span>
-                <span className="font-sans-ui text-[11px] uppercase tracking-wider text-[#6B6862] block mt-1">
+                <span className="font-sans-ui text-[16px] uppercase tracking-wider text-white block mt-1">
                   {item.author}
                 </span>
               </div>
@@ -95,12 +95,12 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
             {/* Status */}
             <div className="flex items-center gap-3 self-start sm:self-auto pl-12 sm:pl-0">
               {item.isAvailable ? (
-                <span className="font-sans-ui text-[12px] font-medium tracking-wide text-[#EDEAE2] px-3 py-1 border border-[#EDEAE2]/20 rounded-[8px] bg-[#181716] group-hover:border-[#E34A32] transition-colors flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
+                <span className="font-sans-ui text-[16px] font-medium tracking-wide text-white px-3.5 py-1.5 border border-white/30 rounded-[8px] bg-black group-hover:border-[#E34A32] transition-colors flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
                   {item.status}
                 </span>
               ) : (
-                <span className="font-sans-ui text-[12px] tracking-wide text-[#6B6862] px-3 py-1 font-mono">
+                <span className="font-sans-ui text-[16px] tracking-wide text-white px-3.5 py-1.5 font-mono border border-white/20 rounded-[8px] bg-black">
                   {item.status}
                 </span>
               )}

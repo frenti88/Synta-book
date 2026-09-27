@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#131211",
+  themeColor: "#000000",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -109,7 +109,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#131211] text-[#EDEAE2] selection:bg-[#E34A32]/30 selection:text-[#EDEAE2]">
+      <body className="min-h-full flex flex-col bg-black text-white selection:bg-[#E34A32]/45 selection:text-white">
         <a href="#main-content" className="sr-skip-link">
           Saltar al contenido principal
         </a>

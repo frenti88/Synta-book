@@ -31,16 +31,16 @@ export const Hero: React.FC<HeroProps> = ({
 
   return (
     <section
-      className="relative min-h-[calc(100vh-70px)] flex items-center justify-center pt-6 pb-16 px-5 sm:px-8 md:px-12 max-w-6xl mx-auto"
+      className="relative min-h-[calc(100vh-74px)] flex items-center justify-center pt-8 pb-16 px-5 sm:px-8 md:px-12 max-w-6xl mx-auto"
       aria-labelledby="hero-heading"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        {/* Left Column: Monumental Typography */}
+        {/* Left Column: Monumental Typography, strictly left-aligned */}
         <div className="lg:col-span-7 flex flex-col justify-center text-left order-1">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 mb-6">
-            <span className="font-sans-ui text-[12px] sm:text-[13px] tracking-[0.24em] uppercase text-[#9E9A92] font-semibold flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32]" />
+            <span className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white font-semibold flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
               SYNTA / 001
             </span>
           </div>
@@ -48,54 +48,54 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Headline */}
           <h1
             id="hero-heading"
-            className="font-editorial text-[44px] sm:text-[56px] md:text-[72px] lg:text-[84px] xl:text-[92px] leading-[0.98] font-normal tracking-[-0.035em] text-[#EDEAE2] mb-7"
+            className="font-editorial text-[38px] sm:text-[54px] md:text-[72px] lg:text-[84px] xl:text-[90px] leading-[1.02] font-normal tracking-[-0.035em] text-white mb-7 text-left"
           >
             Estás llegando al comienzo de algo.
           </h1>
 
           {/* Subheadline */}
-          <p className="font-editorial text-[20px] sm:text-[23px] md:text-[25px] leading-[1.4] text-[#9E9A92] max-w-xl mb-10 font-normal">
+          <p className="font-editorial text-[20px] sm:text-[23px] md:text-[25px] leading-[1.45] text-white max-w-xl mb-10 font-normal text-left">
             Una nueva literatura está empezando a escribirse.
             <br />
             Lee la primera historia antes de conocer a quien —o a lo que— la escribió.
           </p>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-8">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-8 text-left">
             <button
               onClick={handlePrimaryClick}
-              className="font-sans-ui text-[15px] sm:text-[16px] font-medium bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[50px] px-8 py-3.5 inline-flex items-center justify-center gap-2 rounded-[8px] shadow-sm cursor-pointer"
+              className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] shadow-sm cursor-pointer"
             >
               <span>{primaryCtaText}</span>
-              <span aria-hidden="true" className="text-[13px] font-sans">
+              <span aria-hidden="true" className="text-[16px] font-sans">
                 →
               </span>
             </button>
 
             <button
               onClick={onDiscoverClick}
-              className="font-sans-ui text-[14px] text-[#9E9A92] hover:text-[#EDEAE2] transition-colors duration-200 min-h-[44px] py-2 px-3 text-left sm:text-center underline underline-offset-4 decoration-[#EDEAE2]/20 hover:decoration-[#EDEAE2] rounded-[8px] cursor-pointer"
+              className="font-sans-ui text-[16px] text-white hover:text-[#E34A32] transition-colors duration-200 min-h-[48px] py-2 px-3 text-left underline underline-offset-4 decoration-white/40 hover:decoration-white rounded-[8px] cursor-pointer"
             >
               Descubrir SYNTA ↓
             </button>
           </div>
 
           {/* Microcopy inferior */}
-          <div className="font-sans-ui text-[12px] sm:text-[13px] tracking-wide text-[#6B6862] flex flex-wrap items-center gap-2">
+          <div className="font-sans-ui text-[16px] tracking-wide text-white flex flex-wrap items-center gap-2.5 text-left">
             <span>Primera publicación</span>
-            <span className="opacity-40">·</span>
+            <span className="opacity-60">·</span>
             <span>38 min de lectura</span>
-            <span className="opacity-40">·</span>
-            <span className="text-[#9E9A92]/80">acceso abierto</span>
+            <span className="opacity-60">·</span>
+            <span>acceso abierto</span>
           </div>
         </div>
 
-        {/* Right Column: Inaugural Artifact Cover */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end items-center order-2 mt-4 lg:mt-0">
-          <div className="relative">
+        {/* Right Column: Inaugural Artifact Cover - left-aligned on mobile */}
+        <div className="lg:col-span-5 flex justify-start lg:justify-end items-center order-2 mt-4 lg:mt-0">
+          <div className="relative text-left">
             <BookCover size="hero" onClick={handlePrimaryClick} />
-            <div className="mt-4 text-center">
-              <span className="font-sans-ui text-[11px] uppercase tracking-[0.2em] text-[#6B6862]">
+            <div className="mt-4 text-left">
+              <span className="font-sans-ui text-[16px] tracking-[0.16em] uppercase text-white font-medium">
                 Toca para abrir la obra
               </span>
             </div>
