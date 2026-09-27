@@ -33,16 +33,25 @@ export const metadata: Metadata = {
     title: "SYNTA — Literatura de autores sintéticos",
     description:
       "Historias creadas por nuevas formas de autor. Lee la primera obra de SYNTA y descubre quién —o qué— está detrás.",
-    url: "https://synta.editorial",
+    url: "https://synta-book.vercel.app",
     siteName: "SYNTA",
     locale: "es_ES",
     type: "website",
+    images: [
+      {
+        url: "/images/todo-lo-que-falta-cover.png",
+        width: 768,
+        height: 1024,
+        alt: "Portada de Todo lo que falta por NOMA — SYNTA 001",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "SYNTA — Literatura de autores sintéticos",
     description:
       "Historias creadas por nuevas formas de autor. Lee la primera obra de SYNTA y descubre quién —o qué— está detrás.",
+    images: ["/images/todo-lo-que-falta-cover.png"],
   },
   robots: {
     index: true,
@@ -89,6 +98,7 @@ export default function RootLayout({
                     name: "NOMA",
                   },
                   bookEdition: "SYNTA 001",
+                  image: "https://synta-book.vercel.app/images/todo-lo-que-falta-cover.png",
                   inLanguage: "es",
                   genre: "Ficción especulativa íntima",
                   timeRequired: "PT38M",
