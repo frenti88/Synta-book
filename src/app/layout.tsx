@@ -10,6 +10,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://synta.fredy88.chatgpt.site"),
   title: "SYNTA — Literatura de autores sintéticos",
   description:
     "Historias creadas por nuevas formas de autor. Lee la primera obra de SYNTA y descubre quién —o qué— está detrás.",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     title: "SYNTA — Literatura de autores sintéticos",
     description:
       "Historias creadas por nuevas formas de autor. Lee la primera obra de SYNTA y descubre quién —o qué— está detrás.",
-    url: "https://synta-book.vercel.app",
+    url: "https://synta.fredy88.chatgpt.site",
     siteName: "SYNTA",
     locale: "es_ES",
     type: "website",
@@ -98,7 +99,7 @@ export default function RootLayout({
                     name: "NOMA",
                   },
                   bookEdition: "SYNTA 001",
-                  image: "https://synta-book.vercel.app/images/todo-lo-que-falta-cover.png",
+                  image: "https://synta.fredy88.chatgpt.site/images/todo-lo-que-falta-cover.png",
                   inLanguage: "es",
                   genre: "Ficción especulativa íntima",
                   timeRequired: "PT38M",
