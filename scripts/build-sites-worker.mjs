@@ -12,9 +12,9 @@ if (result.status !== 0) {
 
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist/server", { recursive: true });
-cpSync(".open-next", "dist/.open-next", { recursive: true });
-cpSync("public", "dist/.open-next/assets", { recursive: true });
+cpSync(".open-next", "dist/server/.open-next", { recursive: true });
+cpSync("public", "dist/server/.open-next/assets", { recursive: true });
 writeFileSync(
   "dist/server/index.js",
-  'export { default } from "../.open-next/worker.js";\n',
+  'export { default } from "./.open-next/worker.js";\n',
 );
