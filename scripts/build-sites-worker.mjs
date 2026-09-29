@@ -15,7 +15,7 @@ if (result.status !== 0) {
 // `node:inspector`; neither API exists in Cloudflare Workers. Remove these
 // unreachable-in-production module wrappers before packaging the Worker.
 const handlerPath = ".open-next/server-functions/default/handler.mjs";
-const handler = await import("node:fs/promises").then(({ readFile }) =>
+let handler = await import("node:fs/promises").then(({ readFile }) =>
   readFile(handlerPath, "utf8"),
 );
 const devConsoleStart = handler.indexOf("var require_file_logger=");
@@ -31,13 +31,25 @@ if (devConsoleStart >= 0 && nextModuleStart > devConsoleStart) {
   // OpenNext emits another copy of the dim module later in the same bundle,
   // outside the contiguous wrapper block above. Keep its behavior harmless in
   // production without importing Node's inspector API.
-  writeFileSync(
-    handlerPath,
-    patchedHandler.replace(
-      'require("node:inspector")',
-      '({url:()=>undefined})',
-    ),
+  handler = patchedHandler.replace(
+    'require("node:inspector")',
+    '({url:()=>undefined})',
   );
+  writeFileSync(handlerPath, handler);
+}
+
+// Next's node-crypto extension is also Node-only. OpenNext includes it even
+// though this Worker uses Web Crypto; remove that generated module wrapper.
+const nodeCryptoStart = handler.indexOf("var require_node_crypto=__commonJS({");
+const nodeEnvironmentStart = handler.indexOf("var require_node_environment=", nodeCryptoStart);
+const nodeCryptoEnd = handler.lastIndexOf("}});", nodeEnvironmentStart);
+if (nodeCryptoStart >= 0 && nodeCryptoEnd > nodeCryptoStart) {
+  const patchedHandler =
+    handler.slice(0, nodeCryptoStart) +
+    "var require_node_crypto=()=>({});" +
+    handler.slice(nodeCryptoEnd + 4);
+  handler = patchedHandler;
+  writeFileSync(handlerPath, handler);
 }
 
 rmSync("dist", { recursive: true, force: true });
