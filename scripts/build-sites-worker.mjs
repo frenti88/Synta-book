@@ -10,47 +10,26 @@ if (result.status !== 0) {
   process.exit(result.status ?? 1);
 }
 
-// Next 16 bundles development-only console instrumentation into the server
-// function. Its file logger uses Node's `require`, and console dimming imports
-// `node:inspector`; neither API exists in Cloudflare Workers. Remove these
-// unreachable-in-production module wrappers before packaging the Worker.
+// Next 16 bundles its Node-specific environment initializer into the Worker.
+// That initializer installs Node console, inspector, crypto, and timer hooks;
+// these are not needed by the edge runtime and require Node APIs unavailable
+// in this Workers execution context. Replace the initializer, not each hook.
 const handlerPath = ".open-next/server-functions/default/handler.mjs";
-let handler = await import("node:fs/promises").then(({ readFile }) =>
+const handler = await import("node:fs/promises").then(({ readFile }) =>
   readFile(handlerPath, "utf8"),
 );
-const devConsoleStart = handler.indexOf("var require_file_logger=");
-const nextModuleStart = handler.indexOf(
-  "var require_work_unit_async_storage_instance=",
-  devConsoleStart,
+const nodeEnvironmentStart = handler.indexOf(
+  "var require_node_environment=__commonJS({",
 );
-if (devConsoleStart >= 0 && nextModuleStart > devConsoleStart) {
-  const patchedHandler =
-    handler.slice(0, devConsoleStart) +
-    "var require_file_logger=()=>({});var require_console_file=()=>({});var require_console_dim_external=()=>({});" +
-    handler.slice(nextModuleStart);
-  // OpenNext emits another copy of the dim module later in the same bundle,
-  // outside the contiguous wrapper block above. Keep its behavior harmless in
-  // production without importing Node's inspector API.
-  handler = patchedHandler.replace(
-    'require("node:inspector")',
-    '({url:()=>undefined})',
-  );
-  writeFileSync(handlerPath, handler);
+const nodeEnvironmentEnd = handler.indexOf("}});var require_", nodeEnvironmentStart);
+if (nodeEnvironmentStart < 0 || nodeEnvironmentEnd < 0) {
+  throw new Error("Could not locate Next's generated node-environment module.");
 }
-
-// Next's node-crypto extension is also Node-only. OpenNext includes it even
-// though this Worker uses Web Crypto; remove that generated module wrapper.
-const nodeCryptoStart = handler.indexOf("var require_node_crypto=__commonJS({");
-const nodeEnvironmentStart = handler.indexOf("var require_node_environment=", nodeCryptoStart);
-const nodeCryptoEnd = handler.lastIndexOf("}});", nodeEnvironmentStart);
-if (nodeCryptoStart >= 0 && nodeCryptoEnd > nodeCryptoStart) {
-  const patchedHandler =
-    handler.slice(0, nodeCryptoStart) +
-    "var require_node_crypto=()=>({});" +
-    handler.slice(nodeCryptoEnd + 4);
-  handler = patchedHandler;
-  writeFileSync(handlerPath, handler);
-}
+const patchedHandler =
+  handler.slice(0, nodeEnvironmentStart) +
+  "var require_node_environment=()=>({});" +
+  handler.slice(nodeEnvironmentEnd + 4);
+writeFileSync(handlerPath, patchedHandler);
 
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist/server", { recursive: true });
