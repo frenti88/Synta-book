@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { firstStory } from '@/lib/story';
-import { trackEvent, isStoryUnlocked } from '@/lib/analytics';
+import { trackEvent } from '@/lib/analytics';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { BreathingQuote } from '@/components/BreathingQuote';
@@ -13,15 +13,13 @@ import { AuthorsArchiveSection } from '@/components/AuthorsArchiveSection';
 import { ManifestoSection } from '@/components/ManifestoSection';
 import { CommunitySection } from '@/components/CommunitySection';
 import { Footer } from '@/components/Footer';
-import { UnlockDrawer } from '@/components/UnlockDrawer';
 import { Reader } from '@/components/Reader';
 import { PrivacyModal } from '@/components/PrivacyModal';
 import { ManifestoModal } from '@/components/ManifestoModal';
 
 export default function Home() {
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocked] = useState(true);
   const [hasStartedReading, setHasStartedReading] = useState(false);
-  const [isUnlockDrawerOpen, setIsUnlockDrawerOpen] = useState(false);
   const [isReaderOpen, setIsReaderOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isManifestoModalOpen, setIsManifestoModalOpen] = useState(false);
@@ -30,9 +28,6 @@ export default function Home() {
     trackEvent('landing_view', { path: '/' }, { oncePerSession: true });
 
     if (typeof window !== 'undefined') {
-      const unlocked = isStoryUnlocked();
-      setIsUnlocked(unlocked);
-
       const savedScroll = localStorage.getItem(`synta_scroll_${firstStory.id}`);
       if (savedScroll && Number(savedScroll) > 50) {
         setHasStartedReading(true);
@@ -42,16 +37,7 @@ export default function Home() {
   }, []);
 
   const handleOpenUnlockOrRead = () => {
-    if (isUnlocked) {
-      setIsReaderOpen(true);
-    } else {
-      setIsUnlockDrawerOpen(true);
-    }
-  };
-
-  const handleUnlockSuccess = () => {
-    setIsUnlocked(true);
-    setIsUnlockDrawerOpen(false);
+    trackEvent('hero_read_click', { story_id: firstStory.id });
     setIsReaderOpen(true);
   };
 
@@ -118,13 +104,7 @@ export default function Home() {
         onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
       />
 
-      {/* Modals & Reading Engine */}
-      <UnlockDrawer
-        isOpen={isUnlockDrawerOpen}
-        onClose={() => setIsUnlockDrawerOpen(false)}
-        onSuccessUnlock={handleUnlockSuccess}
-      />
-
+      {/* Reading Engine */}
       <Reader
         story={firstStory}
         isOpen={isReaderOpen}
