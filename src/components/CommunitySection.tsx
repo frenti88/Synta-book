@@ -27,14 +27,14 @@ export const CommunitySection: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: cleanEmail,
-          source: 'first_generation_cta',
+          source: 'community_subscription',
           consent: true,
         }),
       });
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || 'Error al unirse.');
+        throw new Error(data.error || 'Error al registrarte.');
       }
 
       const readerId = data.reader?.id || 'rdr_' + Date.now();
@@ -42,7 +42,7 @@ export const CommunitySection: React.FC = () => {
 
       trackEvent('email_submitted', {
         email: cleanEmail,
-        source: 'community_first_generation',
+        source: 'community_subscription',
       });
 
       setSubmitted(true);
@@ -62,20 +62,18 @@ export const CommunitySection: React.FC = () => {
       <div className="max-w-2xl mr-auto text-left">
         <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-4 font-semibold flex justify-start items-center gap-2.5">
           <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
-          PRIMERA GENERACIÓN
+          Suscripción editorial
         </div>
 
         <h3
           id="community-title"
           className="font-editorial text-[36px] sm:text-[48px] md:text-[54px] leading-[1.08] font-normal text-white mb-5 tracking-[-0.025em] text-left"
         >
-          Lee antes que los demás.
+          Recibe las próximas entregas de SYNTA.
         </h3>
 
         <p className="font-editorial text-[19px] sm:text-[22px] leading-[1.5] text-white mb-10 font-normal text-left">
-          Una nueva historia aparecerá cuando esté lista.
-          <br />
-          Los primeros lectores tendrán acceso antes de su publicación abierta.
+          Compartimos cada nueva novela breve directamente en tu correo en el momento de su publicación.
         </p>
 
         {!submitted ? (
@@ -86,7 +84,7 @@ export const CommunitySection: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tu@email.com"
-                aria-label="Correo para la primera generación SYNTA"
+                aria-label="Correo electrónico para recibir libros de SYNTA"
                 required
                 disabled={loading}
                 className="flex-1 bg-black border border-white/30 text-white px-4 py-3.5 font-sans-ui text-[16px] placeholder:text-white/60 focus:outline-none focus:border-white transition-colors rounded-[8px]"
@@ -97,10 +95,10 @@ export const CommunitySection: React.FC = () => {
                 className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-7 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer disabled:opacity-60 whitespace-nowrap"
               >
                 {loading ? (
-                  <span>Entrando...</span>
+                  <span>Registrando...</span>
                 ) : (
                   <>
-                    <span>Entrar en la primera generación</span>
+                    <span>Suscribirme a las obras</span>
                     <span aria-hidden="true">→</span>
                   </>
                 )}
@@ -114,13 +112,11 @@ export const CommunitySection: React.FC = () => {
             )}
 
             <div className="font-sans-ui text-[16px] text-white pt-4 flex flex-wrap justify-start items-center gap-x-3 gap-y-1.5 text-left">
-              <span>Historias nuevas.</span>
+              <span>Entrega de obras completas.</span>
               <span className="opacity-60">·</span>
-              <span>Accesos anticipados.</span>
+              <span>Notas de edición.</span>
               <span className="opacity-60">·</span>
-              <span>Cartas de nuestros autores.</span>
-              <span className="opacity-60">·</span>
-              <span className="font-medium text-white">Nada más.</span>
+              <span>Cancelación en cualquier momento con un clic.</span>
             </div>
           </form>
         ) : (
@@ -131,10 +127,10 @@ export const CommunitySection: React.FC = () => {
               </svg>
             </div>
             <h4 className="font-editorial text-[26px] sm:text-[30px] text-white mb-2 text-left">
-              Estás en la primera generación.
+              Te has suscrito a las publicaciones.
             </h4>
             <p className="font-editorial text-[18px] sm:text-[20px] text-white text-left">
-              Recibirás las obras y avisos antes que nadie directamente en tu correo.
+              Recibirás las próximas historias de la editorial directamente en tu bandeja de entrada.
             </p>
           </div>
         )}

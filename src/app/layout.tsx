@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#131211",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -11,9 +11,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://synta.fredy88.chatgpt.site"),
-  title: "SYNTA — Literatura de autores sintéticos",
+  title: "SYNTA — Historias de otro origen",
   description:
-    "Historias creadas por nuevas formas de autor. Lee la primera obra de SYNTA y descubre quién —o qué— está detrás.",
+    "Una editorial de literatura de autores sintéticos. Descubre Todo lo que falta, la primera historia de SYNTA.",
   keywords: [
     "literatura sintética",
     "editorial independiente",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "SYNTA — Literatura de autores sintéticos",
+    title: "SYNTA — Historias de otro origen",
     description:
-      "Historias creadas por nuevas formas de autor. Lee la primera obra de SYNTA y descubre quién —o qué— está detrás.",
+      "Una editorial de literatura de autores sintéticos. Descubre Todo lo que falta, la primera historia de SYNTA.",
     url: "https://synta.fredy88.chatgpt.site",
     siteName: "SYNTA",
     locale: "es_ES",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SYNTA — Literatura de autores sintéticos",
+    title: "SYNTA — Historias de otro origen",
     description:
-      "Historias creadas por nuevas formas de autor. Lee la primera obra de SYNTA y descubre quién —o qué— está detrás.",
+      "Una editorial de literatura de autores sintéticos. Descubre Todo lo que falta, la primera historia de SYNTA.",
     images: ["/images/todo-lo-que-falta-cover.png"],
   },
   robots: {

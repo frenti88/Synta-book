@@ -401,7 +401,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
 
             <div className="space-y-6 text-left">
               <p className="font-editorial text-[22px] sm:text-[26px] leading-[1.3] font-normal text-white text-left">
-                Ahora puedes conocer a quien escribió esta historia.
+                Nota sobre la autoría y el proceso de creación de esta obra.
               </p>
 
               {!showAuthorReveal ? (
@@ -409,7 +409,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                   onClick={handleRevealAuthor}
                   className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
                 >
-                  <span>Conocer al autor</span>
+                  <span>Leer nota sobre la autora</span>
                   <span aria-hidden="true" className="text-[16px] font-sans">
                     →
                   </span>

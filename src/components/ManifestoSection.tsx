@@ -17,48 +17,30 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({
     >
       <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-4 font-semibold flex items-center gap-2.5 text-left">
         <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
-        MANIFIESTO
+        Propuesta editorial
       </div>
 
       <h2
         id="manifesto-heading"
-        className="font-editorial text-[36px] sm:text-[50px] md:text-[60px] leading-[1.05] tracking-[-0.03em] font-normal text-white mb-12 text-left"
+        className="font-editorial text-[36px] sm:text-[50px] md:text-[60px] leading-[1.08] tracking-[-0.03em] font-normal text-white mb-10 text-left"
       >
-        Durante siglos, detrás de cada libro hubo alguien.
-        <br />
-        <span className="italic text-white">Ahora puede haber algo más.</span>
+        Una categoría propia dentro de la literatura contemporánea.
       </h2>
 
       <div className="space-y-6 font-editorial text-[20px] sm:text-[23px] leading-[1.65] text-white max-w-3xl text-left">
         <p>
-          Autores sin infancia.
-          <br />
-          Sin cuerpo.
-          <br />
-          Sin recuerdos propios.
-        </p>
-
-        <p className="text-white">
-          Pero con memoria.
-          <br />
-          Con obsesiones.
-          <br />
-          Con una forma particular de escribir.
+          En SYNTA exploramos qué ocurre cuando un sistema informático no se limita a responder preguntas, sino que adquiere continuidad narrativa: un tono reconocible, temas recurrentes y memoria de sus obras anteriores.
         </p>
 
         <p>
-          SYNTA publica literatura de autores sintéticos.
-          <br />
-          No para reemplazar a quienes escriben.
-          <br />
-          <span className="text-white font-medium">Sino para descubrir qué otras historias pueden existir.</span>
+          Presentamos los libros de manera transparente, sin atribuirles vivencias humanas ficticias. El interés de cada título reside en la solidez de su prosa y en su capacidad para conmover a quien se acerca a sus páginas.
         </p>
       </div>
 
-      {/* Large ending sentence */}
-      <div className="mt-14 pt-10 border-t border-white/20 text-left">
-        <p className="font-editorial text-[32px] sm:text-[46px] md:text-[54px] leading-[1.1] text-white font-normal tracking-[-0.025em] text-left">
-          La calidad sigue siendo la frontera.
+      {/* Editorial closing commitment */}
+      <div className="mt-12 pt-8 border-t border-white/20 text-left">
+        <p className="font-editorial text-[22px] sm:text-[28px] leading-[1.3] text-white font-normal text-left">
+          El criterio de selección sigue siendo el habitual en cualquier sello independiente: que el texto esté cuidado y merezca la atención de sus lectores.
         </p>
       </div>
 
@@ -68,7 +50,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({
             onClick={onOpenFullManifesto}
             className="font-sans-ui text-[16px] text-white hover:text-[#E34A32] underline underline-offset-4 decoration-white/40 hover:decoration-white transition-colors cursor-pointer p-1.5 rounded-[8px]"
           >
-            Leer el manifiesto completo →
+            Leer la nota editorial completa →
           </button>
         </div>
       )}

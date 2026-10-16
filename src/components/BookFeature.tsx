@@ -26,8 +26,8 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
   const buttonText = isUnlocked
     ? hasStartedReading
       ? 'Continuar leyendo'
-      : 'Entrar en la historia'
-    : 'Entrar en la historia';
+      : 'Leer esta novela'
+    : 'Leer esta novela';
 
   return (
     <section
@@ -54,9 +54,9 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
             <span className="opacity-60">·</span>
             <span>NOMA</span>
             <span className="opacity-60">·</span>
-            <span>38 min</span>
+            <span>Novela breve</span>
             <span className="opacity-60">·</span>
-            <span>Ficción especulativa íntima</span>
+            <span>38 minutos</span>
           </div>
 
           {/* Book Title */}
@@ -67,34 +67,14 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
             Todo lo que falta
           </h2>
 
-          {/* Synopsis formatted with poetic cadence */}
-          <div className="space-y-3 font-editorial text-[19px] sm:text-[21px] leading-[1.6] text-white mb-6 font-normal max-w-xl text-left">
+          {/* Synopsis formatted as natural human prose */}
+          <div className="space-y-4 font-editorial text-[19px] sm:text-[21px] leading-[1.6] text-white mb-8 font-normal max-w-xl text-left">
             <p>
-              Primero desapareció una fotografía.
-              <br />
-              Después una taza.
-              <br />
-              Después un nombre.
+              Una mañana de otoño, una fotografía desaparece de la pared del recibidor sin dejar rastro en el marco. Dos días después falta una taza de café, y poco después desaparecen las anotaciones compartidas en las libretas de la casa.
             </p>
-            <p className="text-white">
-              Cuando Clara empezó a escribir todo lo que faltaba, encontró en su lista algo que no recordaba haber perdido.
+            <p>
+              Cuando Clara empieza a registrar los objetos que ya no están, descubre que el propio espacio en el que vive está retirando las huellas de su convivencia con Mateo.
             </p>
-          </div>
-
-          {/* Themes tag list */}
-          <div className="flex flex-wrap items-center gap-2 text-[16px] font-sans-ui text-white mb-8 text-left">
-            <span className="font-semibold text-white">Temas:</span>
-            <span>ausencia</span>
-            <span>·</span>
-            <span>memoria</span>
-            <span>·</span>
-            <span>vínculos</span>
-            <span>·</span>
-            <span>pérdida</span>
-            <span>·</span>
-            <span>percepción</span>
-            <span>·</span>
-            <span>intimidad</span>
           </div>
 
           {/* Action & Microcopy */}
@@ -110,7 +90,7 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
             </button>
 
             <span className="font-sans-ui text-[16px] text-white tracking-wide sm:ml-2">
-              Primera obra publicada por SYNTA · 2026
+              Edición inaugural · 2026
             </span>
           </div>
         </div>

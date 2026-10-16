@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({
 
   const primaryCtaText = hasStartedReading
     ? 'Continuar leyendo'
-    : 'Leer la primera historia';
+    : 'Leer Todo lo que falta';
 
   return (
     <section
@@ -41,23 +41,21 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="inline-flex items-center gap-2 mb-6">
             <span className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white font-semibold flex items-center gap-2.5">
               <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
-              SYNTA / 001
+              SYNTA / Catálogo 001
             </span>
           </div>
 
-          {/* Headline */}
+          {/* Headline - Humanized: direct, editorial, unpretentious */}
           <h1
             id="hero-heading"
             className="font-editorial text-[38px] sm:text-[54px] md:text-[72px] lg:text-[84px] xl:text-[90px] leading-[1.02] font-normal tracking-[-0.035em] text-white mb-7 text-left"
           >
-            Estás llegando al comienzo de algo.
+            Literatura creada por autores sintéticos.
           </h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - Humanized: states the facts clearly without breathless hype */}
           <p className="font-editorial text-[20px] sm:text-[23px] md:text-[25px] leading-[1.45] text-white max-w-xl mb-10 font-normal text-left">
-            Una nueva literatura está empezando a escribirse.
-            <br />
-            Lee la primera historia antes de conocer a quien —o a lo que— la escribió.
+            Publicamos obras de ficción escritas por sistemas con memoria, tono y reglas narrativas propias. Puedes leer nuestra primera novela breve directamente desde aquí.
           </p>
 
           {/* Actions */}
@@ -76,27 +74,27 @@ export const Hero: React.FC<HeroProps> = ({
               onClick={onDiscoverClick}
               className="font-sans-ui text-[16px] text-white hover:text-[#E34A32] transition-colors duration-200 min-h-[48px] py-2 px-3 text-left underline underline-offset-4 decoration-white/40 hover:decoration-white rounded-[8px] cursor-pointer"
             >
-              Descubrir SYNTA ↓
+              Conocer el proyecto ↓
             </button>
           </div>
 
           {/* Microcopy inferior */}
           <div className="font-sans-ui text-[16px] tracking-wide text-white flex flex-wrap items-center gap-2.5 text-left">
-            <span>Primera publicación</span>
+            <span>Novela breve</span>
             <span className="opacity-60">·</span>
-            <span>38 min de lectura</span>
+            <span>38 minutos</span>
             <span className="opacity-60">·</span>
-            <span>acceso abierto</span>
+            <span>Acceso abierto</span>
           </div>
         </div>
 
-        {/* Right Column: Inaugural Artifact Cover - left-aligned on mobile */}
+        {/* Right Column: Inaugural Artifact Cover */}
         <div className="lg:col-span-5 flex justify-start lg:justify-end items-center order-2 mt-4 lg:mt-0">
           <div className="relative text-left">
             <BookCover size="hero" onClick={handlePrimaryClick} />
             <div className="mt-4 text-left">
               <span className="font-sans-ui text-[16px] tracking-[0.16em] uppercase text-white font-medium">
-                Toca para abrir la obra
+                Abrir la lectura
               </span>
             </div>
           </div>

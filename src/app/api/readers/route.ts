@@ -14,7 +14,6 @@ export async function POST(request: Request) {
     }
 
     const cleanEmail = email.trim().toLowerCase();
-    const now = new Date().toISOString();
 
     if (isSupabaseConfigured && supabase) {
       // Upsert into Supabase
@@ -43,18 +42,10 @@ export async function POST(request: Request) {
       }
     }
 
-    // Fallback: deterministic safe ID based on email or random UUID
-    const fallbackId = 'rdr_' + Buffer.from(cleanEmail).toString('base64url').substring(0, 16);
-    return NextResponse.json({
-      success: true,
-      reader: {
-        id: fallbackId,
-        email: cleanEmail,
-        created_at: now,
-        first_story_unlocked: true,
-      },
-      message: 'Tu acceso está abierto.',
-    });
+    return NextResponse.json(
+      { error: 'No pudimos guardar tu correo en este momento. Puedes leer la primera historia y volver a intentarlo más tarde.' },
+      { status: 503 }
+    );
   } catch (error) {
     console.error('Error in /api/readers:', error);
     return NextResponse.json(

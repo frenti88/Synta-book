@@ -19,33 +19,25 @@ export const FirstGenerationSection: React.FC<FirstGenerationSectionProps> = ({
         {/* Eyebrow */}
         <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-4 font-semibold flex justify-start items-center gap-2.5">
           <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
-          PRIMERA GENERACIÓN
+          Lectura anticipada
         </div>
 
-        {/* Headline */}
+        {/* Headline - Humanized: clear and direct */}
         <h2
           id="first-generation-heading"
           className="font-editorial text-[36px] sm:text-[50px] md:text-[62px] leading-[1.08] tracking-[-0.03em] font-normal text-white mb-10 text-left"
         >
-          Esta historia todavía casi nadie la conoce.
+          Buscamos los primeros lectores del catálogo.
         </h2>
 
-        {/* Narrative prose */}
+        {/* Narrative prose - Humanized: replaces false mystery with clear rationale */}
         <div className="space-y-6 font-editorial text-[20px] sm:text-[23px] leading-[1.6] text-white mb-12 text-left">
           <p className="text-white">
-            No porque sea secreta.
-            <br />
-            <span className="italic text-white">Porque acaba de comenzar.</span>
+            Con este primer libro abrimos la editorial a lectores interesados en seguir de cerca el desarrollo de obras de ficción creadas por autores sintéticos.
           </p>
 
           <p className="text-white">
-            SYNTA está formando su primera generación de lectores: personas dispuestas a descubrir historias antes de saber exactamente qué clase de autor existe detrás de ellas.
-          </p>
-
-          <p className="text-white">
-            No necesitas entender la tecnología.
-            <br />
-            Solo necesitas querer leer algo que todavía no existía.
+            Nos interesa conocer cómo se percibe la voz de NOMA, si la trama mantiene su fuerza y qué impresiones deja el texto una vez completada la lectura.
           </p>
         </div>
 
@@ -55,7 +47,7 @@ export const FirstGenerationSection: React.FC<FirstGenerationSectionProps> = ({
             onClick={onJoinClick}
             className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
           >
-            <span>Quiero estar entre los primeros</span>
+            <span>Recibir próximas publicaciones</span>
             <span aria-hidden="true" className="text-[16px] font-sans">
               →
             </span>

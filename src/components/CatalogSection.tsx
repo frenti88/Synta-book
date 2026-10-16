@@ -19,24 +19,24 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
     },
     {
       num: '002',
-      title: '████████████████',
+      title: 'La segunda persona',
       status: 'Próximamente',
       isAvailable: false,
-      author: 'En edición',
+      author: 'MIRA',
     },
     {
       num: '003',
-      title: '███████████',
+      title: 'Archivo de sombras',
       status: 'En desarrollo',
       isAvailable: false,
-      author: 'En génesis',
+      author: 'SÉNECA',
     },
     {
       num: '004',
-      title: '██████████████',
-      status: '—',
+      title: 'El peso del aire',
+      status: 'En preparación',
       isAvailable: false,
-      author: '—',
+      author: 'En definición',
     },
   ];
 
@@ -46,16 +46,16 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
       className="py-24 sm:py-36 px-5 sm:px-8 max-w-5xl mx-auto border-t border-white/20 text-left"
       aria-labelledby="catalog-heading"
     >
-      {/* Editorial Headline */}
+      {/* Editorial Headline - Humanized: clear, informative */}
       <div className="mb-14 sm:mb-18 text-left">
         <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-3 font-semibold">
-          CATÁLOGO NACIENTE
+          Catálogo editorial
         </div>
         <h2
           id="catalog-heading"
           className="font-editorial text-[38px] sm:text-[50px] md:text-[62px] leading-[1.05] tracking-[-0.03em] font-normal text-white text-left"
         >
-          Esto apenas comienza.
+          Obras publicadas y próximas entregas.
         </h2>
       </div>
 
@@ -81,12 +81,12 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
                   className={`font-editorial text-[22px] sm:text-[26px] leading-tight block ${
                     item.isAvailable
                       ? 'text-white group-hover:text-[#E34A32] transition-colors'
-                      : 'text-white tracking-wider select-none'
+                      : 'text-white/80'
                   }`}
                 >
                   {item.title}
                 </span>
-                <span className="font-sans-ui text-[16px] uppercase tracking-wider text-white block mt-1">
+                <span className="font-sans-ui text-[16px] uppercase tracking-wider text-white/90 block mt-1">
                   {item.author}
                 </span>
               </div>
@@ -100,7 +100,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
                   {item.status}
                 </span>
               ) : (
-                <span className="font-sans-ui text-[16px] tracking-wide text-white px-3.5 py-1.5 font-mono border border-white/20 rounded-[8px] bg-black">
+                <span className="font-sans-ui text-[16px] tracking-wide text-white/80 px-3.5 py-1.5 font-mono border border-white/20 rounded-[8px] bg-black">
                   {item.status}
                 </span>
               )}

@@ -82,10 +82,10 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
               id="feedback-title"
               className="font-editorial text-[30px] sm:text-[36px] leading-[1.15] font-normal text-white mb-3 text-left"
             >
-              Antes de irte, queremos saber algo.
+              Tu opinión como lector
             </h3>
             <p className="font-editorial text-[18px] text-white text-left">
-              Tus respuestas dan forma a las siguientes obras de SYNTA.
+              Tus impresiones nos permiten evaluar la recepción de esta primera entrega.
             </p>
           </div>
 
@@ -154,13 +154,13 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
             {/* Question 3: Perception change */}
             <fieldset className="space-y-3 text-left">
               <legend className="font-editorial text-[20px] text-white font-normal text-left">
-                3. Saber que el autor no es humano, ¿cambió lo que sentiste al leer?
+                3. ¿Influyó en tu lectura saber que la obra fue escrita por una autora sintética?
               </legend>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-left">
                 {[
-                  { id: 'better', label: 'La hizo más interesante' },
-                  { id: 'same', label: 'No cambió nada' },
-                  { id: 'worse', label: 'Prefería no saberlo' },
+                  { id: 'better', label: 'Hizo la lectura más interesante' },
+                  { id: 'same', label: 'No influyó' },
+                  { id: 'worse', label: 'Habría preferido no saberlo' },
                 ].map((opt) => {
                   const isSelected = perceptionChange === opt.id;
                   return (
@@ -226,10 +226,10 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
             </svg>
           </div>
           <h4 className="font-editorial text-[26px] sm:text-[30px] text-white mb-2 text-left">
-            Gracias por leer y por responder.
+            Gracias por tu tiempo y por compartir tu lectura.
           </h4>
           <p className="font-editorial text-[18px] sm:text-[20px] text-white text-left">
-            Tus impresiones nos ayudan a construir las siguientes obras y autores sintéticos.
+            Tus comentarios serán tenidos en cuenta para las siguientes ediciones del catálogo.
           </p>
         </div>
       )}

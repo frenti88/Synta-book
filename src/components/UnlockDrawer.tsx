@@ -128,7 +128,7 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
         {/* Close button */}
         <button
           onClick={onClose}
-          aria-label="Cerrar ventana de desbloqueo"
+          aria-label="Cerrar ventana de lectura"
           className="absolute top-5 right-5 p-2 text-white hover:text-[#E34A32] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"
         >
           <svg
@@ -146,18 +146,18 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
           <div className="text-left">
             <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-3 font-semibold flex items-center gap-2 text-left">
               <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
-              SYNTA 001 · PRIMEROS LECTORES
+              Lectura digital · SYNTA 001
             </div>
 
             <h3
               id="unlock-title"
               className="font-editorial text-[32px] sm:text-[38px] leading-[1.1] font-normal text-white mb-4 text-left"
             >
-              Antes de entrar
+              Acceso a la obra completa
             </h3>
 
             <p className="font-editorial text-[18px] sm:text-[20px] leading-[1.5] text-white mb-8 font-normal text-left">
-              Estamos reuniendo a la primera generación de lectores de SYNTA. Déjanos tu correo y esta historia será tuya.
+              Ingresa tu correo electrónico para leer Todo lo que falta de manera inmediata y guardar tu progreso en el navegador.
             </p>
 
             <form onSubmit={handleSubmit} noValidate className="space-y-5 text-left">
@@ -195,7 +195,7 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
                   htmlFor="privacy-consent-checkbox"
                   className="font-sans-ui text-[16px] leading-relaxed text-white cursor-pointer select-none text-left"
                 >
-                  Acepto recibir esta obra y avisos cuando exista una nueva historia de SYNTA. Puedes salir cuando quieras con un solo clic.
+                  Acepto recibir la novela y avisos cuando existan nuevas obras de la editorial. Puedes darte de baja en cualquier momento.
                 </label>
               </div>
 
@@ -212,10 +212,10 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
                 className="w-full font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-6 py-3.5 flex items-center justify-center gap-2 rounded-[8px] cursor-pointer disabled:opacity-60"
               >
                 {loading ? (
-                  <span>Abriendo acceso...</span>
+                  <span>Preparando el lector...</span>
                 ) : (
                   <>
-                    <span>Abrir la historia</span>
+                    <span>Comenzar la lectura</span>
                     <span aria-hidden="true">→</span>
                   </>
                 )}
@@ -224,12 +224,12 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
 
             <div className="mt-6 pt-5 border-t border-white/20 text-left">
               <p className="font-sans-ui text-[16px] text-white text-left">
-                Sin contraseñas. Sin formularios largos. Solo literatura.
+                Sin contraseñas ni formularios extensos.
               </p>
             </div>
           </div>
         ) : (
-          /* Success state - strictly left-aligned */
+          /* Success state - Humanized and direct */
           <div className="text-left py-4 animate-in fade-in zoom-in-95 duration-400">
             <div className="w-12 h-12 mb-5 rounded-[8px] border border-white/30 flex items-center justify-center text-[#E34A32] bg-white/5">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -238,15 +238,15 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
             </div>
 
             <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-2 font-semibold text-left">
-              PRIMERA GENERACIÓN
+              Lectura habilitada
             </div>
 
             <h3 className="font-editorial text-[30px] sm:text-[36px] leading-[1.15] font-normal text-white mb-3 text-left">
-              Ya eres parte de la primera generación de lectores SYNTA.
+              Todo lo que falta está lista para leer.
             </h3>
 
             <p className="font-editorial text-[18px] sm:text-[20px] leading-[1.5] text-white mb-8 font-normal text-left">
-              Tu acceso está abierto. Todo lo que falta ya te espera.
+              Tu sesión guardará de manera automática la página y el capítulo donde te encuentres si decides pausar la lectura.
             </p>
 
             <button
@@ -254,7 +254,7 @@ export const UnlockDrawer: React.FC<UnlockDrawerProps> = ({
               autoFocus
               className="w-full font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 flex items-center justify-center gap-2 rounded-[8px] cursor-pointer"
             >
-              <span>Comenzar a leer</span>
+              <span>Abrir el lector</span>
               <span aria-hidden="true">→</span>
             </button>
           </div>

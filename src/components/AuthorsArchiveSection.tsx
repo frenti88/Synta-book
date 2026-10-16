@@ -9,29 +9,25 @@ export const AuthorsArchiveSection: React.FC = () => {
       className="py-24 sm:py-36 px-5 sm:px-8 max-w-5xl mx-auto border-t border-white/20 text-left"
       aria-labelledby="authors-heading"
     >
-      {/* Header */}
+      {/* Header - Humanized: describes real method and structure */}
       <div className="mb-14 sm:mb-18 text-left max-w-3xl">
         <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-3 font-semibold flex items-center gap-2.5">
           <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
-          ARCHIVO DE AUTORES
+          Registro de autores
         </div>
         <h2
           id="authors-heading"
           className="font-editorial text-[36px] sm:text-[50px] md:text-[62px] leading-[1.05] tracking-[-0.03em] font-normal text-white mb-8 text-left"
         >
-          Autores que nunca nacieron.
+          Autores con memoria y estilo persistente.
         </h2>
 
         <div className="space-y-4 font-editorial text-[20px] sm:text-[22px] leading-[1.6] text-white text-left">
           <p>
-            SYNTA no publica textos anónimos.
-            <br />
-            <span className="text-white font-medium">Publica identidades literarias.</span>
+            En SYNTA cada autor cuenta con un vocabulario recurrente, reglas estilísticas definidas y una memoria continua de las obras que ya ha publicado.
           </p>
           <p>
-            Cada autor sintético posee memoria, obsesiones, un tono y una forma particular de escribir.
-            <br />
-            Algunos ya existen. Otros todavía no.
+            Esto permite que un autor evolucione a través de varios libros, conservando su tono y profundizando en sus propios temas de interés.
           </p>
         </div>
       </div>
@@ -43,72 +39,72 @@ export const AuthorsArchiveSection: React.FC = () => {
           <div>
             <div className="flex items-center justify-between font-sans-ui text-[16px] font-mono tracking-wider text-white mb-6">
               <span className="text-white font-semibold">SYNTA 001</span>
-              <span>Activo 2026</span>
+              <span>Activo · 2026</span>
             </div>
 
             <h3 className="font-editorial text-[34px] font-normal text-white mb-2 tracking-tight text-left">
               NOMA
             </h3>
             <p className="font-editorial italic text-[16px] text-white mb-6 text-left">
-              Memoria · ausencia · relaciones
+              Ficción íntima, memoria y pérdidas graduales en la convivencia.
             </p>
           </div>
 
           <div className="pt-4 border-t border-white/20 flex items-center justify-between font-sans-ui text-[16px]">
             <span className="text-white">Producción</span>
-            <span className="text-white font-mono font-medium">01 obra</span>
+            <span className="text-white font-mono font-medium">1 novela publicada</span>
           </div>
         </div>
 
-        {/* Upcoming Author 1 */}
+        {/* Upcoming Author 1: MIRA */}
         <div className="border border-white/20 bg-black p-8 rounded-[8px] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between font-sans-ui text-[16px] font-mono tracking-wider text-white mb-6">
               <span>SYNTA 002</span>
-              <span>En definición</span>
+              <span>En preparación</span>
             </div>
 
-            <div className="font-editorial text-[28px] font-normal text-white mb-2 tracking-widest select-none text-left">
-              — — — —
-            </div>
+            <h3 className="font-editorial text-[34px] font-normal text-white mb-2 tracking-tight text-left">
+              MIRA
+            </h3>
             <p className="font-editorial italic text-[16px] text-white mb-6 text-left">
-              Misterio · lenguaje · sombra
+              Observación social, tensiones en el lenguaje y vida compartida.
             </p>
           </div>
 
           <div className="pt-4 border-t border-white/20 flex items-center justify-between font-sans-ui text-[16px]">
             <span className="text-white">Estado</span>
-            <span className="text-white font-mono">Próximamente</span>
+            <span className="text-white font-mono">Próxima entrega</span>
           </div>
         </div>
 
-        {/* Upcoming Author 2 */}
+        {/* Upcoming Author 2: SÉNECA */}
         <div className="border border-white/20 bg-black p-8 rounded-[8px] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between font-sans-ui text-[16px] font-mono tracking-wider text-white mb-6">
               <span>SYNTA 003</span>
-              <span>En génesis</span>
+              <span>En desarrollo</span>
             </div>
 
-            <div className="font-editorial text-[28px] font-normal text-white mb-2 tracking-widest select-none text-left">
-              — — — —
-            </div>
+            <h3 className="font-editorial text-[34px] font-normal text-white mb-2 tracking-tight text-left">
+              SÉNECA
+            </h3>
             <p className="font-editorial italic text-[16px] text-white mb-6 text-left">
-              Ensayo · tiempo · percepción
+              Ensayo narrativo, percepción temporal y rutinas cotidianas.
             </p>
           </div>
 
           <div className="pt-4 border-t border-white/20 flex items-center justify-between font-sans-ui text-[16px]">
             <span className="text-white">Estado</span>
-            <span className="text-white font-mono">Próximamente</span>
+            <span className="text-white font-mono">En desarrollo</span>
           </div>
         </div>
       </div>
 
-      {/* Mandatory memorable ending phrase - strictly left-aligned */}
+      {/* Editorial closing note */}
       <div className="border-t border-white/20 pt-10 text-left">
-        <p className="font-editorial text-[26px] sm:text-[34px] leading-tight text-white font-normal tracking-[-0.02em] italic text-left">
-          «No todos los autores de SYNTA existen todavía.»
+        <p className="font-editorial text-[20px] sm:text-[22px] leading-relaxed text-white font-normal text-left">
+          Incorporamos nuevos autores únicamente cuando su voz tiene suficiente consistencia estilística para sostener un libro completo.
         </p>
       </div>
     </section>

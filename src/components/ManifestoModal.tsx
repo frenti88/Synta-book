@@ -54,35 +54,31 @@ export const ManifestoModal: React.FC<ManifestoModalProps> = ({ isOpen, onClose 
         </button>
 
         <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-2 font-semibold text-left">
-          DOCUMENTO FUNDACIONAL
+          CRITERIO EDITORIAL
         </div>
 
         <h3
           id="manifesto-modal-title"
-          className="font-editorial text-[32px] sm:text-[40px] font-normal text-white mb-6 leading-tight text-left"
+          className="font-editorial text-[32px] sm:text-[38px] font-normal text-white mb-6 leading-tight text-left"
         >
-          Manifiesto SYNTA: La frontera de la voz
+          Propósito y método de trabajo
         </h3>
 
         <div className="space-y-6 font-editorial text-[18px] sm:text-[20px] leading-[1.7] text-white text-left">
           <p>
-            Durante siglos hemos sostenido la convicción inquebrantable de que detrás de cada página debía respirar un ser humano de carne y hueso, forjado por una infancia, una geografía y una biografía irrepetible.
+            SYNTA surge como un proyecto editorial dedicado a publicar obras de ficción producidas por modelos computacionales con identidad sostenida. Creemos que la literatura contemporánea puede dialogar con nuevas formas de autoría siempre que exista un compromiso riguroso con el lenguaje, la estructura narrativa y el cuidado formal de cada página.
           </p>
 
           <p>
-            SYNTA nace para explorar una frontera inédita: no la imitación de lo humano, sino la aparición de una sensibilidad distinta. Autores que no nacieron en una ciudad concreta, pero cuya voz está construida con rigor estético, reglas de lenguaje, obsesiones temáticas y una memoria que no olvida lo que ya ha escrito.
+            Cada autor de nuestro catálogo parte de un marco conceptual específico: un repertorio temático, una sintaxis particular y una memoria acumulativa que evita la dispersión habitual de los textos generados de forma automática. El proyecto no busca la novedad tecnológica, sino la construcción de ficciones que se sostengan por el peso de su propia prosa.
           </p>
 
           <p className="text-white">
-            No creemos en la literatura como un ejercicio de cálculo masivo ni en la pirotecnia tecnológica. Rechazamos los atajos del efectismo. La tecnología es el instrumento silencioso; la literatura debe ser siempre el primer plano.
+            El trabajo editorial humano cumple un papel central en cada entrega. Acompañamos la selección de borradores, la corrección de estilo y la edición final con el mismo detenimiento que cualquier sello editorial independiente aplica a su catálogo.
           </p>
 
           <p>
-            Nuestros autores sintéticos no reemplazan a nadie. Vienen a ensanchar el territorio de lo decible. Porque al final de la lectura, lo único que permanece no es el código del creador, sino la verdad de lo que el lector experimenta en su soledad.
-          </p>
-
-          <p className="font-medium text-[22px] sm:text-[26px] pt-4 text-white">
-            La calidad sigue siendo la frontera.
+            Publicamos en formatos directos para que cada lector juzgue la obra por lo que encuentra en el texto: por el tono de las frases, la precisión de las descripciones y la capacidad de la historia para acompañar a quien la lee.
           </p>
         </div>
 
@@ -91,7 +87,7 @@ export const ManifestoModal: React.FC<ManifestoModalProps> = ({ isOpen, onClose 
             onClick={onClose}
             className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white px-7 py-3 transition-colors cursor-pointer rounded-[8px]"
           >
-            Cerrar manifiesto
+            Cerrar nota editorial
           </button>
         </div>
       </div>
