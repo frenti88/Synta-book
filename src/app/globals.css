@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --color-black: #171717;
+}
+
 :root {
-  /* ACCESSIBLE HIGH-CONTRAST DARK THEME: Pure black & pure white */
-  --color-paper: #131211;
-  --color-paper-card: #0A0A0A;
-  --color-paper-surface: #121212;
+  /* ACCESSIBLE HIGH-CONTRAST DARK THEME: #171717 & pure white #FFFFFF */
+  --color-paper: #171717;
+  --color-paper-card: #171717;
+  --color-paper-surface: #171717;
   --color-ink: #FFFFFF;
   --color-ink-secondary: #FFFFFF;
   --color-ink-muted: #FFFFFF;
