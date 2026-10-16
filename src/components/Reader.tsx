@@ -184,6 +184,12 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
       ? 'text-[22px] sm:text-[24px] leading-[1.8]'
       : 'text-[20px] sm:text-[21px] leading-[1.75]';
 
+  const textColor = isDarkMode ? 'text-white' : 'text-[#171717]';
+  const borderColor = isDarkMode ? 'border-white/20' : 'border-[#171717]/20';
+  const buttonPrimary = isDarkMode
+    ? 'bg-white text-black hover:bg-[#E34A32] hover:text-white'
+    : 'bg-[#171717] text-white hover:bg-[#E34A32]';
+
   return (
     <div
       role="dialog"
@@ -192,7 +198,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
       className={`fixed inset-0 z-50 flex flex-col transition-colors duration-300 ${
         isDarkMode
           ? 'bg-black text-white'
-          : 'bg-[#F4F1EA] text-[#121212]'
+          : 'bg-[#F4F1EA] text-[#171717]'
       }`}
     >
       {/* Minimal Sticky Top Header */}
@@ -200,23 +206,23 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
         className={`sticky top-0 z-30 w-full px-4 sm:px-8 flex items-center justify-between border-b transition-colors duration-200 ${
           isDarkMode
             ? 'bg-black/95 backdrop-blur-md border-white/20'
-            : 'bg-[#F4F1EA]/95 backdrop-blur-md border-[#121212]/20'
+            : 'bg-[#F4F1EA]/95 backdrop-blur-md border-[#171717]/15'
         }`}
         style={{ height: '62px' }}
       >
         <div className="flex items-center gap-2 text-left">
-          <span className="font-editorial text-[22px] font-semibold tracking-tight text-white">
+          <span className={`font-editorial text-[22px] font-semibold tracking-tight ${textColor}`}>
             SYNTA
           </span>
           <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
         </div>
 
-        <div className="hidden sm:block font-editorial text-[16px] italic text-left truncate max-w-xs md:max-w-md text-white">
+        <div className={`hidden sm:block font-editorial text-[16px] italic text-left truncate max-w-xs md:max-w-md ${textColor}`}>
           {story.title}
         </div>
 
         <div className="flex items-center gap-3 sm:gap-5">
-          <div className="font-sans-ui text-[16px] font-mono tracking-wider text-white">
+          <div className={`font-sans-ui text-[16px] font-mono tracking-wider ${textColor}`}>
             {progress}%
           </div>
 
@@ -227,7 +233,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
               aria-label="Ajustar tamaño de texto"
               aria-expanded={showFontMenu}
               className={`p-2 font-editorial font-bold text-[18px] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
-                showFontMenu ? 'text-[#E34A32]' : 'text-white hover:text-[#E34A32]'
+                showFontMenu ? 'text-[#E34A32]' : `${textColor} hover:text-[#E34A32]`
               }`}
             >
               Aa
@@ -238,16 +244,16 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                 className={`absolute right-0 top-12 w-48 py-2 border shadow-2xl z-40 animate-in fade-in zoom-in-95 duration-150 rounded-[8px] overflow-hidden ${
                   isDarkMode
                     ? 'bg-black border-white/30 text-white'
-                    : 'bg-[#F4F1EA] border-[#121212]/20 text-[#121212]'
+                    : 'bg-[#EDE8DE] border-[#171717]/20 text-[#171717]'
                 }`}
               >
-                <div className="px-4 py-1.5 font-sans-ui text-[16px] uppercase tracking-wider text-white font-medium">
+                <div className={`px-4 py-1.5 font-sans-ui text-[16px] uppercase tracking-wider font-medium ${textColor}`}>
                   Tamaño de texto
                 </div>
                 <button
                   onClick={() => handleFontSizeChange('sm')}
                   className={`w-full text-left px-4 py-2.5 text-[16px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
-                    fontSize === 'sm' ? 'text-[#E34A32] font-semibold' : 'text-white hover:bg-white/10'
+                    fontSize === 'sm' ? 'text-[#E34A32] font-semibold' : `${textColor} ${isDarkMode ? 'hover:bg-white/10' : 'hover:bg-black/5'}`
                   }`}
                 >
                   <span>Pequeño</span>
@@ -256,7 +262,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                 <button
                   onClick={() => handleFontSizeChange('base')}
                   className={`w-full text-left px-4 py-2.5 text-[16px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
-                    fontSize === 'base' ? 'text-[#E34A32] font-semibold' : 'text-white hover:bg-white/10'
+                    fontSize === 'base' ? 'text-[#E34A32] font-semibold' : `${textColor} ${isDarkMode ? 'hover:bg-white/10' : 'hover:bg-black/5'}`
                   }`}
                 >
                   <span>Predeterminado</span>
@@ -265,7 +271,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                 <button
                   onClick={() => handleFontSizeChange('lg')}
                   className={`w-full text-left px-4 py-2.5 text-[16px] font-sans-ui transition-colors cursor-pointer flex items-center justify-between rounded-[8px] ${
-                    fontSize === 'lg' ? 'text-[#E34A32] font-semibold' : 'text-white hover:bg-white/10'
+                    fontSize === 'lg' ? 'text-[#E34A32] font-semibold' : `${textColor} ${isDarkMode ? 'hover:bg-white/10' : 'hover:bg-black/5'}`
                   }`}
                 >
                   <span>Grande</span>
@@ -279,7 +285,9 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
           <button
             onClick={toggleDarkMode}
             aria-label={isDarkMode ? 'Cambiar a modo papel claro' : 'Cambiar a modo oscuro'}
-            className="p-2 text-white hover:text-[#E34A32] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"
+            className={`p-2 transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
+              isDarkMode ? 'text-white hover:text-[#E34A32]' : 'text-[#171717] hover:text-[#E34A32]'
+            }`}
           >
             {isDarkMode ? (
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -306,7 +314,9 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
           <button
             onClick={onClose}
             aria-label="Cerrar lector"
-            className="p-2 text-white hover:text-[#E34A32] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"
+            className={`p-2 transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
+              isDarkMode ? 'text-white hover:text-[#E34A32]' : 'text-[#171717] hover:text-[#E34A32]'
+            }`}
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 18L18 6M6 6l12 12" />
@@ -319,7 +329,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
       <div
         className="w-full h-[2px] bg-transparent"
         style={{
-          background: isDarkMode ? 'rgba(255,255,255,0.15)' : 'rgba(18,18,18,0.1)',
+          background: isDarkMode ? 'rgba(255,255,255,0.15)' : 'rgba(23,23,23,0.12)',
         }}
       >
         <div
@@ -339,18 +349,18 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
           className="max-w-[700px] mx-auto font-editorial text-left"
         >
           {/* Editorial Book Title Page - strictly left-aligned */}
-          <header className="mb-20 sm:mb-28 text-left pb-16 border-b border-white/20">
-            <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-4 flex items-center justify-start gap-2.5 text-left">
+          <header className={`mb-20 sm:mb-28 text-left pb-16 border-b ${borderColor}`}>
+            <div className={`font-sans-ui text-[16px] tracking-[0.2em] uppercase mb-4 flex items-center justify-start gap-2.5 text-left ${textColor}`}>
               <span>{story.edition}</span>
               <span className="opacity-60">·</span>
               <span>{story.genre}</span>
             </div>
 
-            <h1 className="font-editorial text-[38px] sm:text-[52px] md:text-[60px] leading-[1.05] font-normal tracking-[-0.02em] mb-6 text-white text-left">
+            <h1 className={`font-editorial text-[38px] sm:text-[52px] md:text-[60px] leading-[1.05] font-normal tracking-[-0.02em] mb-6 text-left ${textColor}`}>
               {story.title}
             </h1>
 
-            <p className="font-editorial italic text-[19px] sm:text-[22px] text-white max-w-xl text-left">
+            <p className={`font-editorial italic text-[19px] sm:text-[22px] max-w-xl text-left ${textColor}`}>
               {story.synopsis}
             </p>
           </header>
@@ -365,12 +375,12 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                 aria-labelledby={`heading-${chapter.id}`}
               >
                 <div className="mb-10 text-left">
-                  <span className="font-sans-ui text-[16px] font-mono tracking-widest text-white block mb-1 text-left">
+                  <span className={`font-sans-ui text-[16px] font-mono tracking-widest block mb-1 text-left ${textColor}`}>
                     {chapter.number}
                   </span>
                   <h2
                     id={`heading-${chapter.id}`}
-                    className="font-editorial text-[26px] sm:text-[32px] font-normal tracking-tight text-white text-left"
+                    className={`font-editorial text-[26px] sm:text-[32px] font-normal tracking-tight text-left ${textColor}`}
                   >
                     {chapter.title}
                   </h2>
@@ -379,7 +389,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                 {chapter.paragraphs.map((p, idx) => (
                   <p
                     key={idx}
-                    className={`font-editorial font-normal ${paragraphSizeClass} tracking-normal text-left text-white`}
+                    className={`font-editorial font-normal ${paragraphSizeClass} tracking-normal text-left ${textColor}`}
                     style={{ textWrap: 'pretty' }}
                   >
                     {p}
@@ -390,24 +400,24 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
           </div>
 
           {/* Revelation Trigger Block - strictly left-aligned */}
-          <div className="mt-28 sm:mt-36 pt-16 border-t border-white/20 text-left">
-            <div className="font-editorial text-[24px] sm:text-[28px] tracking-[0.3em] font-normal mb-8 text-white text-left">
+          <div className={`mt-28 sm:mt-36 pt-16 border-t text-left ${borderColor}`}>
+            <div className={`font-editorial text-[24px] sm:text-[28px] tracking-[0.3em] font-normal mb-8 text-left ${textColor}`}>
               FIN
             </div>
 
             <div className="my-8 h-12 flex items-center justify-start" aria-hidden="true">
-              <span className="w-16 h-[1px] bg-white/40" />
+              <span className={`w-16 h-[1px] ${isDarkMode ? 'bg-white/40' : 'bg-[#171717]/40'}`} />
             </div>
 
             <div className="space-y-6 text-left">
-              <p className="font-editorial text-[22px] sm:text-[26px] leading-[1.3] font-normal text-white text-left">
+              <p className={`font-editorial text-[22px] sm:text-[26px] leading-[1.3] font-normal text-left ${textColor}`}>
                 Nota sobre la autoría y el proceso de creación de esta obra.
               </p>
 
               {!showAuthorReveal ? (
                 <button
                   onClick={handleRevealAuthor}
-                  className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
+                  className={`font-sans-ui text-[16px] font-semibold transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm ${buttonPrimary}`}
                 >
                   <span>Leer nota sobre la autora</span>
                   <span aria-hidden="true" className="text-[16px] font-sans">
@@ -420,9 +430,9 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
 
           {showAuthorReveal && (
             <div ref={authorRevealRef} className="animate-in fade-in slide-in-from-bottom-6 duration-500 text-left">
-              <AuthorReveal />
-              <FeedbackSection storyId={story.id} />
-              <NextStorySection />
+              <AuthorReveal isDarkMode={isDarkMode} />
+              <FeedbackSection storyId={story.id} isDarkMode={isDarkMode} />
+              <NextStorySection isDarkMode={isDarkMode} />
             </div>
           )}
         </article>

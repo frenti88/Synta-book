@@ -26,13 +26,13 @@
   --color-paper: #F4F1EA;
   --color-paper-card: #EDE8DE;
   --color-paper-surface: #E8E3D8;
-  --color-ink: #121212;
-  --color-ink-secondary: #121212;
-  --color-ink-muted: #242424;
+  --color-ink: #171717;
+  --color-ink-secondary: #171717;
+  --color-ink-muted: #171717;
   --color-signal: #E34A32;
   --color-signal-hover: #CC3D26;
-  --color-border: rgba(18, 18, 18, 0.2);
-  --color-border-subtle: rgba(18, 18, 18, 0.1);
+  --color-border: rgba(23, 23, 23, 0.2);
+  --color-border-subtle: rgba(23, 23, 23, 0.1);
 }
 
 * {
