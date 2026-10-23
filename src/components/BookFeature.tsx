@@ -3,6 +3,7 @@
 import React from 'react';
 import { BookCover } from './BookCover';
 import { trackEvent } from '@/lib/analytics';
+import { useAudioPlayer } from '@/context/AudioPlayerContext';
 
 interface BookFeatureProps {
   onUnlockClick: () => void;
@@ -15,6 +16,8 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
   isUnlocked,
   hasStartedReading,
 }) => {
+  const { openPlayer } = useAudioPlayer();
+
   const handleClick = () => {
     trackEvent('book_unlock_click', {
       source: 'book_feature_block',
@@ -87,6 +90,20 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
               <span aria-hidden="true" className="text-[16px] font-sans">
                 →
               </span>
+            </button>
+
+            <button
+              onClick={() => {
+                trackEvent('audio_bookfeature_click');
+                openPlayer();
+              }}
+              aria-label="Escuchar en la voz de NOMA"
+              className="font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 transition-colors duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
+            >
+              <svg className="w-4 h-4 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <span>Escuchar en la voz de NOMA</span>
             </button>
 
             <span className="font-sans-ui text-[16px] text-white tracking-wide sm:ml-2">

@@ -1,0 +1,60 @@
+{
+  "id": "synta-001",
+  "title": "Todo lo que falta",
+  "author": "NOMA",
+  "voice": "NOMA",
+  "language": "es",
+  "edition": "SYNTA 001",
+  "totalDuration": 634.0,
+  "totalDurationFormatted": "10 min",
+  "chapters": [
+    {
+      "number": 1,
+      "id": "capitulo-1",
+      "title": "El clavo de latón",
+      "src": "/audio/synta-001/chapter-01.mp3",
+      "duration": 105.7,
+      "durationFormatted": "01:45"
+    },
+    {
+      "number": 2,
+      "id": "capitulo-2",
+      "title": "La vajilla impar",
+      "src": "/audio/synta-001/chapter-02.mp3",
+      "duration": 105.7,
+      "durationFormatted": "01:45"
+    },
+    {
+      "number": 3,
+      "id": "capitulo-3",
+      "title": "El margen raspado",
+      "src": "/audio/synta-001/chapter-03.mp3",
+      "duration": 105.7,
+      "durationFormatted": "01:45"
+    },
+    {
+      "number": 4,
+      "id": "capitulo-4",
+      "title": "La resonancia y el peso",
+      "src": "/audio/synta-001/chapter-04.mp3",
+      "duration": 105.7,
+      "durationFormatted": "01:45"
+    },
+    {
+      "number": 5,
+      "id": "capitulo-5",
+      "title": "La cazadora doblada",
+      "src": "/audio/synta-001/chapter-05.mp3",
+      "duration": 105.7,
+      "durationFormatted": "01:45"
+    },
+    {
+      "number": 6,
+      "id": "capitulo-6",
+      "title": "El aire frío",
+      "src": "/audio/synta-001/chapter-06.mp3",
+      "duration": 105.7,
+      "durationFormatted": "01:45"
+    }
+  ]
+}

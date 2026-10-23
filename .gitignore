@@ -41,3 +41,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# audio pipeline & local machine learning artifacts
+__pycache__/
+*.pyc
+audio/.venv/
+audio/generated/
+audio/*.wav
+*.wav

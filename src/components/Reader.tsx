@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Story } from '@/types';
 import { trackEvent, getStoredReaderId } from '@/lib/analytics';
+import { useAudioPlayer } from '@/context/AudioPlayerContext';
 import { AuthorReveal } from './AuthorReveal';
 import { FeedbackSection } from './FeedbackSection';
 import { NextStorySection } from './NextStorySection';
@@ -11,11 +12,18 @@ interface ReaderProps {
   story: Story;
   isOpen: boolean;
   onClose: () => void;
+  targetChapterId?: string | null;
 }
 
 type FontSize = 'sm' | 'base' | 'lg';
 
-export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
+export const Reader: React.FC<ReaderProps> = ({
+  story,
+  isOpen,
+  onClose,
+  targetChapterId,
+}) => {
+  const { openPlayer } = useAudioPlayer();
   const [progress, setProgress] = useState(0);
   const [fontSize, setFontSize] = useState<FontSize>('base');
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -28,6 +36,40 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
   const fontMenuRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  // Auto-scroll to target chapter when specified
+  useEffect(() => {
+    if (isOpen && targetChapterId) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(targetChapterId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, targetChapterId]);
+
+  const handleSwitchToAudio = () => {
+    let activeChapterIndex = 0;
+    if (containerRef.current) {
+      const containerTop = containerRef.current.getBoundingClientRect().top;
+      for (let i = 0; i < story.chapters.length; i++) {
+        const chEl = document.getElementById(story.chapters[i].id);
+        if (chEl) {
+          const rect = chEl.getBoundingClientRect();
+          if (rect.top <= containerTop + 200) {
+            activeChapterIndex = i;
+          }
+        }
+      }
+    }
+    trackEvent('audio_switch_from_reader', {
+      chapter_index: activeChapterIndex,
+      chapter_id: story.chapters[activeChapterIndex]?.id,
+    });
+    openPlayer(activeChapterIndex);
+  };
 
   const milestonesRef = useRef({
     started: false,
@@ -294,6 +336,22 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
             )}
           </div>
 
+          {/* Escuchar en la voz de NOMA */}
+          <button
+            onClick={handleSwitchToAudio}
+            aria-label="Escuchar en la voz de NOMA"
+            className={`min-h-[44px] px-3.5 py-1.5 flex items-center gap-2 text-[14px] font-sans-ui rounded-[8px] border transition-colors cursor-pointer focus:ring-2 focus:ring-[#E34A32] ${
+              isDarkMode
+                ? 'border-white/20 text-white hover:border-[#E34A32] hover:text-[#E34A32]'
+                : 'border-[#171717]/20 text-[#171717] hover:border-[#E34A32] hover:text-[#E34A32]'
+            }`}
+          >
+            <svg className="w-4 h-4 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <span className="hidden sm:inline font-medium">Escuchar</span>
+          </button>
+
           {/* Theme Toggle */}
           <button
             onClick={toggleDarkMode}
@@ -403,6 +461,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
                 {chapter.paragraphs.map((p, idx) => (
                   <p
                     key={idx}
+                    id={`p-${chapter.id}-${idx}`}
                     className={`font-editorial font-normal ${paragraphSizeClass} tracking-normal text-left ${textColor}`}
                     style={{ textWrap: 'pretty' }}
                   >

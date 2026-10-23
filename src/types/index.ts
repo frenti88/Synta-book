@@ -39,7 +39,20 @@ export type EventType =
   | 'feedback_started'
   | 'feedback_submitted'
   | 'next_story_interest'
-  | 'returning_reader';
+  | 'returning_reader'
+  | 'audio_open'
+  | 'audio_hero_click'
+  | 'audio_bookfeature_click'
+  | 'audio_switch_from_reader'
+  | 'audio_play'
+  | 'audio_pause'
+  | 'audio_25'
+  | 'audio_50'
+  | 'audio_75'
+  | 'audio_complete'
+  | 'audio_chapter_change'
+  | 'audio_speed_change'
+  | 'audio_resume';
 
 export interface AnalyticsEvent {
   session_id: string;

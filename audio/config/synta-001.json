@@ -1,0 +1,83 @@
+{
+  "book_id": "synta-001",
+  "title": "Todo lo que falta",
+  "author": "NOMA",
+  "edition": "SYNTA 001",
+  "language": "es",
+  "chapters": [
+    {
+      "number": 1,
+      "id": "capitulo-1",
+      "title": "El clavo de latón",
+      "emotion": "cotidiano hacia inquietud",
+      "pace": "sereno",
+      "intensity": 0.35,
+      "notes": [
+        "No empezar con tono misterioso.",
+        "La primera anomalía del marco debe sonar cotidiana y mundana.",
+        "Pausa más amplia tras la pregunta de Clara sobre la foto."
+      ]
+    },
+    {
+      "number": 2,
+      "id": "capitulo-2",
+      "title": "La vajilla impar",
+      "emotion": "tensión doméstica contenida",
+      "pace": "deliberado",
+      "intensity": 0.40,
+      "notes": [
+        "El malestar por las cinco tazas debe sentirse seco.",
+        "La frase 'No falta nada' de Mateo debe sonar plana y ordinaria.",
+        "La cuchara escondida en el bolsillo debe registrar una pausa íntima."
+      ]
+    },
+    {
+      "number": 3,
+      "id": "capitulo-3",
+      "title": "El margen raspado",
+      "emotion": "extrañeza y duda de la memoria",
+      "pace": "pausado",
+      "intensity": 0.45,
+      "notes": [
+        "El blanco en la libreta se lee con respiración contenida.",
+        "La discusión sobre la caldera debe conservar humor cansado de Mateo."
+      ]
+    },
+    {
+      "number": 4,
+      "id": "capitulo-4",
+      "title": "La resonancia y el peso",
+      "emotion": "nocturno, sigiloso y sensorial",
+      "pace": "lento",
+      "intensity": 0.50,
+      "notes": [
+        "El tacto del omóplato bajo la manta requiere dicción muy cercana.",
+        "El eco del pasillo desocupado debe sentirse en los silencios."
+      ]
+    },
+    {
+      "number": 5,
+      "id": "capitulo-5",
+      "title": "La cazadora doblada",
+      "emotion": "despedida áspera sin dramatismo",
+      "pace": "firme y entrecortado",
+      "intensity": 0.55,
+      "notes": [
+        "El conflicto por la bufanda es el verdadero clímax no dicho.",
+        "El clic del resbalón de la cerradura cierra el diálogo."
+      ]
+    },
+    {
+      "number": 6,
+      "id": "capitulo-6",
+      "title": "El aire frío",
+      "emotion": "calma física y melancolía sobria",
+      "pace": "sereno y abierto",
+      "intensity": 0.35,
+      "notes": [
+        "Sin música ni moralejas.",
+        "El café que calienta los dedos y la ventana abierta al patio."
+      ]
+    }
+  ]
+}

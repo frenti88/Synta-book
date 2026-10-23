@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { firstStory } from '@/lib/story';
 import { trackEvent } from '@/lib/analytics';
+import { AudioPlayerProvider } from '@/context/AudioPlayerContext';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { BreathingQuote } from '@/components/BreathingQuote';
@@ -16,11 +17,14 @@ import { Footer } from '@/components/Footer';
 import { Reader } from '@/components/Reader';
 import { PrivacyModal } from '@/components/PrivacyModal';
 import { ManifestoModal } from '@/components/ManifestoModal';
+import { MiniPlayer } from '@/components/MiniPlayer';
+import { AudioPlayerModal } from '@/components/AudioPlayerModal';
 
 export default function Home() {
   const [isUnlocked] = useState(true);
   const [hasStartedReading, setHasStartedReading] = useState(false);
   const [isReaderOpen, setIsReaderOpen] = useState(false);
+  const [targetChapterId, setTargetChapterId] = useState<string | null>(null);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isManifestoModalOpen, setIsManifestoModalOpen] = useState(false);
 
@@ -38,6 +42,15 @@ export default function Home() {
 
   const handleOpenUnlockOrRead = () => {
     trackEvent('hero_read_click', { story_id: firstStory.id });
+    setTargetChapterId(null);
+    setIsReaderOpen(true);
+  };
+
+  const handleOpenReaderAtChapter = (chapterIndex: number) => {
+    const ch = firstStory.chapters[chapterIndex];
+    if (ch) {
+      setTargetChapterId(ch.id);
+    }
     setIsReaderOpen(true);
   };
 
@@ -49,85 +62,95 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col font-sans-ui selection:bg-[#E34A32]/45 selection:text-white">
-      {/* 1. Minimal Header */}
-      <Header
-        onOpenUnlockOrRead={handleOpenUnlockOrRead}
-        isUnlocked={isUnlocked}
-        hasStartedReading={hasStartedReading}
-        onOpenCommunity={() => scrollToSection('comunidad')}
-      />
-
-      {/* Main Narrative Journey */}
-      <main id="main-content" className="flex-1">
-        {/* 2. Hero: Estás llegando al comienzo de algo */}
-        <Hero
-          onStartReading={handleOpenUnlockOrRead}
-          onDiscoverClick={() => scrollToSection('primer-libro')}
+    <AudioPlayerProvider>
+      <div className="min-h-screen bg-black text-white flex flex-col font-sans-ui selection:bg-[#E34A32]/45 selection:text-white">
+        {/* 1. Minimal Header */}
+        <Header
+          onOpenUnlockOrRead={handleOpenUnlockOrRead}
           isUnlocked={isUnlocked}
           hasStartedReading={hasStartedReading}
+          onOpenCommunity={() => scrollToSection('comunidad')}
         />
 
-        {/* 3. Pausa poética: ¿Qué hace real a una historia? */}
-        <BreathingQuote />
+        {/* Main Narrative Journey */}
+        <main id="main-content" className="flex-1">
+          {/* 2. Hero: Estás llegando al comienzo de algo */}
+          <Hero
+            onStartReading={handleOpenUnlockOrRead}
+            onDiscoverClick={() => scrollToSection('primer-libro')}
+            isUnlocked={isUnlocked}
+            hasStartedReading={hasStartedReading}
+          />
 
-        {/* 4. Objeto Inaugural 001: Todo lo que falta */}
-        <BookFeature
-          onUnlockClick={handleOpenUnlockOrRead}
-          isUnlocked={isUnlocked}
-          hasStartedReading={hasStartedReading}
+          {/* 3. Pausa poética: ¿Qué hace real a una historia? */}
+          <BreathingQuote />
+
+          {/* 4. Objeto Inaugural 001: Todo lo que falta */}
+          <BookFeature
+            onUnlockClick={handleOpenUnlockOrRead}
+            isUnlocked={isUnlocked}
+            hasStartedReading={hasStartedReading}
+          />
+
+          {/* 5. Primera Generación: Esta historia todavía casi nadie la conoce */}
+          <FirstGenerationSection
+            onJoinClick={() => scrollToSection('comunidad')}
+          />
+
+          {/* 6. Catálogo Naciente: Esto apenas comienza (001, 002, 003, 004) */}
+          <CatalogSection onOpenStory={handleOpenUnlockOrRead} />
+
+          {/* 7. Archivo de Autores: Autores que nunca nacieron */}
+          <AuthorsArchiveSection />
+
+          {/* 8. Manifiesto Reducido: Durante siglos, detrás de cada libro hubo alguien */}
+          <ManifestoSection
+            onOpenFullManifesto={() => setIsManifestoModalOpen(true)}
+          />
+
+          {/* 9. Comunidad Final: Lee antes que los demás */}
+          <CommunitySection />
+        </main>
+
+        {/* 10. Minimal Footer */}
+        <Footer
+          onOpenManifesto={() => setIsManifestoModalOpen(true)}
+          onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
         />
 
-        {/* 5. Primera Generación: Esta historia todavía casi nadie la conoce */}
-        <FirstGenerationSection
-          onJoinClick={() => scrollToSection('comunidad')}
-        />
-
-        {/* 6. Catálogo Naciente: Esto apenas comienza (001, 002, 003, 004) */}
-        <CatalogSection onOpenStory={handleOpenUnlockOrRead} />
-
-        {/* 7. Archivo de Autores: Autores que nunca nacieron */}
-        <AuthorsArchiveSection />
-
-        {/* 8. Manifiesto Reducido: Durante siglos, detrás de cada libro hubo alguien */}
-        <ManifestoSection
-          onOpenFullManifesto={() => setIsManifestoModalOpen(true)}
-        />
-
-        {/* 9. Comunidad Final: Lee antes que los demás */}
-        <CommunitySection />
-      </main>
-
-      {/* 10. Minimal Footer */}
-      <Footer
-        onOpenManifesto={() => setIsManifestoModalOpen(true)}
-        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
-      />
-
-      {/* Reading Engine */}
-      <Reader
-        story={firstStory}
-        isOpen={isReaderOpen}
-        onClose={() => {
-          setIsReaderOpen(false);
-          if (typeof window !== 'undefined') {
-            const savedScroll = localStorage.getItem(`synta_scroll_${firstStory.id}`);
-            if (savedScroll && Number(savedScroll) > 50) {
-              setHasStartedReading(true);
+        {/* Reading Engine */}
+        <Reader
+          story={firstStory}
+          isOpen={isReaderOpen}
+          targetChapterId={targetChapterId}
+          onClose={() => {
+            setIsReaderOpen(false);
+            setTargetChapterId(null);
+            if (typeof window !== 'undefined') {
+              const savedScroll = localStorage.getItem(`synta_scroll_${firstStory.id}`);
+              if (savedScroll && Number(savedScroll) > 50) {
+                setHasStartedReading(true);
+              }
             }
-          }
-        }}
-      />
+          }}
+        />
 
-      <PrivacyModal
-        isOpen={isPrivacyModalOpen}
-        onClose={() => setIsPrivacyModalOpen(false)}
-      />
+        <PrivacyModal
+          isOpen={isPrivacyModalOpen}
+          onClose={() => setIsPrivacyModalOpen(false)}
+        />
 
-      <ManifestoModal
-        isOpen={isManifestoModalOpen}
-        onClose={() => setIsManifestoModalOpen(false)}
-      />
-    </div>
+        <ManifestoModal
+          isOpen={isManifestoModalOpen}
+          onClose={() => setIsManifestoModalOpen(false)}
+        />
+
+        {/* Bespoke Mini Audio Player */}
+        <MiniPlayer />
+
+        {/* Full Modal Audio Player */}
+        <AudioPlayerModal onOpenReaderAtChapter={handleOpenReaderAtChapter} />
+      </div>
+    </AudioPlayerProvider>
   );
 }

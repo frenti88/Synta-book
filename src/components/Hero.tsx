@@ -3,6 +3,7 @@
 import React from 'react';
 import { BookCover } from './BookCover';
 import { trackEvent } from '@/lib/analytics';
+import { useAudioPlayer } from '@/context/AudioPlayerContext';
 
 interface HeroProps {
   onStartReading: () => void;
@@ -17,6 +18,8 @@ export const Hero: React.FC<HeroProps> = ({
   isUnlocked,
   hasStartedReading,
 }) => {
+  const { openPlayer, savedProgress } = useAudioPlayer();
+
   const handlePrimaryClick = () => {
     trackEvent('hero_read_click', {
       is_unlocked: isUnlocked,
@@ -25,9 +28,20 @@ export const Hero: React.FC<HeroProps> = ({
     onStartReading();
   };
 
+  const handleAudioClick = () => {
+    trackEvent('audio_hero_click', {
+      has_progress: !!savedProgress,
+    });
+    openPlayer();
+  };
+
   const primaryCtaText = hasStartedReading
     ? 'Continuar leyendo'
     : 'Leer Todo lo que falta';
+
+  const audioCtaText = savedProgress
+    ? `Continuar: Cap. 0${savedProgress.chapterNumber}`
+    : 'Escuchar en la voz de NOMA';
 
   return (
     <section
@@ -59,10 +73,10 @@ export const Hero: React.FC<HeroProps> = ({
           </p>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-8 text-left">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 text-left">
             <button
               onClick={handlePrimaryClick}
-              className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] shadow-sm cursor-pointer"
+              className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-7 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] shadow-sm cursor-pointer"
             >
               <span>{primaryCtaText}</span>
               <span aria-hidden="true" className="text-[16px] font-sans">
@@ -71,8 +85,19 @@ export const Hero: React.FC<HeroProps> = ({
             </button>
 
             <button
+              onClick={handleAudioClick}
+              aria-label="Escuchar en la voz de NOMA"
+              className="font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 transition-colors duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
+            >
+              <svg className="w-4 h-4 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <span>{audioCtaText}</span>
+            </button>
+
+            <button
               onClick={onDiscoverClick}
-              className="font-sans-ui text-[16px] text-white hover:text-[#E34A32] transition-colors duration-200 min-h-[48px] py-2 px-3 text-left underline underline-offset-4 decoration-white/40 hover:decoration-white rounded-[8px] cursor-pointer"
+              className="font-sans-ui text-[15px] text-white/80 hover:text-white transition-colors duration-200 min-h-[48px] py-2 px-3 text-left underline underline-offset-4 decoration-white/30 hover:decoration-white rounded-[8px] cursor-pointer"
             >
               Conocer el proyecto ↓
             </button>
