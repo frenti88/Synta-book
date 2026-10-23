@@ -15,6 +15,9 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
     manifest,
     currentChapter,
     currentChapterIndex,
+    availableVoices,
+    selectedVoice,
+    setVoice,
     isPlaying,
     currentTime,
     duration,
@@ -31,6 +34,7 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
 
   const [showChapters, setShowChapters] = useState(false);
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
+  const [showVoiceMenu, setShowVoiceMenu] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const playButtonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
@@ -219,10 +223,79 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
               {manifest.title}
             </h2>
 
-            {/* Subtitle / Voice statement */}
-            <p className="font-editorial italic text-[18px] sm:text-[20px] text-[#E34A32] mb-6">
-              Escuchar en la voz de NOMA
-            </p>
+            {/* Voice Statement & Feminine Voice Selector */}
+            <div className="mb-6">
+              <div className="flex flex-wrap items-center gap-2.5 mb-2">
+                <span className="font-editorial italic text-[18px] sm:text-[20px] text-[#E34A32]">
+                  Escuchar en la voz de NOMA
+                </span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#E34A32] bg-[#E34A32]/10 border border-[#E34A32]/30 px-2 py-0.5 rounded-[4px] font-semibold">
+                  Voz femenina
+                </span>
+              </div>
+
+              {/* Voice Selector Dropdown */}
+              <div className="relative inline-block text-left">
+                <button
+                  onClick={() => setShowVoiceMenu(!showVoiceMenu)}
+                  aria-label="Seleccionar registro de voz femenina de NOMA"
+                  aria-expanded={showVoiceMenu}
+                  className="font-sans-ui text-[13px] text-[#EDEAE2] bg-[#1C1A18] hover:bg-[#252320] border border-[#2A2724] hover:border-[#EDEAE2]/40 px-3 py-1.5 rounded-[8px] transition-colors cursor-pointer flex items-center gap-2"
+                >
+                  <svg className="w-3.5 h-3.5 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                  </svg>
+                  <span className="font-medium">{selectedVoice.name}</span>
+                  <span className="text-[#9E9A92] text-[12px] hidden sm:inline">· {selectedVoice.subtitle}</span>
+                  <svg
+                    className={`w-3.5 h-3.5 text-[#9E9A92] transition-transform ${showVoiceMenu ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {showVoiceMenu && (
+                  <div className="absolute left-0 top-10 w-72 sm:w-84 bg-[#171615] border border-[#2A2724] rounded-[8px] p-2 shadow-2xl z-30 animate-in fade-in zoom-in-95 duration-150">
+                    <div className="px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider text-[#9E9A92] border-b border-[#2A2724] mb-1.5 flex items-center justify-between">
+                      <span>Registros Vocales de NOMA</span>
+                      <span className="text-[#E34A32]">Femeninas</span>
+                    </div>
+                    <div className="space-y-1">
+                      {availableVoices.map((voice) => (
+                        <button
+                          key={voice.id}
+                          onClick={() => {
+                            setVoice(voice.id);
+                            setShowVoiceMenu(false);
+                          }}
+                          className={`w-full p-2.5 rounded-[6px] text-left transition-colors cursor-pointer flex flex-col gap-1 ${
+                            voice.id === selectedVoice.id
+                              ? 'bg-[#252320] text-white border border-[#E34A32]/60'
+                              : 'text-[#EDEAE2] hover:bg-[#201E1C]'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-sans-ui text-[14px] font-semibold text-[#EDEAE2]">
+                              {voice.name}
+                            </span>
+                            <span className="text-[10px] font-mono text-[#E34A32] bg-[#E34A32]/15 px-1.5 py-0.5 rounded">
+                              Femenina
+                            </span>
+                          </div>
+                          <span className="text-[12px] font-editorial text-[#9E9A92] leading-snug">
+                            {voice.description}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
 
             {/* Current Chapter Badge */}
             <div className="bg-[#1C1A18] border border-[#2A2724] px-4 py-2.5 rounded-[8px] mb-6 flex items-center justify-between">
@@ -387,7 +460,7 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
 
         {/* Footer Note */}
         <div className="mt-8 pt-4 border-t border-[#2A2724] flex flex-wrap items-center justify-between text-left font-sans-ui text-[16px] text-[#9E9A92]">
-          <span>Audio oficial generado con Chatterbox Multilingual V3</span>
+          <span>Audio oficial generado con Chatterbox Multilingual V3 · Voz de NOMA (Femenina)</span>
           <span className="text-[#EDEAE2]">SYNTA Editorial · 2026</span>
         </div>
       </div>

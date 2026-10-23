@@ -1,0 +1,13 @@
+{
+  "voice_id": "noma-calida",
+  "name": "NOMA — Cálida",
+  "gender": "female",
+  "language": "es",
+  "description": "Voz de NOMA: tono femenino suave, natural y de articulación limpia, cercano y reconfortante.",
+  "exaggeration": 0.60,
+  "cfg_weight": 0.40,
+  "temperature": 0.75,
+  "repetition_penalty": 1.9,
+  "seed": 1954,
+  "sample_rate": 24000
+}

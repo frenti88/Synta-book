@@ -1,5 +1,6 @@
 {
   "voice_id": "NOMA",
+  "gender": "female",
   "language": "es",
   "description": "Voz de NOMA: mujer adulta (32-40 años), español neutral, íntima, contenida, reflexiva y serena.",
   "exaggeration": 0.55,

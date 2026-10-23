@@ -1,0 +1,13 @@
+{
+  "voice_id": "noma-serena",
+  "name": "NOMA — Serena",
+  "gender": "female",
+  "language": "es",
+  "description": "Voz de NOMA: cadencia dilatada y lectura reposada, con silencios amplificados para una escucha meditativa.",
+  "exaggeration": 0.40,
+  "cfg_weight": 0.30,
+  "temperature": 0.60,
+  "repetition_penalty": 2.2,
+  "seed": 1820,
+  "sample_rate": 24000
+}

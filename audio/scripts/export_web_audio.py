@@ -108,11 +108,34 @@ def export_book(book_id: str = "synta-001", base_dir: Path = None):
         "id": book_id,
         "title": config["title"],
         "author": config["author"],
-        "voice": config.get("voice", "NOMA"),
+        "voice": config.get("voice", "NOMA (Femenina)"),
         "language": config["language"],
         "edition": config["edition"],
         "totalDuration": round(total_duration, 1),
         "totalDurationFormatted": f"{total_mins} min",
+        "voices": [
+            {
+                "id": "noma-intima",
+                "name": "NOMA · Íntima",
+                "subtitle": "Voz femenina oficial",
+                "gender": "female",
+                "description": "Voz femenina adulta, sobria y reflexiva. Creada para la intimidad, la ausencia y la memoria."
+            },
+            {
+                "id": "noma-serena",
+                "name": "NOMA · Serena",
+                "subtitle": "Voz femenina pausada",
+                "gender": "female",
+                "description": "Cadencia dilatada y lectura reposada, con silencios amplificados para una escucha meditativa."
+            },
+            {
+                "id": "noma-calida",
+                "name": "NOMA · Cálida",
+                "subtitle": "Voz femenina natural",
+                "gender": "female",
+                "description": "Tono femenino suave, natural y de articulación limpia, cercano y reconfortante."
+            }
+        ],
         "chapters": manifest_chapters
     }
 

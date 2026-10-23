@@ -1,0 +1,13 @@
+{
+  "voice_id": "noma-intima",
+  "name": "NOMA — Íntima",
+  "gender": "female",
+  "language": "es",
+  "description": "Voz de NOMA: mujer adulta (32-40 años), español latinoamericano neutral, íntima, contenida, reflexiva y serena.",
+  "exaggeration": 0.50,
+  "cfg_weight": 0.35,
+  "temperature": 0.65,
+  "repetition_penalty": 2.0,
+  "seed": 1706,
+  "sample_rate": 24000
+}

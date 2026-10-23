@@ -2,11 +2,34 @@
   "id": "synta-001",
   "title": "Todo lo que falta",
   "author": "NOMA",
-  "voice": "NOMA",
+  "voice": "NOMA (Femenina)",
   "language": "es",
   "edition": "SYNTA 001",
-  "totalDuration": 634.0,
+  "totalDuration": 655.8,
   "totalDurationFormatted": "10 min",
+  "voices": [
+    {
+      "id": "noma-intima",
+      "name": "NOMA · Íntima",
+      "subtitle": "Voz femenina oficial",
+      "gender": "female",
+      "description": "Voz femenina adulta, sobria y reflexiva. Creada para la intimidad, la ausencia y la memoria."
+    },
+    {
+      "id": "noma-serena",
+      "name": "NOMA · Serena",
+      "subtitle": "Voz femenina pausada",
+      "gender": "female",
+      "description": "Cadencia dilatada y lectura reposada, con silencios amplificados para una escucha meditativa."
+    },
+    {
+      "id": "noma-calida",
+      "name": "NOMA · Cálida",
+      "subtitle": "Voz femenina natural",
+      "gender": "female",
+      "description": "Tono femenino suave, natural y de articulación limpia, cercano y reconfortante."
+    }
+  ],
   "chapters": [
     {
       "number": 1,
@@ -21,8 +44,8 @@
       "id": "capitulo-2",
       "title": "La vajilla impar",
       "src": "/audio/synta-001/chapter-02.mp3",
-      "duration": 105.7,
-      "durationFormatted": "01:45"
+      "duration": 127.5,
+      "durationFormatted": "02:07"
     },
     {
       "number": 3,

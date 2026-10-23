@@ -44,6 +44,7 @@ export type EventType =
   | 'audio_hero_click'
   | 'audio_bookfeature_click'
   | 'audio_switch_from_reader'
+  | 'audio_voice_change'
   | 'audio_play'
   | 'audio_pause'
   | 'audio_25'

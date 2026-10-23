@@ -12,13 +12,40 @@ import {
   AudioChapter,
   AudiobookManifest,
   AudioProgressStorage,
+  AudioVoice,
 } from '@/types/audio';
 import { trackEvent } from '@/lib/analytics';
+
+export const NOMA_FEMININE_VOICES: AudioVoice[] = [
+  {
+    id: 'noma-intima',
+    name: 'NOMA · Íntima',
+    subtitle: 'Voz femenina oficial',
+    gender: 'female',
+    description: 'Voz femenina adulta, sobria y reflexiva. Creada para la intimidad, la ausencia y la memoria.',
+  },
+  {
+    id: 'noma-serena',
+    name: 'NOMA · Serena',
+    subtitle: 'Voz femenina pausada',
+    gender: 'female',
+    description: 'Cadencia dilatada y lectura reposada, con silencios amplificados para una escucha meditativa.',
+  },
+  {
+    id: 'noma-calida',
+    name: 'NOMA · Cálida',
+    subtitle: 'Voz femenina natural',
+    gender: 'female',
+    description: 'Tono femenino suave, natural y de articulación limpia, cercano y reconfortante.',
+  },
+];
 
 interface AudioPlayerContextType {
   manifest: AudiobookManifest | null;
   currentChapter: AudioChapter | null;
   currentChapterIndex: number;
+  availableVoices: AudioVoice[];
+  selectedVoice: AudioVoice;
   isPlaying: boolean;
   currentTime: number;
   duration: number;
@@ -33,6 +60,7 @@ interface AudioPlayerContextType {
   seekTo: (seconds: number) => void;
   skipSeconds: (delta: number) => void;
   setSpeed: (rate: number) => void;
+  setVoice: (voiceId: string) => void;
   changeChapter: (index: number, autoPlay?: boolean) => void;
   openPlayer: (targetChapterIndex?: number) => void;
   closePlayer: () => void;
@@ -40,6 +68,7 @@ interface AudioPlayerContextType {
 }
 
 const STORAGE_KEY = 'synta_audio_progress';
+const VOICE_STORAGE_KEY = 'synta_audio_voice';
 
 const AudioPlayerContext = createContext<AudioPlayerContextType | undefined>(
   undefined
@@ -50,11 +79,12 @@ const DEFAULT_MANIFEST: AudiobookManifest = {
   id: 'synta-001',
   title: 'Todo lo que falta',
   author: 'NOMA',
-  voice: 'NOMA',
+  voice: 'NOMA (Femenina)',
   language: 'es',
   edition: 'SYNTA 001',
   totalDuration: 2280,
   totalDurationFormatted: '38 min',
+  voices: NOMA_FEMININE_VOICES,
   chapters: [
     {
       number: 1,
@@ -112,6 +142,7 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [manifest, setManifest] = useState<AudiobookManifest>(DEFAULT_MANIFEST);
   const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
+  const [selectedVoiceId, setSelectedVoiceId] = useState<string>('noma-intima');
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(DEFAULT_MANIFEST.chapters[0].duration);
@@ -137,15 +168,21 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       .catch(() => {});
   }, []);
 
-  // 2. Restore saved progress on mount
+  // 2. Restore saved progress and voice on mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
+        const storedVoice = localStorage.getItem(VOICE_STORAGE_KEY);
+        if (storedVoice) {
+          setSelectedVoiceId(storedVoice);
+        }
+
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
           const parsed: AudioProgressStorage = JSON.parse(stored);
           if (parsed && parsed.bookId === 'synta-001') {
             setSavedProgress(parsed);
+            if (parsed.voiceId) setSelectedVoiceId(parsed.voiceId);
             if (parsed.playbackRate) setPlaybackRate(parsed.playbackRate);
             if (
               parsed.chapterNumber >= 1 &&
@@ -157,6 +194,22 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       } catch {}
     }
+  }, []);
+
+  const availableVoices =
+    manifest.voices && manifest.voices.length > 0
+      ? manifest.voices
+      : NOMA_FEMININE_VOICES;
+
+  const selectedVoice =
+    availableVoices.find((v) => v.id === selectedVoiceId) || availableVoices[0];
+
+  const setVoice = useCallback((voiceId: string) => {
+    setSelectedVoiceId(voiceId);
+    try {
+      localStorage.setItem(VOICE_STORAGE_KEY, voiceId);
+    } catch {}
+    trackEvent('audio_voice_change', { voice_id: voiceId });
   }, []);
 
   const currentChapter = manifest.chapters[currentChapterIndex] || manifest.chapters[0];
@@ -451,6 +504,8 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
         manifest,
         currentChapter,
         currentChapterIndex,
+        availableVoices,
+        selectedVoice,
         isPlaying,
         currentTime,
         duration,
@@ -465,6 +520,7 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
         seekTo,
         skipSeconds,
         setSpeed,
+        setVoice,
         changeChapter,
         openPlayer,
         closePlayer,
