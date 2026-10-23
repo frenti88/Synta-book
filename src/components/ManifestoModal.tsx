@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface ManifestoModalProps {
   isOpen: boolean;
@@ -8,11 +8,24 @@ interface ManifestoModalProps {
 }
 
 export const ManifestoModal: React.FC<ManifestoModalProps> = ({ isOpen, onClose }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     if (isOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = 'hidden';
+
+      // Focus close button on mount
+      setTimeout(() => {
+        closeButtonRef.current?.focus();
+      }, 50);
     } else {
       document.body.style.overflow = '';
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+      }
     }
     return () => {
       document.body.style.overflow = '';
@@ -21,7 +34,35 @@ export const ManifestoModal: React.FC<ManifestoModalProps> = ({ isOpen, onClose 
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) onClose();
+      if (!isOpen) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusables = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusables.length === 0) return;
+
+        const firstElement = focusables[0];
+        const lastElement = focusables[focusables.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -42,8 +83,12 @@ export const ManifestoModal: React.FC<ManifestoModalProps> = ({ isOpen, onClose 
         aria-hidden="true"
       />
 
-      <div className="relative w-full max-w-2xl max-h-[85vh] bg-black text-white border border-white/25 p-6 sm:p-10 shadow-2xl overflow-y-auto z-10 rounded-[8px] text-left">
+      <div
+        ref={modalRef}
+        className="relative w-full max-w-2xl max-h-[85vh] bg-black text-white border border-white/25 p-6 sm:p-10 shadow-2xl overflow-y-auto z-10 rounded-[8px] text-left"
+      >
         <button
+          ref={closeButtonRef}
           onClick={onClose}
           aria-label="Cerrar manifiesto completo"
           className="absolute top-5 right-5 p-2 text-white hover:text-[#E34A32] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer"

@@ -36,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
   const actionText = hasStartedReading
     ? 'Continuar 001'
     : isUnlocked
-    ? 'Leer 001'
+    ? 'Leer libro 001'
     : 'Entrar';
 
   return (
@@ -52,9 +52,13 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Wordmark and baseline emotional phrase - strictly left aligned */}
         <div className="flex flex-col justify-center text-left">
           <a
-            href="#"
-            className="group inline-flex items-center gap-2 focus:outline-none rounded-[8px]"
-            aria-label="SYNTA - Historias de otro origen"
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="group inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#E34A32] rounded-[8px]"
+            aria-label="SYNTA - Volver al inicio"
           >
             <span className="font-editorial text-2xl sm:text-[28px] font-semibold tracking-[-0.04em] text-white leading-none">
               SYNTA

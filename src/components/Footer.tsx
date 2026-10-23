@@ -48,6 +48,7 @@ export const Footer: React.FC<FooterProps> = ({
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram de SYNTA (se abre en una nueva pestaña)"
             className="hover:text-[#E34A32] transition-colors focus:ring-1 focus:ring-[#E34A32] p-1 rounded-[8px]"
           >
             Instagram

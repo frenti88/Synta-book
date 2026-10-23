@@ -39,6 +39,44 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
     trackEvent('feedback_started', { question: 'rating', val });
   };
 
+  const handleRatingKeyDown = (e: React.KeyboardEvent, currentVal: number) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextVal = currentVal === 5 ? 1 : currentVal + 1;
+      handleRatingSelect(nextVal);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevVal = currentVal === 1 ? 5 : currentVal - 1;
+      handleRatingSelect(prevVal);
+    }
+  };
+
+  const handleReadAgainKeyDown = (e: React.KeyboardEvent, currentIdx: number) => {
+    const opts: Array<'yes' | 'maybe' | 'no'> = ['yes', 'maybe', 'no'];
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextOpt = opts[(currentIdx + 1) % opts.length];
+      setReadAgain(nextOpt);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevOpt = opts[(currentIdx - 1 + opts.length) % opts.length];
+      setReadAgain(prevOpt);
+    }
+  };
+
+  const handlePerceptionKeyDown = (e: React.KeyboardEvent, currentIdx: number) => {
+    const opts: Array<'better' | 'same' | 'worse'> = ['better', 'same', 'worse'];
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextOpt = opts[(currentIdx + 1) % opts.length];
+      setPerceptionChange(nextOpt);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevOpt = opts[(currentIdx - 1 + opts.length) % opts.length];
+      setPerceptionChange(prevOpt);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!rating || !readAgain || !perceptionChange) {
@@ -117,6 +155,7 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
                       key={val}
                       type="button"
                       onClick={() => handleRatingSelect(val)}
+                      onKeyDown={(e) => handleRatingKeyDown(e, val)}
                       role="radio"
                       aria-checked={isSelected}
                       aria-label={`${val} de 5`}
@@ -138,18 +177,19 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
               <legend className={`font-editorial text-[20px] font-normal text-left ${textColor}`}>
                 2. ¿Leerías otra historia de este autor?
               </legend>
-              <div className="grid grid-cols-3 gap-2.5 sm:gap-3 text-left">
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3 text-left" role="radiogroup" aria-label="Disposición a leer otra obra">
                 {[
                   { id: 'yes', label: 'Sí' },
                   { id: 'maybe', label: 'Tal vez' },
                   { id: 'no', label: 'No' },
-                ].map((opt) => {
+                ].map((opt, idx) => {
                   const isSelected = readAgain === opt.id;
                   return (
                     <button
                       key={opt.id}
                       type="button"
                       onClick={() => setReadAgain(opt.id as 'yes' | 'maybe' | 'no')}
+                      onKeyDown={(e) => handleReadAgainKeyDown(e, idx)}
                       role="radio"
                       aria-checked={isSelected}
                       className={`min-h-[48px] border font-sans-ui text-[16px] font-medium transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] ${
@@ -170,18 +210,19 @@ export const FeedbackSection: React.FC<FeedbackSectionProps> = ({
               <legend className={`font-editorial text-[20px] font-normal text-left ${textColor}`}>
                 3. ¿Influyó en tu lectura saber que la obra fue escrita por una autora sintética?
               </legend>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-left">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 text-left" role="radiogroup" aria-label="Influencia de la autoría sintética">
                 {[
                   { id: 'better', label: 'Hizo la lectura más interesante' },
                   { id: 'same', label: 'No influyó' },
                   { id: 'worse', label: 'Habría preferido no saberlo' },
-                ].map((opt) => {
+                ].map((opt, idx) => {
                   const isSelected = perceptionChange === opt.id;
                   return (
                     <button
                       key={opt.id}
                       type="button"
                       onClick={() => setPerceptionChange(opt.id as 'better' | 'same' | 'worse')}
+                      onKeyDown={(e) => handlePerceptionKeyDown(e, idx)}
                       role="radio"
                       aria-checked={isSelected}
                       className={`min-h-[48px] px-4 border font-sans-ui text-[16px] font-medium transition-all duration-150 focus:ring-2 focus:ring-[#E34A32] cursor-pointer rounded-[8px] flex items-center justify-start text-left ${

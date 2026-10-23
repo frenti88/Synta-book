@@ -65,12 +65,12 @@ export const CommunitySection: React.FC = () => {
           Suscripción editorial
         </div>
 
-        <h3
+        <h2
           id="community-title"
           className="font-editorial text-[36px] sm:text-[48px] md:text-[54px] leading-[1.08] font-normal text-white mb-5 tracking-[-0.025em] text-left"
         >
           Recibe las próximas entregas de SYNTA.
-        </h3>
+        </h2>
 
         <p className="font-editorial text-[19px] sm:text-[22px] leading-[1.5] text-white mb-10 font-normal text-left">
           Compartimos cada nueva novela breve directamente en tu correo en el momento de su publicación.
@@ -78,13 +78,24 @@ export const CommunitySection: React.FC = () => {
 
         {!submitted ? (
           <form onSubmit={handleSubmit} noValidate className="max-w-xl text-left space-y-4">
+            <label
+              htmlFor="community-email"
+              className="block font-sans-ui text-[16px] text-white font-medium text-left"
+            >
+              Correo electrónico
+            </label>
             <div className="flex flex-col sm:flex-row gap-3 text-left">
               <input
+                id="community-email"
+                name="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="tu@email.com"
+                autoComplete="email"
                 aria-label="Correo electrónico para recibir libros de SYNTA"
+                aria-invalid={Boolean(errorMsg)}
+                aria-describedby={errorMsg ? 'community-email-error' : undefined}
                 required
                 disabled={loading}
                 className="flex-1 bg-black border border-white/30 text-white px-4 py-3.5 font-sans-ui text-[16px] placeholder:text-white/60 focus:outline-none focus:border-white transition-colors rounded-[8px]"
@@ -106,7 +117,11 @@ export const CommunitySection: React.FC = () => {
             </div>
 
             {errorMsg && (
-              <p role="alert" className="font-sans-ui text-[16px] text-[#E34A32] text-left">
+              <p
+                id="community-email-error"
+                role="alert"
+                className="font-sans-ui text-[16px] text-[#E34A32] text-left"
+              >
                 {errorMsg}
               </p>
             )}

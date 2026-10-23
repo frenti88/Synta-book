@@ -65,9 +65,22 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
           <div
             key={item.num}
             onClick={item.isAvailable ? onOpenStory : undefined}
+            role={item.isAvailable ? 'button' : undefined}
+            tabIndex={item.isAvailable ? 0 : undefined}
+            onKeyDown={(e) => {
+              if (item.isAvailable && (e.key === 'Enter' || e.key === ' ')) {
+                e.preventDefault();
+                onOpenStory();
+              }
+            }}
+            aria-label={
+              item.isAvailable
+                ? `Leer ${item.title} por ${item.author} — SYNTA ${item.num}`
+                : undefined
+            }
             className={`py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors rounded-[8px] px-3 -mx-3 ${
               item.isAvailable
-                ? 'cursor-pointer hover:bg-white/5 group'
+                ? 'cursor-pointer hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#E34A32] group'
                 : 'cursor-default'
             }`}
           >

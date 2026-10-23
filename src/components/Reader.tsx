@@ -26,6 +26,8 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
   const readerContentRef = useRef<HTMLDivElement>(null);
   const authorRevealRef = useRef<HTMLDivElement>(null);
   const fontMenuRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const milestonesRef = useRef({
     started: false,
@@ -138,6 +140,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement | null;
       document.body.style.overflow = 'hidden';
 
       const timer = setTimeout(() => {
@@ -145,6 +148,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
         if (savedScroll && containerRef.current) {
           containerRef.current.scrollTop = Number(savedScroll);
         }
+        closeButtonRef.current?.focus();
       }, 80);
 
       trackEvent('reader_started', { story_id: story.id, resume: true });
@@ -153,13 +157,22 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
         clearTimeout(timer);
         document.body.style.overflow = '';
       };
+    } else {
+      document.body.style.overflow = '';
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+      }
     }
   }, [isOpen, story.id]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (!isOpen) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
         onClose();
+        return;
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -232,7 +245,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
               onClick={() => setShowFontMenu(!showFontMenu)}
               aria-label="Ajustar tamaño de texto"
               aria-expanded={showFontMenu}
-              className={`p-2 font-editorial font-bold text-[18px] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
+              className={`min-w-[44px] min-h-[44px] p-2 font-editorial font-bold text-[18px] transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer flex items-center justify-center ${
                 showFontMenu ? 'text-[#E34A32]' : `${textColor} hover:text-[#E34A32]`
               }`}
             >
@@ -285,7 +298,7 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
           <button
             onClick={toggleDarkMode}
             aria-label={isDarkMode ? 'Cambiar a modo papel claro' : 'Cambiar a modo oscuro'}
-            className={`p-2 transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
+            className={`min-w-[44px] min-h-[44px] p-2 transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer flex items-center justify-center ${
               isDarkMode ? 'text-white hover:text-[#E34A32]' : 'text-[#171717] hover:text-[#E34A32]'
             }`}
           >
@@ -312,9 +325,10 @@ export const Reader: React.FC<ReaderProps> = ({ story, isOpen, onClose }) => {
 
           {/* Close Reader */}
           <button
+            ref={closeButtonRef}
             onClick={onClose}
             aria-label="Cerrar lector"
-            className={`p-2 transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer ${
+            className={`min-w-[44px] min-h-[44px] p-2 transition-colors focus:ring-2 focus:ring-[#E34A32] rounded-[8px] cursor-pointer flex items-center justify-center ${
               isDarkMode ? 'text-white hover:text-[#E34A32]' : 'text-[#171717] hover:text-[#E34A32]'
             }`}
           >
