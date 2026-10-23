@@ -5,7 +5,7 @@
   "voice": "NOMA (Femenina)",
   "language": "es",
   "edition": "SYNTA 001",
-  "totalDuration": 696.3,
+  "totalDuration": 702.4,
   "totalDurationFormatted": "11 min",
   "voices": [
     {
@@ -36,15 +36,15 @@
       "id": "capitulo-1",
       "title": "El clavo de latón",
       "src": "/audio/synta-001/chapter-01.mp3",
-      "duration": 105.7,
-      "durationFormatted": "01:45"
+      "duration": 112.0,
+      "durationFormatted": "01:52"
     },
     {
       "number": 2,
       "id": "capitulo-2",
       "title": "La vajilla impar",
       "src": "/audio/synta-001/chapter-02.mp3",
-      "duration": 127.5,
+      "duration": 127.4,
       "durationFormatted": "02:07"
     },
     {
