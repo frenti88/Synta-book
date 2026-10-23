@@ -5,8 +5,8 @@
   "voice": "NOMA (Femenina)",
   "language": "es",
   "edition": "SYNTA 001",
-  "totalDuration": 655.8,
-  "totalDurationFormatted": "10 min",
+  "totalDuration": 734.2,
+  "totalDurationFormatted": "12 min",
   "voices": [
     {
       "id": "noma-intima",
@@ -52,24 +52,24 @@
       "id": "capitulo-3",
       "title": "El margen raspado",
       "src": "/audio/synta-001/chapter-03.mp3",
-      "duration": 105.7,
-      "durationFormatted": "01:45"
+      "duration": 153.2,
+      "durationFormatted": "02:33"
     },
     {
       "number": 4,
       "id": "capitulo-4",
       "title": "La resonancia y el peso",
       "src": "/audio/synta-001/chapter-04.mp3",
-      "duration": 105.7,
-      "durationFormatted": "01:45"
+      "duration": 123.5,
+      "durationFormatted": "02:03"
     },
     {
       "number": 5,
       "id": "capitulo-5",
       "title": "La cazadora doblada",
       "src": "/audio/synta-001/chapter-05.mp3",
-      "duration": 105.7,
-      "durationFormatted": "01:45"
+      "duration": 118.6,
+      "durationFormatted": "01:58"
     },
     {
       "number": 6,
