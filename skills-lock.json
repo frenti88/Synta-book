@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "synta-noma": {
+      "source": "local",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/synta-noma/SKILL.md",
+      "computedHash": "local-editorial-synta-noma"
+    },
     "pm-analytics": {
       "source": "Uxcel-Lab/product-skills",
       "sourceType": "github",
