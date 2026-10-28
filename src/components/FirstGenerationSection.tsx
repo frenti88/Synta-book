@@ -12,7 +12,7 @@ export const FirstGenerationSection: React.FC<FirstGenerationSectionProps> = ({
   return (
     <section
       id="primera-generacion"
-      className="py-24 sm:py-36 px-5 sm:px-8 max-w-4xl mx-auto border-t border-white/20 text-left"
+      className="py-20 sm:py-28 md:py-32 px-5 sm:px-8 max-w-4xl mx-auto border-t border-white/20 text-left"
       aria-labelledby="first-generation-heading"
     >
       <div className="text-left max-w-3xl mr-auto">

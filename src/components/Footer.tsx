@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenPrivacy,
 }) => {
   return (
-    <footer className="py-16 px-5 sm:px-8 border-t border-white/20 bg-black text-left">
+    <footer className="py-12 sm:py-16 md:py-20 px-5 sm:px-8 border-t border-white/20 bg-black text-left">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 text-left">
         {/* Brand identity - left-aligned */}
         <div className="space-y-1.5 text-left">

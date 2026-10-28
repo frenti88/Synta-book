@@ -1,11 +1,11 @@
 {
   "version": 1,
   "skills": {
-    "synta-noma": {
-      "source": "local",
-      "sourceType": "local",
-      "skillPath": ".agents/skills/synta-noma/SKILL.md",
-      "computedHash": "local-editorial-synta-noma"
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/impeccable/SKILL.md",
+      "computedHash": "ba5d6e38f26d2e945237bcd0024aa2ff9b1f81f07970fafaa36c09244d2abeaf"
     },
     "pm-analytics": {
       "source": "Uxcel-Lab/product-skills",
@@ -132,6 +132,12 @@
       "sourceType": "github",
       "skillPath": "pm/deliverables/vision-strategy/SKILL.md",
       "computedHash": "f4cc6f64a0ad2e2a1cc4fa0c258cf826615a60d50c35e6c83757509390d25c10"
+    },
+    "synta-noma": {
+      "source": "./local",
+      "sourceType": "local",
+      "skillPath": ".agents/skills/synta-noma/SKILL.md",
+      "computedHash": "local-editorial-synta-noma"
     },
     "ux-accessibility-audit": {
       "source": "Uxcel-Lab/product-skills",

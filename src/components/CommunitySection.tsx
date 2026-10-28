@@ -56,7 +56,7 @@ export const CommunitySection: React.FC = () => {
   return (
     <section
       id="comunidad"
-      className="py-24 sm:py-36 px-5 sm:px-8 border-t border-white/20 bg-black relative text-left"
+      className="py-20 sm:py-28 md:py-32 px-5 sm:px-8 border-t border-white/20 bg-black relative text-left"
       aria-labelledby="community-title"
     >
       <div className="max-w-2xl mr-auto text-left">

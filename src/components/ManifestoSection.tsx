@@ -12,7 +12,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({
   return (
     <section
       id="manifiesto"
-      className="py-24 sm:py-36 px-5 sm:px-8 max-w-4xl mx-auto border-t border-white/20 text-left"
+      className="py-24 sm:py-32 md:py-36 px-5 sm:px-8 max-w-4xl mx-auto border-t border-white/20 text-left"
       aria-labelledby="manifesto-heading"
     >
       <div className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white mb-4 font-semibold flex items-center gap-2.5 text-left">

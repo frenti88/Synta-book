@@ -5,10 +5,10 @@ import React from 'react';
 export const BreathingQuote: React.FC = () => {
   return (
     <section
-      className="py-24 sm:py-32 md:py-40 px-5 sm:px-8 md:px-12 max-w-4xl mx-auto text-left"
+      className="py-16 sm:py-24 md:py-28 px-5 sm:px-8 md:px-12 max-w-3xl mx-auto text-left"
       aria-label="Pausa editorial"
     >
-      <div className="space-y-8 text-left">
+      <div className="space-y-6 sm:space-y-8 text-left">
         <div className="w-12 h-[1px] bg-white/40 ml-0 mr-auto" aria-hidden="true" />
 
         <h2 className="font-editorial text-[32px] sm:text-[44px] md:text-[54px] leading-[1.15] font-normal text-white tracking-[-0.025em] text-left">

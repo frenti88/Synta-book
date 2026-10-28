@@ -43,7 +43,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
   return (
     <section
       id="catalogo"
-      className="py-24 sm:py-36 px-5 sm:px-8 max-w-5xl mx-auto border-t border-white/20 text-left"
+      className="py-24 sm:py-32 md:py-36 px-5 sm:px-8 max-w-5xl mx-auto border-t border-white/20 text-left"
       aria-labelledby="catalog-heading"
     >
       {/* Editorial Headline - Humanized: clear, informative */}

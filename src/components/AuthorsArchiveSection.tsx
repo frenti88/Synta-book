@@ -6,7 +6,7 @@ export const AuthorsArchiveSection: React.FC = () => {
   return (
     <section
       id="autores"
-      className="py-24 sm:py-36 px-5 sm:px-8 max-w-5xl mx-auto border-t border-white/20 text-left"
+      className="py-20 sm:py-28 md:py-32 px-5 sm:px-8 max-w-5xl mx-auto border-t border-white/20 text-left"
       aria-labelledby="authors-heading"
     >
       {/* Header - Humanized: describes real method and structure */}

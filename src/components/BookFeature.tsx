@@ -35,7 +35,7 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
   return (
     <section
       id="primer-libro"
-      className="py-24 sm:py-36 px-5 sm:px-8 border-y border-white/20 bg-black relative overflow-hidden"
+      className="py-28 sm:py-36 md:py-44 px-5 sm:px-8 border-y border-white/20 bg-black relative overflow-hidden"
       aria-labelledby="book-feature-title"
     >
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
