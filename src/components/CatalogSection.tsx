@@ -78,9 +78,9 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
                 ? `Leer ${item.title} por ${item.author} — SYNTA ${item.num}`
                 : undefined
             }
-            className={`py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors rounded-[8px] px-3 -mx-3 ${
+            className={`py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-200 rounded-[8px] px-3 -mx-3 ${
               item.isAvailable
-                ? 'cursor-pointer hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#E34A32] group'
+                ? 'cursor-pointer hover:bg-white/5 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-[#E34A32] group'
                 : 'cursor-default'
             }`}
           >
@@ -93,7 +93,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
                 <span
                   className={`font-editorial text-[22px] sm:text-[26px] leading-tight block ${
                     item.isAvailable
-                      ? 'text-white group-hover:text-[#E34A32] transition-colors'
+                      ? 'text-white group-hover:text-[#E34A32] transition-colors duration-200'
                       : 'text-white/80'
                   }`}
                 >
@@ -108,8 +108,8 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
             {/* Status */}
             <div className="flex items-center gap-3 self-start sm:self-auto pl-12 sm:pl-0">
               {item.isAvailable ? (
-                <span className="font-sans-ui text-[16px] font-medium tracking-wide text-white px-3.5 py-1.5 border border-white/30 rounded-[8px] bg-black group-hover:border-[#E34A32] transition-colors flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
+                <span className="font-sans-ui text-[16px] font-medium tracking-wide text-white px-3.5 py-1.5 border border-white/30 rounded-[8px] bg-black group-hover:border-[#E34A32] group-hover:translate-x-1 transition-all duration-200 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#E34A32] animate-synta-pulse" />
                   {item.status}
                 </span>
               ) : (

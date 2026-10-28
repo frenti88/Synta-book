@@ -63,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="font-editorial text-2xl sm:text-[28px] font-semibold tracking-[-0.04em] text-white leading-none">
               SYNTA
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32] transform transition-transform group-hover:scale-125" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E34A32] animate-synta-pulse" />
           </a>
           <span className="font-editorial italic text-[16px] text-white tracking-wide mt-1 select-none">
             Historias de otro origen.
@@ -74,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={handleAction}
-            className="font-sans-ui text-[16px] font-semibold transition-all duration-200 min-h-[46px] px-5 sm:px-6 flex items-center justify-center rounded-[8px] focus:ring-2 focus:ring-[#E34A32] cursor-pointer bg-white text-black hover:bg-[#E34A32] hover:text-white shadow-sm tracking-wide"
+            className="font-sans-ui text-[16px] font-semibold transition-all duration-200 min-h-[46px] px-5 sm:px-6 flex items-center justify-center rounded-[8px] focus:ring-2 focus:ring-[#E34A32] cursor-pointer bg-white text-black hover:bg-[#E34A32] hover:text-white active:scale-[0.98] shadow-sm tracking-wide"
           >
             {actionText}
           </button>

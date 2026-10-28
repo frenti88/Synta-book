@@ -103,14 +103,14 @@ export const CommunitySection: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-7 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer disabled:opacity-60 whitespace-nowrap"
+                className="group font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white active:scale-[0.98] transition-all duration-200 min-h-[52px] px-7 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer disabled:opacity-60 whitespace-nowrap"
               >
                 {loading ? (
                   <span>Registrando...</span>
                 ) : (
                   <>
                     <span>Suscribirme a las obras</span>
-                    <span aria-hidden="true">→</span>
+                    <span aria-hidden="true" className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                   </>
                 )}
               </button>

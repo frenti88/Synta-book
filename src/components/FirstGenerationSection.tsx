@@ -45,10 +45,10 @@ export const FirstGenerationSection: React.FC<FirstGenerationSectionProps> = ({
         <div className="text-left">
           <button
             onClick={onJoinClick}
-            className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
+            className="group font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white active:scale-[0.98] transition-all duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
           >
             <span>Recibir próximas publicaciones</span>
-            <span aria-hidden="true" className="text-[16px] font-sans">
+            <span aria-hidden="true" className="text-[16px] font-sans transform group-hover:translate-x-1 transition-transform duration-200">
               →
             </span>
           </button>

@@ -84,10 +84,10 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-left">
             <button
               onClick={handleClick}
-              className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
+              className="group font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white active:scale-[0.98] transition-all duration-200 min-h-[52px] px-8 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer shadow-sm"
             >
               <span>{buttonText}</span>
-              <span aria-hidden="true" className="text-[16px] font-sans">
+              <span aria-hidden="true" className="text-[16px] font-sans transform group-hover:translate-x-1 transition-transform duration-200">
                 →
               </span>
             </button>
@@ -98,9 +98,9 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
                 openPlayer();
               }}
               aria-label="Escuchar en la voz de NOMA"
-              className="font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 transition-colors duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
+              className="group font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
             >
-              <svg className="w-4 h-4 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-[#E34A32] transform group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
               <span>Escuchar en la voz de NOMA</span>

@@ -52,9 +52,9 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Left Column: Monumental Typography, strictly left-aligned */}
         <div className="lg:col-span-7 flex flex-col justify-center text-left order-1">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 mb-6">
+          <div className="inline-flex items-center gap-2 mb-6 animate-hero-fade">
             <span className="font-sans-ui text-[16px] tracking-[0.2em] uppercase text-white font-semibold flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-[#E34A32]" />
+              <span className="w-2 h-2 rounded-full bg-[#E34A32] animate-synta-pulse" />
               SYNTA / Catálogo 001
             </span>
           </div>
@@ -62,24 +62,24 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Headline - Humanized: direct, editorial, unpretentious */}
           <h1
             id="hero-heading"
-            className="font-editorial text-[38px] sm:text-[54px] md:text-[72px] lg:text-[84px] xl:text-[90px] leading-[1.02] font-normal tracking-[-0.035em] text-white mb-7 text-left"
+            className="font-editorial text-[38px] sm:text-[54px] md:text-[72px] lg:text-[84px] xl:text-[90px] leading-[1.02] font-normal tracking-[-0.035em] text-white mb-7 text-left animate-hero-fade delay-100"
           >
             Literatura creada por autores sintéticos.
           </h1>
 
           {/* Subheadline - Humanized: states the facts clearly without breathless hype */}
-          <p className="font-editorial text-[20px] sm:text-[23px] md:text-[25px] leading-[1.45] text-white max-w-xl mb-10 font-normal text-left">
+          <p className="font-editorial text-[20px] sm:text-[23px] md:text-[25px] leading-[1.45] text-white max-w-xl mb-10 font-normal text-left animate-hero-fade delay-200">
             Publicamos obras de ficción escritas por sistemas con memoria, tono y reglas narrativas propias. Puedes leer nuestra primera novela breve directamente desde aquí.
           </p>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 text-left">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 text-left animate-hero-fade delay-300">
             <button
               onClick={handlePrimaryClick}
-              className="font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white transition-colors duration-200 min-h-[52px] px-7 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] shadow-sm cursor-pointer"
+              className="group font-sans-ui text-[16px] font-semibold bg-white text-black hover:bg-[#E34A32] hover:text-white active:scale-[0.98] transition-all duration-200 min-h-[52px] px-7 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] shadow-sm cursor-pointer"
             >
               <span>{primaryCtaText}</span>
-              <span aria-hidden="true" className="text-[16px] font-sans">
+              <span aria-hidden="true" className="text-[16px] font-sans transform group-hover:translate-x-1 transition-transform duration-200">
                 →
               </span>
             </button>
@@ -87,9 +87,9 @@ export const Hero: React.FC<HeroProps> = ({
             <button
               onClick={handleAudioClick}
               aria-label="Escuchar en la voz de NOMA"
-              className="font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 transition-colors duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
+              className="group font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
             >
-              <svg className="w-4 h-4 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-[#E34A32] transform group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
               <span>{audioCtaText}</span>
@@ -97,14 +97,14 @@ export const Hero: React.FC<HeroProps> = ({
 
             <button
               onClick={onDiscoverClick}
-              className="font-sans-ui text-[15px] text-white/80 hover:text-white transition-colors duration-200 min-h-[48px] py-2 px-3 text-left underline underline-offset-4 decoration-white/30 hover:decoration-white rounded-[8px] cursor-pointer"
+              className="font-sans-ui text-[15px] text-white/80 hover:text-white transition-colors duration-200 min-h-[48px] py-2 px-3 text-left underline underline-offset-4 decoration-white/30 hover:decoration-white rounded-[8px] cursor-pointer active:translate-y-[1px]"
             >
               Conocer el proyecto ↓
             </button>
           </div>
 
           {/* Microcopy inferior */}
-          <div className="font-sans-ui text-[16px] tracking-wide text-white flex flex-wrap items-center gap-2.5 text-left">
+          <div className="font-sans-ui text-[16px] tracking-wide text-white flex flex-wrap items-center gap-2.5 text-left animate-hero-fade delay-400">
             <span>Novela breve</span>
             <span className="opacity-60">·</span>
             <span>38 minutos</span>
@@ -114,7 +114,7 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
 
         {/* Right Column: Inaugural Artifact Cover */}
-        <div className="lg:col-span-5 flex justify-start lg:justify-end items-center order-2 mt-4 lg:mt-0">
+        <div className="lg:col-span-5 flex justify-start lg:justify-end items-center order-2 mt-4 lg:mt-0 animate-hero-fade delay-200">
           <div className="relative text-left">
             <BookCover size="hero" onClick={handlePrimaryClick} />
             <div className="mt-4 text-left">

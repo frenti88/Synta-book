@@ -300,9 +300,18 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
             {/* Current Chapter Badge */}
             <div className="bg-[#1C1A18] border border-[#2A2724] px-4 py-2.5 rounded-[8px] mb-6 flex items-center justify-between">
               <div>
-                <span className="font-sans-ui text-[16px] text-[#9E9A92] uppercase tracking-wider block font-medium">
-                  Capítulo {currentChapter.number} de {manifest.chapters.length}
-                </span>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="font-sans-ui text-[14px] text-[#9E9A92] uppercase tracking-wider block font-medium">
+                    Capítulo {currentChapter.number} de {manifest.chapters.length}
+                  </span>
+                  {isPlaying && (
+                    <span className="inline-flex items-end gap-[3px] h-3.5 px-1" aria-hidden="true" title="Reproduciendo">
+                      <span className="w-[2.5px] bg-[#E34A32] rounded-full animate-wave-1" />
+                      <span className="w-[2.5px] bg-[#E34A32] rounded-full animate-wave-2" />
+                      <span className="w-[2.5px] bg-[#E34A32] rounded-full animate-wave-3" />
+                    </span>
+                  )}
+                </div>
                 <span className="font-editorial text-[20px] sm:text-[22px] text-[#EDEAE2] block leading-tight font-normal">
                   {currentChapter.title}
                 </span>
@@ -311,7 +320,7 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
               {/* Chapters list trigger */}
               <button
                 onClick={() => setShowChapters(!showChapters)}
-                className="font-sans-ui text-[16px] text-[#EDEAE2] hover:text-[#E34A32] px-3 py-1.5 rounded-[8px] border border-[#2A2724] transition-colors cursor-pointer min-h-[44px] flex items-center gap-1.5"
+                className="font-sans-ui text-[16px] text-[#EDEAE2] hover:text-[#E34A32] px-3 py-1.5 rounded-[8px] border border-[#2A2724] transition-colors cursor-pointer min-h-[44px] flex items-center gap-1.5 active:scale-95"
                 aria-label="Ver todos los capítulos"
                 aria-expanded={showChapters}
               >
@@ -381,7 +390,7 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
               <button
                 onClick={() => skipSeconds(-15)}
                 aria-label="Retroceder 15 segundos"
-                className="w-12 h-12 rounded-[8px] border border-[#2A2724] hover:border-[#EDEAE2] text-[#EDEAE2] flex items-center justify-center transition-colors cursor-pointer focus:ring-2 focus:ring-[#E34A32]"
+                className="w-12 h-12 rounded-[8px] border border-[#2A2724] hover:border-[#EDEAE2] text-[#EDEAE2] flex items-center justify-center transition-all duration-150 active:scale-90 cursor-pointer focus:ring-2 focus:ring-[#E34A32]"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.334 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
@@ -393,7 +402,7 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
                 ref={playButtonRef}
                 onClick={togglePlay}
                 aria-label={isPlaying ? 'Pausar audiolibro' : 'Reproducir audiolibro'}
-                className="w-16 h-16 rounded-[8px] bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-white flex items-center justify-center transition-all duration-200 cursor-pointer shadow-lg focus:ring-2 focus:ring-[#E34A32]"
+                className="w-16 h-16 rounded-[8px] bg-[#EDEAE2] text-[#131211] hover:bg-[#E34A32] hover:text-white active:scale-95 flex items-center justify-center transition-all duration-150 cursor-pointer shadow-lg focus:ring-2 focus:ring-[#E34A32]"
               >
                 {isLoadingAudio ? (
                   <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -415,7 +424,7 @@ export const AudioPlayerModal: React.FC<AudioPlayerModalProps> = ({
               <button
                 onClick={() => skipSeconds(15)}
                 aria-label="Avanzar 15 segundos"
-                className="w-12 h-12 rounded-[8px] border border-[#2A2724] hover:border-[#EDEAE2] text-[#EDEAE2] flex items-center justify-center transition-colors cursor-pointer focus:ring-2 focus:ring-[#E34A32]"
+                className="w-12 h-12 rounded-[8px] border border-[#2A2724] hover:border-[#EDEAE2] text-[#EDEAE2] flex items-center justify-center transition-all duration-150 active:scale-90 cursor-pointer focus:ring-2 focus:ring-[#E34A32]"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M11.934 12.8a1 1 0 000-1.6l-5.334-4A1 1 0 005 8v8a1 1 0 001.6.8l5.334-4zM19.934 12.8a1 1 0 000-1.6l-5.334-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.334-4z" />

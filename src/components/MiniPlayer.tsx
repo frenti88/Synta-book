@@ -48,7 +48,7 @@ export const MiniPlayer: React.FC = () => {
         <button
           onClick={togglePlay}
           aria-label={isPlaying ? 'Pausar audio de NOMA' : 'Reproducir audio de NOMA'}
-          className="min-w-[44px] min-h-[44px] w-11 h-11 rounded-[8px] bg-white text-black hover:bg-[#E34A32] hover:text-white flex items-center justify-center transition-colors cursor-pointer shrink-0 focus:ring-2 focus:ring-[#E34A32] focus:outline-none"
+          className="min-w-[44px] min-h-[44px] w-11 h-11 rounded-[8px] bg-white text-black hover:bg-[#E34A32] hover:text-white active:scale-[0.95] flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 focus:ring-2 focus:ring-[#E34A32] focus:outline-none"
         >
           {isLoadingAudio ? (
             <svg
@@ -91,6 +91,13 @@ export const MiniPlayer: React.FC = () => {
             <span className="font-sans-ui text-[11px] font-mono tracking-widest uppercase text-[#E34A32] font-semibold">
               Capítulo {currentChapter.number.toString().padStart(2, '0')}
             </span>
+            {isPlaying && (
+              <span className="inline-flex items-end gap-[2px] h-3 px-0.5" aria-hidden="true" title="Audio activo">
+                <span className="w-[2px] bg-[#E34A32] rounded-full animate-wave-1" />
+                <span className="w-[2px] bg-[#E34A32] rounded-full animate-wave-2" />
+                <span className="w-[2px] bg-[#E34A32] rounded-full animate-wave-3" />
+              </span>
+            )}
             <span className="text-[#9E9A92] text-[11px]">·</span>
             <span className="font-sans-ui text-[11px] font-mono text-[#9E9A92]">
               {formatTime(currentTime)} / {formatTime(duration)}

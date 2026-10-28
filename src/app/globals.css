@@ -94,8 +94,70 @@ body {
 }
 
 .transition-editorial {
-  transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Synta Motion Language */
+@keyframes syntaPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.28);
+    opacity: 0.72;
+  }
+}
+
+.animate-synta-pulse {
+  animation: syntaPulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* Audio wave equalizer bars for NOMA voice */
+@keyframes waveBar1 {
+  0%, 100% { height: 5px; }
+  50% { height: 16px; }
+}
+
+@keyframes waveBar2 {
+  0%, 100% { height: 15px; }
+  50% { height: 4px; }
+}
+
+@keyframes waveBar3 {
+  0%, 100% { height: 7px; }
+  50% { height: 18px; }
+}
+
+.animate-wave-1 {
+  animation: waveBar1 0.75s ease-in-out infinite;
+}
+.animate-wave-2 {
+  animation: waveBar2 0.55s ease-in-out infinite;
+}
+.animate-wave-3 {
+  animation: waveBar3 0.85s ease-in-out infinite;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-fade {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
 
 :focus-visible {
   outline: 2px solid var(--color-signal);
