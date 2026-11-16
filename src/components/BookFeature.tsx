@@ -16,7 +16,7 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
   isUnlocked,
   hasStartedReading,
 }) => {
-  const { openPlayer } = useAudioPlayer();
+  const { openPlayer, togglePlay, isPlaying, hasStartedAudio } = useAudioPlayer();
 
   const handleClick = () => {
     trackEvent('book_unlock_click', {
@@ -95,15 +95,25 @@ export const BookFeature: React.FC<BookFeatureProps> = ({
             <button
               onClick={() => {
                 trackEvent('audio_bookfeature_click');
-                openPlayer();
+                if (hasStartedAudio) {
+                  togglePlay();
+                } else {
+                  openPlayer();
+                }
               }}
-              aria-label="Escuchar en la voz de NOMA"
+              aria-label={isPlaying ? 'Pausar audio' : 'Escuchar en la voz de NOMA'}
               className="group font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
             >
-              <svg className="w-4 h-4 text-[#E34A32] transform group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              <span>Escuchar en la voz de NOMA</span>
+              {isPlaying ? (
+                <svg className="w-4 h-4 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4 text-[#E34A32] transform group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
+              <span>{isPlaying ? 'Pausar narración' : 'Escuchar en la voz de NOMA'}</span>
             </button>
 
             <span className="font-sans-ui text-[16px] text-white tracking-wide sm:ml-2">

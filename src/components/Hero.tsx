@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = ({
   isUnlocked,
   hasStartedReading,
 }) => {
-  const { openPlayer, savedProgress } = useAudioPlayer();
+  const { openPlayer, togglePlay, isPlaying, hasStartedAudio, savedProgress } = useAudioPlayer();
 
   const handlePrimaryClick = () => {
     trackEvent('hero_read_click', {
@@ -32,14 +32,20 @@ export const Hero: React.FC<HeroProps> = ({
     trackEvent('audio_hero_click', {
       has_progress: !!savedProgress,
     });
-    openPlayer();
+    if (hasStartedAudio) {
+      togglePlay();
+    } else {
+      openPlayer();
+    }
   };
 
   const primaryCtaText = hasStartedReading
     ? 'Continuar leyendo'
     : 'Leer Todo lo que falta';
 
-  const audioCtaText = savedProgress
+  const audioCtaText = isPlaying
+    ? 'Pausar narración'
+    : savedProgress
     ? `Continuar: Cap. 0${savedProgress.chapterNumber}`
     : 'Escuchar en la voz de NOMA';
 
@@ -86,12 +92,18 @@ export const Hero: React.FC<HeroProps> = ({
 
             <button
               onClick={handleAudioClick}
-              aria-label="Escuchar en la voz de NOMA"
+              aria-label={audioCtaText}
               className="group font-sans-ui text-[16px] font-medium border border-white/25 hover:border-white text-white hover:bg-white/10 active:scale-[0.98] transition-all duration-200 min-h-[52px] px-6 py-3.5 inline-flex items-center justify-center gap-2.5 rounded-[8px] cursor-pointer"
             >
-              <svg className="w-4 h-4 text-[#E34A32] transform group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              {isPlaying ? (
+                <svg className="w-4 h-4 text-[#E34A32]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4 text-[#E34A32] transform group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
               <span>{audioCtaText}</span>
             </button>
 

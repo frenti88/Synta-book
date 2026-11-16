@@ -18,7 +18,6 @@ import { Reader } from '@/components/Reader';
 import { PrivacyModal } from '@/components/PrivacyModal';
 import { ManifestoModal } from '@/components/ManifestoModal';
 import { MiniPlayer } from '@/components/MiniPlayer';
-import { AudioPlayerModal } from '@/components/AudioPlayerModal';
 
 export default function Home() {
   const [isUnlocked] = useState(true);
@@ -43,14 +42,6 @@ export default function Home() {
   const handleOpenUnlockOrRead = () => {
     trackEvent('hero_read_click', { story_id: firstStory.id });
     setTargetChapterId(null);
-    setIsReaderOpen(true);
-  };
-
-  const handleOpenReaderAtChapter = (chapterIndex: number) => {
-    const ch = firstStory.chapters[chapterIndex];
-    if (ch) {
-      setTargetChapterId(ch.id);
-    }
     setIsReaderOpen(true);
   };
 
@@ -145,11 +136,8 @@ export default function Home() {
           onClose={() => setIsManifestoModalOpen(false)}
         />
 
-        {/* Bespoke Mini Audio Player */}
+        {/* Compact Floating Audio Player */}
         <MiniPlayer />
-
-        {/* Full Modal Audio Player */}
-        <AudioPlayerModal onOpenReaderAtChapter={handleOpenReaderAtChapter} />
       </div>
     </AudioPlayerProvider>
   );

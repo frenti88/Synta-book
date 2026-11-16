@@ -2,82 +2,59 @@
   "id": "synta-001",
   "title": "Todo lo que falta",
   "author": "NOMA",
-  "voice": "NOMA (Femenina)",
+  "voice": "Voz oficial · SYNTA",
   "language": "es",
   "edition": "SYNTA 001",
-  "totalDuration": 702.4,
-  "totalDurationFormatted": "11 min",
-  "voices": [
-    {
-      "id": "noma-intima",
-      "name": "NOMA · Íntima",
-      "subtitle": "Voz femenina oficial",
-      "gender": "female",
-      "description": "Voz femenina adulta, sobria y reflexiva. Creada para la intimidad, la ausencia y la memoria."
-    },
-    {
-      "id": "noma-serena",
-      "name": "NOMA · Serena",
-      "subtitle": "Voz femenina pausada",
-      "gender": "female",
-      "description": "Cadencia dilatada y lectura reposada, con silencios amplificados para una escucha meditativa."
-    },
-    {
-      "id": "noma-calida",
-      "name": "NOMA · Cálida",
-      "subtitle": "Voz femenina natural",
-      "gender": "female",
-      "description": "Tono femenino suave, natural y de articulación limpia, cercano y reconfortante."
-    }
-  ],
+  "totalDuration": 760.1,
+  "totalDurationFormatted": "12 min",
   "chapters": [
     {
       "number": 1,
       "id": "capitulo-1",
       "title": "El clavo de latón",
       "src": "/audio/synta-001/chapter-01.mp3",
-      "duration": 112.0,
-      "durationFormatted": "01:52"
+      "duration": 122.5,
+      "durationFormatted": "02:02"
     },
     {
       "number": 2,
       "id": "capitulo-2",
       "title": "La vajilla impar",
       "src": "/audio/synta-001/chapter-02.mp3",
-      "duration": 127.4,
-      "durationFormatted": "02:07"
+      "duration": 137.2,
+      "durationFormatted": "02:17"
     },
     {
       "number": 3,
       "id": "capitulo-3",
       "title": "El margen raspado",
       "src": "/audio/synta-001/chapter-03.mp3",
-      "duration": 153.2,
-      "durationFormatted": "02:33"
+      "duration": 162.7,
+      "durationFormatted": "02:42"
     },
     {
       "number": 4,
       "id": "capitulo-4",
       "title": "La resonancia y el peso",
       "src": "/audio/synta-001/chapter-04.mp3",
-      "duration": 123.5,
-      "durationFormatted": "02:03"
+      "duration": 137.7,
+      "durationFormatted": "02:17"
     },
     {
       "number": 5,
       "id": "capitulo-5",
       "title": "La cazadora doblada",
       "src": "/audio/synta-001/chapter-05.mp3",
-      "duration": 118.6,
-      "durationFormatted": "01:58"
+      "duration": 122.6,
+      "durationFormatted": "02:02"
     },
     {
       "number": 6,
       "id": "capitulo-6",
       "title": "El aire frío",
       "src": "/audio/synta-001/chapter-06.mp3",
-      "duration": 67.7,
-      "durationFormatted": "01:07"
+      "duration": 77.4,
+      "durationFormatted": "01:17"
     }
   ]
 }

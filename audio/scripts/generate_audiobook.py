@@ -88,18 +88,19 @@ def main():
     print(f"  Device: Using device: {device}")
     print("=" * 65)
 
-    # 1. Prepare and chunk manuscript
-    chapters = prepare_book(args.book, BASE_DIR)
+    # 1. Resolve books to process
+    if args.book.lower() == "all":
+        manuscript_files = sorted((BASE_DIR / "manuscripts").glob("*.md"))
+        book_ids = [p.stem for p in manuscript_files]
+        if not book_ids:
+            print("❌ Error: No manuscripts found in audio/manuscripts/.")
+            sys.exit(1)
+    else:
+        book_ids = [args.book]
 
     # 2. Voice configuration and reference prompt
     voice_cfg = load_voice_config(BASE_DIR, "noma")
     ref_voice_path = resolve_voice_reference(BASE_DIR, args.voice, "noma")
-
-    # Target chapters
-    target_chapters = [c for c in chapters if args.chapter is None or c["number"] == args.chapter]
-    if not target_chapters:
-        print(f"❌ Error: Chapter {args.chapter} not found in manuscript.")
-        sys.exit(1)
 
     model = None
     if not args.skip_generation:
@@ -116,88 +117,103 @@ def main():
 
         print("\n⏳ Loading ChatterboxMultilingualTTS (v3) into memory...")
         model = ChatterboxMultilingualTTS.from_pretrained(device=device)
+        if ref_voice_path:
+            print(f"🧬 Precomputing speaker cloning embeddings from: {Path(ref_voice_path).name}")
+            model.prepare_conditionals(
+                ref_voice_path,
+                exaggeration=voice_cfg.get("exaggeration", 0.50),
+            )
         print("✅ Model loaded successfully.\n")
 
-    qa_report = []
+    for book_id in book_ids:
+        chapters = prepare_book(book_id, BASE_DIR)
 
-    # 3. Generate chunk WAVs
-    gen_dir = BASE_DIR / "generated" / args.book
+        # Target chapters
+        target_chapters = [c for c in chapters if args.chapter is None or c["number"] == args.chapter]
+        if not target_chapters:
+            print(f"❌ Error: Chapter {args.chapter} not found in manuscript {book_id}.")
+            sys.exit(1)
 
-    for ch in target_chapters:
-        ch_num = ch["number"]
-        ch_title = ch["title"]
-        chunks = ch["chunks"]
-        ch_dir = gen_dir / f"chapter-{ch_num:02d}"
-        ch_dir.mkdir(parents=True, exist_ok=True)
+        qa_report = []
 
-        print(f"🎬 Processing Capítulo {ch_num:02d}: '{ch_title}' ({len(chunks)} chunks)")
+        # 3. Generate chunk WAVs
+        gen_dir = BASE_DIR / "generated" / book_id
 
-        chunks_generated = 0
-        chunks_reused = 0
+        for ch in target_chapters:
+            ch_num = ch["number"]
+            ch_title = ch["title"]
+            chunks = ch["chunks"]
+            ch_dir = gen_dir / f"chapter-{ch_num:02d}"
+            ch_dir.mkdir(parents=True, exist_ok=True)
 
-        for idx, chunk in enumerate(chunks):
-            chunk_file = ch_dir / f"chunk-{idx+1:03d}.wav"
-            
-            if chunk_file.exists() and not args.force:
-                chunks_reused += 1
-                continue
+            print(f"🎬 [{book_id}] Processing Capítulo {ch_num:02d}: '{ch_title}' ({len(chunks)} chunks)")
 
-            if args.skip_generation:
-                continue
+            chunks_generated = 0
+            chunks_reused = 0
 
-            # Run synthesis with Chatterbox
-            print(f"   [{idx+1:02d}/{len(chunks):02d}] Synthesizing: \"{chunk['text'][:42]}...\"")
-            wav = model.generate(
-                text=chunk["text"],
-                language_id=voice_cfg.get("language", "es"),
-                audio_prompt_path=ref_voice_path,
-                exaggeration=voice_cfg.get("exaggeration", 0.55),
-                cfg_weight=voice_cfg.get("cfg_weight", 0.35),
-                temperature=voice_cfg.get("temperature", 0.7),
-                repetition_penalty=voice_cfg.get("repetition_penalty", 2.0)
-            )
+            for idx, chunk in enumerate(chunks):
+                chunk_file = ch_dir / f"chunk-{idx+1:03d}.wav"
 
-            # Ensure 2D tensor (channels, samples)
-            if wav.ndim == 1:
-                wav = wav.unsqueeze(0)
-            elif wav.ndim == 3:
-                wav = wav.squeeze(0)
+                if chunk_file.exists() and not args.force:
+                    chunks_reused += 1
+                    continue
 
-            # Move to CPU for saving
-            wav = wav.detach().cpu()
-            ta.save(str(chunk_file), wav, model.sr)
-            chunks_generated += 1
+                if args.skip_generation:
+                    continue
 
-        print(f"   Chunks generated: {chunks_generated}, Reused: {chunks_reused}")
+                # Run synthesis with Chatterbox using precomputed speaker embeddings
+                print(f"   [{idx+1:02d}/{len(chunks):02d}] Synthesizing: \"{chunk['text'][:42]}...\"")
+                wav = model.generate(
+                    text=chunk["text"],
+                    language_id=voice_cfg.get("language", "es"),
+                    audio_prompt_path=None if ref_voice_path else None,
+                    exaggeration=voice_cfg.get("exaggeration", 0.50),
+                    cfg_weight=voice_cfg.get("cfg_weight", 0.35),
+                    temperature=voice_cfg.get("temperature", 0.72),
+                    repetition_penalty=voice_cfg.get("repetition_penalty", 2.0)
+                )
 
-        # 4. Stitch chapter
-        master_wav = stitch_chapter(args.book, ch_num, BASE_DIR)
+                # Ensure 2D tensor (channels, samples)
+                if wav.ndim == 1:
+                    wav = wav.unsqueeze(0)
+                elif wav.ndim == 3:
+                    wav = wav.squeeze(0)
 
-        import soundfile as sf
-        info = sf.info(str(master_wav))
-        duration_sec = info.duration
-        mins = int(duration_sec // 60)
-        secs = int(duration_sec % 60)
+                # Move to CPU for saving
+                wav = wav.detach().cpu()
+                ta.save(str(chunk_file), wav, model.sr)
+                chunks_generated += 1
 
-        qa_report.append({
-            "chapter": ch_num,
-            "title": ch_title,
-            "duration": f"{mins:02d}:{secs:02d}",
-            "duration_sec": round(duration_sec, 1),
-            "chunks": len(chunks),
-            "status": "OK" if duration_sec > 10 else "CHECK"
-        })
+            print(f"   Chunks generated: {chunks_generated}, Reused: {chunks_reused}")
 
-    # 5. Export web audio (MP3s + manifest.json)
-    export_book(args.book, BASE_DIR)
+            # 4. Stitch chapter
+            master_wav = stitch_chapter(book_id, ch_num, BASE_DIR)
 
-    # 6. Print Quality Assurance Report
-    print("\n" + "=" * 65)
-    print("  AUDIOBOOK QA INSPECTION REPORT — NOMA")
-    print("=" * 65)
-    for rep in qa_report:
-        print(f"  Capítulo {rep['chapter']:02d}: {rep['title']:<28} | Duración: {rep['duration']} | Chunks: {rep['chunks']:<2} | Status: {rep['status']}")
-    print("=" * 65 + "\n")
+            import soundfile as sf
+            info = sf.info(str(master_wav))
+            duration_sec = info.duration
+            mins = int(duration_sec // 60)
+            secs = int(duration_sec % 60)
+
+            qa_report.append({
+                "chapter": ch_num,
+                "title": ch_title,
+                "duration": f"{mins:02d}:{secs:02d}",
+                "duration_sec": round(duration_sec, 1),
+                "chunks": len(chunks),
+                "status": "OK" if duration_sec > 10 else "CHECK"
+            })
+
+        # 5. Export web audio (MP3s + manifest.json)
+        export_book(book_id, BASE_DIR)
+
+        # 6. Print Quality Assurance Report
+        print("\n" + "=" * 65)
+        print(f"  AUDIOBOOK QA INSPECTION REPORT — {book_id.upper()}")
+        print("=" * 65)
+        for rep in qa_report:
+            print(f"  Capítulo {rep['chapter']:02d}: {rep['title']:<28} | Duración: {rep['duration']} | Chunks: {rep['chunks']:<2} | Status: {rep['status']}")
+        print("=" * 65 + "\n")
 
 if __name__ == "__main__":
     main()
